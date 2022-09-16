@@ -42,7 +42,6 @@ function Question(props) {
   );
 
   function optionClicked(optionIndex, e) {
-    console.log("optionClicked", optionIndex, e);
     if (props.question.type === "single") {
       // single select
       const newSelections = Array(options.length).fill(false);
