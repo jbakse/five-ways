@@ -1,0 +1,46 @@
+.survey {
+    max-width: 800px;
+    margin: 0 auto;
+}
+.question {
+  padding: 1em;
+  background-color: #ccc;
+
+  + .question {
+    margin-top: 1em;
+  }
+}
+
+.instruction {
+    font-size: .75rem;
+    padding: 4px;
+    background: white;
+}
+
+.options {
+  padding-left: 0;
+}
+
+.option {
+  padding: 1em;
+  background-color: #ddd;
+  &.selected {
+    background: white;
+  }
+  + .option {
+    margin-top: 1em;
+  }
+}
+
+.checkbox {
+  height: 20px;
+  width: 20px;
+  border: 1px solid black;
+  display: inline-block;
+  margin-right: 10px;
+  .selected & {
+    background: black;
+  }
+}
+
+
