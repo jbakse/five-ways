@@ -7,12 +7,14 @@ import styles from "../styles/survey.module.scss";
 export async function getServerSideProps(context) {
   return {
     props: {
-      questions: await getQuestions(),
+      id: "recVZKGGAb7BaWPvf",
+      questions: await getQuestions("recVZKGGAb7BaWPvf"),
     },
   };
 }
 
 export default function Survey(props) {
+  console.log("s", props);
   return (
     <>
       <Head>
@@ -20,7 +22,7 @@ export default function Survey(props) {
       </Head>
       <div className={styles.survey}>
         {props.questions.map((q) => (
-          <Question {...q} key={q.id} />
+          <Question {...q} surveyId={props.id} key={q.id} />
         ))}
       </div>
     </>
@@ -34,12 +36,29 @@ function Question(props) {
     new Array(props.optionTextsEnglish.length).fill(false)
   );
 
+  function sendResponse(data) {
+    fetch("/api/response", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+  }
   function optionClicked(optionIndex, e) {
     if (props.type === "single") {
       // single select
       const newSelections = Array(props.optionTextsEnglish.length).fill(false);
       newSelections[optionIndex] = true;
       setSelections(newSelections);
+      const responderId = "test";
+      console.log("surveyId", props.surveyId);
+      sendResponse({
+        responderId,
+        surveyId: props.surveyId,
+        questionId: props.id,
+        selections,
+      });
     } else {
       // multiple select
       const newSelections = [...selections];
