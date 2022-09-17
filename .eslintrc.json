@@ -1,6 +1,54 @@
 {
   "extends": "next/core-web-vitals",
   "rules": {
-    "prefer-const": "error"
+    "prefer-const": "error",
+    "no-var": "error",
+    "arrow-body-style": ["error", "as-needed"],
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index",
+          "object",
+          "type"
+        ],
+        "newlines-between": "never"
+      }
+    ],
+    "import/no-extraneous-dependencies": "error",
+    "import/no-unresolved": "error",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "mjs": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+
+    "react/function-component-definition": [
+      "error",
+      {
+        "namedComponents": "function-declaration",
+        "unnamedComponents": "function-expression"
+      }
+    ],
+    "react/jsx-fragments": ["error", "syntax"]
+    // "react/jsx-props-no-spreading": [
+    //   "error",
+    //   {
+    //     "html": "ignore",
+    //     "custom": "enforce",
+    //     "exceptions": ["Component"]
+    //   }
+    // ]
   }
 }

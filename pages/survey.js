@@ -1,14 +1,7 @@
-// libs
-import { useState } from "react";
+import React, { useState } from "react";
 import classNames from "classnames";
-
-// components
 import Head from "next/head";
-
-// js
 import { getQuestions } from "../lib/airtable";
-
-// css
 import styles from "../styles/survey.module.scss";
 
 export async function getServerSideProps(context) {
@@ -19,15 +12,15 @@ export async function getServerSideProps(context) {
   };
 }
 
-export default function Survey({ questions }) {
+export default function Survey(props) {
   return (
     <>
       <Head>
         <title>Survey</title>
       </Head>
       <div className={styles.survey}>
-        {questions.map((q, i) => (
-          <Question question={q} key={q.id} />
+        {props.questions.map((q) => (
+          <Question {...q} key={q.id} />
         ))}
       </div>
     </>
@@ -35,16 +28,16 @@ export default function Survey({ questions }) {
 }
 
 function Question(props) {
-  const options = props.question.options;
+  // { id, type, promptTextEnglish, optionTextsEnglish }
 
   const [selections, setSelections] = useState(
-    new Array(options.length).fill(false)
+    new Array(props.optionTextsEnglish.length).fill(false)
   );
 
   function optionClicked(optionIndex, e) {
-    if (props.question.type === "single") {
+    if (props.type === "single") {
       // single select
-      const newSelections = Array(options.length).fill(false);
+      const newSelections = Array(props.optionTextsEnglish.length).fill(false);
       newSelections[optionIndex] = true;
       setSelections(newSelections);
     } else {
@@ -57,26 +50,24 @@ function Question(props) {
 
   return (
     <div className={styles.question}>
-      <h2 className={styles.prompt}>{props.question.prompt}</h2>
+      <h2 className={styles.prompt}>{props.promptTextEnglish}</h2>
       <span className={styles.instruction}>
-        {props.question.type === "single" ? "choose one" : "choose many"}
+        {props.type === "single" ? "choose one" : "choose many"}
       </span>
       <ul className={styles.options} role="list">
-        {options.map((option, i) => {
-          return (
-            <li
-              className={classNames(
-                styles.option,
-                selections[i] && styles.selected
-              )}
-              key={i}
-              onClick={(e) => optionClicked(i, e)}
-            >
-              <span className={styles.checkbox}></span>
-              {option}
-            </li>
-          );
-        })}
+        {props.optionTextsEnglish.map((optionText, i) => (
+          <li
+            className={classNames(
+              styles.option,
+              selections[i] && styles.selected
+            )}
+            key={i}
+            onClick={(e) => optionClicked(i, e)}
+          >
+            <span className={styles.checkbox}></span>
+            {optionText}
+          </li>
+        ))}
       </ul>
     </div>
   );
