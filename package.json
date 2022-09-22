@@ -4,7 +4,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "pscale:dev": "pscale connect five_ways dev --port 3309",
+    "prisma:studio": "prisma studio",
+    "prisma:push": "prisma db push"
   },
   "dependencies": {
     "@prisma/client": "^4.3.1",

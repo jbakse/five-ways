@@ -1,10 +1,11 @@
 import { PrismaClient } from "@prisma/client";
 import pick from "lodash/pick";
+
 const prisma = new PrismaClient();
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
-    return await createResponse(req, res);
+    return await logResponse(req, res);
   } else {
     return res
       .status(405)
@@ -12,7 +13,7 @@ export default async function handler(req, res) {
   }
 }
 
-async function createResponse(req, res) {
+async function logResponse(req, res) {
   try {
     const response = await prisma.response.upsert({
       where: {
@@ -31,6 +32,6 @@ async function createResponse(req, res) {
     return res.status(200).json({ success: true, response: response });
   } catch (error) {
     console.error("Request error", error);
-    res.status(500).json({ error: "Error creating question", success: false });
+    res.status(500).json({ error: "Error logging response", success: false });
   }
 }
