@@ -41,7 +41,14 @@
         "unnamedComponents": "function-expression"
       }
     ],
-    "react/jsx-fragments": ["error", "syntax"]
+    "react/jsx-fragments": ["error", "syntax"],
+    "react-hooks/exhaustive-deps": [
+      "error",
+      {
+        "additionalHooks": "(useDeepCompareEffect)"
+      }
+    ]
+
     // "react/jsx-props-no-spreading": [
     //   "error",
     //   {
