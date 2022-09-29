@@ -28,7 +28,7 @@ export default function Question(props) {
     },
   ]);
 
-  function optionClicked(optionIndex, e) {
+  function optionClicked(optionIndex) {
     if (props.type === "single") {
       // single select
       const newSelections = Array(props.optionTextsEnglish.length).fill(false);

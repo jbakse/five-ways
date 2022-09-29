@@ -5,7 +5,7 @@ import { getQuestions } from "../lib/airtable";
 import Question from "../components/Question";
 import styles from "./survey.module.scss";
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(/*context*/) {
   const surveyId = "recVZKGGAb7BaWPvf"; //TODO: make configurable
   return {
     props: {
