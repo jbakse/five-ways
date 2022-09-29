@@ -1,0 +1,24 @@
+.table {
+    
+    width: 800px;
+    margin: auto;
+    border-spacing: 0;
+}
+
+.table thead {
+    background: black;
+    color: white;
+}
+
+.table td {
+    padding: 5px 10px;
+}
+
+.table tbody tr{
+    background: #efe;
+    vertical-align: top;
+}
+
+.table tbody tr:nth-child(2n) {
+    background: #fff;
+}
