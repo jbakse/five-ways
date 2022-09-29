@@ -7,8 +7,10 @@
     "start": "next start",
     "lint": "next lint",
     "pscale:dev": "pscale connect five_ways dev --port 3309",
+    "prisma:generate": "prisma generate",
     "prisma:studio": "prisma studio",
-    "prisma:push": "prisma db push"
+    "prisma:push": "prisma db push",
+    "predev": "npm run prisma:generate"
   },
   "dependencies": {
     "@prisma/client": "^4.3.1",
