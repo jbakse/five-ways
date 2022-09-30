@@ -4,11 +4,8 @@ import Head from "next/head";
 
 export default function Responses(/*props*/) {
   const today = new Date().toLocaleDateString("en-CA");
-  const lastMonthDate = new Date();
-  lastMonthDate.setMonth(new Date().getMonth() - 1);
-  const lastMonth = lastMonthDate.toLocaleDateString("en-CA");
 
-  const [startDate, setStartDate] = useState(lastMonth);
+  const [startDate, setStartDate] = useState(today);
   const [endDate, setEndDate] = useState(today);
 
   const responses = useAsync(async () => {
@@ -56,7 +53,7 @@ export default function Responses(/*props*/) {
           <thead>
             <tr>
               <th>responseId</th>
-              <th>date</th>
+              <th>createdAt</th>
               <th>responderId</th>
               <th>surveyId</th>
               <th>questionId</th>
@@ -67,7 +64,7 @@ export default function Responses(/*props*/) {
             {responses.value.map((p) => (
               <tr key={p.id}>
                 <td>{p.id}</td>
-                <td>{formatDate(p.updatedAt)}</td>
+                <td>{formatDate(p.createdAt)}</td>
                 <td>{shorten(p.responderId)}</td>
                 <td>{shorten(p.surveyId)}</td>
                 <td>{shorten(p.questionId)}</td>

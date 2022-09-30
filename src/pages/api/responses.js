@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
-    return await logResponse(req, res);
+    return await upsertResponse(req, res);
   } else if (req.method === "GET") {
     return await listRepsonses(req, res);
   } else {
@@ -16,12 +16,24 @@ export default async function handler(req, res) {
 }
 
 async function listRepsonses(req, res) {
+  // from start of day
+  const start = new Date(
+    req.query.start ? req.query.start + "T00:00:00" : "2000-01-01"
+  );
+
+  // to END of day
+  const end = new Date(
+    req.query.end ? req.query.end + "T00:00:00" : "3000-01-01"
+  );
+  end.setDate(end.getDate() + 1);
+
+  console.log(start, end);
   try {
     const responses = await prisma.response.findMany({
       where: {
         createdAt: {
-          gte: new Date(req.query.start ?? "2000-01-01"),
-          lte: new Date(req.query.end ?? "3000-01-01"),
+          gte: start,
+          lte: end,
         },
       },
     });
@@ -36,7 +48,7 @@ async function listRepsonses(req, res) {
     res.status(500).json({ error: "Error listing responses", success: false });
   }
 }
-async function logResponse(req, res) {
+async function upsertResponse(req, res) {
   try {
     const response = await prisma.response.upsert({
       where: {
