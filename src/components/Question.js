@@ -19,7 +19,7 @@ export default function Question(props) {
 
   // post data to backend when data changes (use deep compare)
   useAsyncDeep(postData, [
-    "/api/logResponse",
+    "/api/responses",
     {
       responderId: props.responderId,
       surveyId: props.surveyId,

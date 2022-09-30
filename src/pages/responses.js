@@ -1,22 +1,24 @@
-import { PrismaClient } from "@prisma/client";
+import React, { useState } from "react";
+import { useAsync } from "react-use";
 import Head from "next/head";
 
-export async function getServerSideProps(/*context*/) {
-  const prisma = new PrismaClient();
+export default function Responses(/*props*/) {
+  const today = new Date().toLocaleDateString("en-CA");
+  const lastMonthDate = new Date();
+  lastMonthDate.setMonth(new Date().getMonth() - 1);
+  const lastMonth = lastMonthDate.toLocaleDateString("en-CA");
 
-  const responses = await prisma.response.findMany({
-    where: {},
-  });
+  const [startDate, setStartDate] = useState(lastMonth);
+  const [endDate, setEndDate] = useState(today);
 
-  const responses_cleaned = JSON.parse(JSON.stringify(responses));
-  return {
-    props: {
-      responses: responses_cleaned,
-    },
-  };
-}
+  const responses = useAsync(async () => {
+    const response = await fetch(
+      `/api/responses?start=${startDate}&end=${endDate}`
+    );
+    const result = await response.json();
+    return result.responses;
+  }, [startDate, endDate]);
 
-export default function Responses(props) {
   function shorten(s) {
     //recVZKGGAb7BaWPvf -> re..vf
     return s.substr(0, 2) + ".." + s.substr(-2);
@@ -25,36 +27,56 @@ export default function Responses(props) {
   function formatDate(s) {
     return new Date(s).toLocaleString();
   }
+
   return (
     <>
       <Head>
         <title>Responses</title>
       </Head>
       <h1>Responses</h1>
-      <table class="table">
-        <thead>
-          <td>responseId</td>
-          <td>date</td>
-          <td>responderId</td>
-          <td>surveyId</td>
-          <td>questionId</td>
-          <td>response</td>
-        </thead>
-        <tbody>
-          {props.responses.map((p) => (
-            <tr key={p.id}>
-              <td>{p.id}</td>
-              <td>{formatDate(p.updatedAt)}</td>
-              <td>{shorten(p.responderId)}</td>
-              <td>{shorten(p.surveyId)}</td>
-              <td>{shorten(p.questionId)}</td>
-              <td>{JSON.stringify(p.selections)}</td>
+      From:
+      <input
+        type="date"
+        value={startDate}
+        onChange={(e) => setStartDate(e.target.value)}
+      ></input>
+      <br />
+      To:
+      <input
+        type="date"
+        value={endDate}
+        onChange={(e) => setEndDate(e.target.value)}
+      ></input>
+      {responses.loading ? (
+        <div>Loading...</div>
+      ) : responses.error ? (
+        <div>Error: {responses.error.message}</div>
+      ) : (
+        <table className="table">
+          <thead>
+            <tr>
+              <th>responseId</th>
+              <th>date</th>
+              <th>responderId</th>
+              <th>surveyId</th>
+              <th>questionId</th>
+              <th>response</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-
-      <pre>{JSON.stringify(props, null, 2)}</pre>
+          </thead>
+          <tbody>
+            {responses.value.map((p) => (
+              <tr key={p.id}>
+                <td>{p.id}</td>
+                <td>{formatDate(p.updatedAt)}</td>
+                <td>{shorten(p.responderId)}</td>
+                <td>{shorten(p.surveyId)}</td>
+                <td>{shorten(p.questionId)}</td>
+                <td>{JSON.stringify(p.selections)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </>
   );
 }

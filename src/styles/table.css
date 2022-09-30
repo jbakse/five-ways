@@ -1,13 +1,15 @@
 .table {
-    
-    width: 800px;
-    margin: auto;
     border-spacing: 0;
 }
 
 .table thead {
     background: black;
     color: white;
+}
+
+.table thead th {
+    text-align: left;
+    padding: 5px 10px;
 }
 
 .table td {
