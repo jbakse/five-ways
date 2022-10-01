@@ -7,16 +7,16 @@ Airtable.configure({
 
 const base = Airtable.base(process.env.AIRTABLE_BASE_ID);
 
-async function getSurvey(id) {
+async function getSurveyData(id) {
   const result = await base("Survey").find(id);
   return {
     id,
     nickname: result.fields.nickname ?? "unnamed",
-    questions: result.fields.questions ?? [],
+    questionIds: result.fields.questions ?? [],
   };
 }
 
-async function getQuestion(id) {
+async function getQuestionData(id) {
   const result = await base("Question").find(id);
   return {
     id,
@@ -25,20 +25,26 @@ async function getQuestion(id) {
   };
 }
 
-export async function getQuestions(surveyId) {
-  console.log("getQuestions", surveyId);
-
+async function getQuestions(questionIds) {
   try {
-    const survey = await getSurvey(surveyId);
-
-    const questionIds = survey.questions;
-    const questionPromises = questionIds.map(getQuestion);
+    const questionPromises = questionIds.map(getQuestionData);
     const questions = await Promise.all(questionPromises);
     return questions;
   } catch (e) {
     console.log("Error loading survey questions.\n", e);
     return [];
   }
+}
+
+export async function getSurvey(surveyId) {
+  const surveyData = await getSurveyData(surveyId);
+  console.log("surveyData", surveyData);
+  const questions = await getQuestions(surveyData.questionIds);
+  return {
+    id: surveyData.id,
+    nickname: surveyData.nickname,
+    questions,
+  };
 }
 
 export async function getSurveys() {
@@ -48,16 +54,23 @@ export async function getSurveys() {
 
     await new Promise((resolve, reject) => {
       pages.eachPage(
-        async function page(records, fetchNextPage) {
-          const promises = records.map(async (r) => {
-            const qs = await getQuestions(r.id);
+        function page(records, fetchNextPage) {
+          // const promises = records.map(async (r) => {
+          //   const qs = await getQuestions(r.fields.questions ?? []);
+          //   surveys.push({
+          //     id: r.id,
+          //     nickname: r.fields.nickname,
+          //     questions: qs,
+          //   });
+          // });
+          // await Promise.allSettled(promises);
+          records.forEach((r) => {
             surveys.push({
               id: r.id,
               nickname: r.fields.nickname,
-              questions: qs,
+              questionCount: r.fields.questions?.length ?? 0,
             });
           });
-          await Promise.allSettled(promises);
           fetchNextPage();
         },
         function done(err) {

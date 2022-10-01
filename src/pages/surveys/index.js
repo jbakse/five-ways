@@ -1,9 +1,11 @@
 import React from "react";
+import Link from "next/link";
 import { useAsync } from "react-use";
 import Head from "next/head";
+import { Async } from "../../components/Async";
 
 export default function Surveys(/*props*/) {
-  const survey = useAsync(async () => {
+  const surveys = useAsync(async () => {
     const response = await fetch(`/api/surveys`);
     const result = await response.json();
     console.log(result);
@@ -15,13 +17,30 @@ export default function Surveys(/*props*/) {
         <title>Surveys</title>
       </Head>
       <h1>Surveys</h1>
-      {survey.loading ? (
-        <div>Loading...</div>
-      ) : survey.error ? (
-        <div>Error: {survey.error.message}</div>
-      ) : (
-        <pre>{JSON.stringify(survey.value, null, 2)}</pre>
-      )}
+      <Async data={surveys}>
+        <table className="table">
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>nickname</th>
+              <th>questions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {surveys.value?.map((s) => (
+              <tr key={s.id}>
+                <td>
+                  <Link href={`/surveys/${encodeURIComponent(s.id)}`}>
+                    {s.id}
+                  </Link>
+                </td>
+                <td>{s.nickname}</td>
+                <td>{s.questionCount}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </Async>
     </>
   );
 }

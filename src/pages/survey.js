@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Head from "next/head";
 import { v4 as uuidv4 } from "uuid";
-import { getQuestions } from "../lib/airtable";
+import { getSurvey } from "../lib/airtable";
 import Question from "../components/Question";
 import styles from "./survey.module.scss";
 
@@ -9,8 +9,7 @@ export async function getServerSideProps(/*context*/) {
   const surveyId = "recVZKGGAb7BaWPvf"; //TODO: make configurable
   return {
     props: {
-      surveyId,
-      questions: await getQuestions(surveyId),
+      survey: await getSurvey(surveyId),
     },
   };
 }
@@ -23,11 +22,12 @@ export default function Survey(props) {
       <Head>
         <title>Survey</title>
       </Head>
+      {/* <pre>{JSON.stringify(props)}</pre> */}
       <div className={styles.survey}>
-        {props.questions.map((q) => (
+        {props.survey.questions.map((q) => (
           <Question
             responderId={responderId}
-            surveyId={props.surveyId}
+            surveyId={props.survey.id}
             {...q}
             key={q.id}
           />
