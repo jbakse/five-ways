@@ -10,3 +10,7 @@ body {
 html {
     /* user-select: none; */
 }
+
+pre {
+    margin: 0;
+}

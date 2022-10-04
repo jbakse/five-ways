@@ -5,7 +5,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { Async } from "../../components/Async";
 
-export default function Surveys(/*props*/) {
+export default function SurveyPage(/*props*/) {
   const router = useRouter();
   const survey = useAsync(async () => {
     if (!router.query.id) return;

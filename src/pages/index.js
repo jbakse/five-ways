@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function Index() {
+export default function IndexPage() {
   return (
     <>
       <Link href="/survey">survey</Link>

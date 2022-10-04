@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 import { useAsyncDeep } from "../lib/hooks";
-import { postData } from "../lib/util";
+import { postData } from "../lib/network";
 import styles from "./Question.module.scss";
 
 // <Question>

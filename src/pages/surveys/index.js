@@ -4,7 +4,7 @@ import { useAsync } from "react-use";
 import Head from "next/head";
 import { Async } from "../../components/Async";
 
-export default function Surveys(/*props*/) {
+export default function SurveysPage(/*props*/) {
   const surveys = useAsync(async () => {
     const response = await fetch(`/api/surveys`);
     const result = await response.json();

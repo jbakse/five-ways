@@ -1,11 +1,11 @@
-export async function postData(endPoint, data) {
-  const response = await fetch(endPoint, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-  const result = await response.json();
-  return result;
+export function formatPercent(n) {
+  return Math.floor(n * 100) + "%";
+}
+
+export function formatDate(s) {
+  return new Date(s).toLocaleString();
+}
+
+export function allFalse(a) {
+  return a.every((element) => element === false);
 }

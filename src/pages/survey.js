@@ -14,7 +14,7 @@ export async function getServerSideProps(/*context*/) {
   };
 }
 
-export default function Survey(props) {
+export default function SurveyPage(props) {
   const [responderId] = useState(uuidv4());
 
   return (

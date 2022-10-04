@@ -1,0 +1,19 @@
+@import "../styles/common";
+
+
+
+.title {
+    @include content-block;
+    margin-top: 1em;
+    padding: 0 .5em;
+    background: #333;
+    color: white;
+}
+
+
+.body {
+    @include content-block;
+    padding: 0 .5em;
+    background: #eee;
+}
+

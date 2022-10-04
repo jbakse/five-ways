@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useAsync } from "react-use";
 import Head from "next/head";
+import { formatDate } from "../../lib/util";
 
-export default function Responses(/*props*/) {
+export default function ResponsesPage(/*props*/) {
   const today = new Date().toLocaleDateString("en-CA");
 
   const [startDate, setStartDate] = useState(today);
@@ -19,10 +20,6 @@ export default function Responses(/*props*/) {
   function shorten(s) {
     //recVZKGGAb7BaWPvf -> re..vf
     return s.substr(0, 2) + ".." + s.substr(-2);
-  }
-
-  function formatDate(s) {
-    return new Date(s).toLocaleString();
   }
 
   return (

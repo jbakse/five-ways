@@ -1,9 +1,11 @@
 export function Async(props) {
   if (props.data.loading) {
-    return <div>Loading...</div>;
+    return <div className="content-block">Loading...</div>;
   }
   if (props.data.error) {
-    <div>Error: {props.data.error.message}</div>;
+    return (
+      <div className="content-block">Error: {props.data.error.message}</div>
+    );
   }
   return <div>{props.children}</div>;
 }
