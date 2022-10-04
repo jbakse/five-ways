@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { useAsync } from "react-use";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -22,8 +23,16 @@ export default function Surveys(/*props*/) {
       <h1>Survey {survey.value?.nickname}</h1>
 
       <Async data={survey}>
-        {survey.value.questions.map((q) => (
-          <h2 key={q.id}>{q.promptTextEnglish}</h2>
+        {survey.value?.questions.map((q) => (
+          <div key={q.id}>
+            <h2>{q.promptTextEnglish}</h2>
+            <Link href={`/results/${encodeURIComponent(q.id)}`}>{q.id}</Link>
+            <ul>
+              {q.optionTextsEnglish.map((o) => (
+                <li key={o}>{o}</li>
+              ))}
+            </ul>
+          </div>
         ))}
         <pre>{JSON.stringify(survey?.value, null, 2)}</pre>
       </Async>

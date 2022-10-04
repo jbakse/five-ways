@@ -27,7 +27,11 @@ async function listRepsonses(req, res) {
   );
   end.setDate(end.getDate() + 1);
 
-  console.log(start, end);
+  const filters = {};
+  if (req.query.questionId) {
+    filters.questionId = { equals: req.query.questionId };
+  }
+
   try {
     const responses = await prisma.response.findMany({
       where: {
@@ -35,6 +39,7 @@ async function listRepsonses(req, res) {
           gte: start,
           lte: end,
         },
+        ...filters,
       },
     });
 

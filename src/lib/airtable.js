@@ -16,7 +16,7 @@ async function getSurveyData(id) {
   };
 }
 
-async function getQuestionData(id) {
+export async function getQuestionData(id) {
   const result = await base("Question").find(id);
   return {
     id,
