@@ -11,6 +11,11 @@ html {
     /* user-select: none; */
 }
 
-pre {
+pre, ol, ul {
+    padding: 0;
     margin: 0;
+}
+
+a {
+    color: #333;
 }

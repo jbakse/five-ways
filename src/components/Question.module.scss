@@ -18,8 +18,9 @@
 }
 
 .option {
-    padding: 1em;
     background-color: #ddd;
+    font-size: 1.25rem;
+    padding: .5em;
 
     &.selected {
         background: white;
@@ -31,11 +32,14 @@
 }
 
 .checkbox {
-    height: 20px;
-    width: 20px;
+    height: 16px;
+    width: 16px;
     border: 1px solid black;
+    border-radius: 3px;
     display: inline-block;
     margin-right: 10px;
+    position: relative;
+    // top: 2px;
 
     .selected & {
         background: black;

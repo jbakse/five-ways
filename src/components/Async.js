@@ -7,5 +7,5 @@ export function Async(props) {
       <div className="content-block">Error: {props.data.error.message}</div>
     );
   }
-  return <div>{props.children}</div>;
+  return <div className="content-block">{props.children}</div>;
 }

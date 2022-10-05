@@ -4,6 +4,7 @@ import { useAsync } from "react-use";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { Async } from "../../components/Async";
+import { ShowJSON } from "../../components/ShowJSON";
 
 export default function SurveyPage(/*props*/) {
   const router = useRouter();
@@ -20,21 +21,19 @@ export default function SurveyPage(/*props*/) {
       <Head>
         <title>Survey</title>
       </Head>
-      <h1>Survey {survey.value?.nickname}</h1>
 
       <Async data={survey}>
-        {survey.value?.questions.map((q) => (
-          <div key={q.id}>
-            <h2>{q.promptTextEnglish}</h2>
-            <Link href={`/results/${encodeURIComponent(q.id)}`}>{q.id}</Link>
-            <ul>
-              {q.optionTextsEnglish.map((o) => (
-                <li key={o}>{o}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
-        <pre>{JSON.stringify(survey?.value, null, 2)}</pre>
+        <h1 className="content-block">Survey "{survey.value?.nickname}"</h1>
+        <ol>
+          {survey.value?.questions.map((q) => (
+            <li key={q.id}>
+              <Link href={`/results/${encodeURIComponent(q.id)}`}>
+                {q.promptTextEnglish}
+              </Link>
+            </li>
+          ))}
+        </ol>
+        <ShowJSON title="survey">{survey.value}</ShowJSON>
       </Async>
     </>
   );

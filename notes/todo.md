@@ -1,5 +1,7 @@
 # Refactor
 
+should the "data" in result be calculated in a useMemo()?
+
 Clean up airtable.js function names and exports.
 
 should be exporting: getSurvey() {id: nick: questions:}

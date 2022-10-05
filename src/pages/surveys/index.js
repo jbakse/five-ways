@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useAsync } from "react-use";
 import Head from "next/head";
 import { Async } from "../../components/Async";
+import { Table } from "../../components/Table";
 
 export default function SurveysPage(/*props*/) {
   const surveys = useAsync(async () => {
@@ -11,35 +12,27 @@ export default function SurveysPage(/*props*/) {
     console.log(result);
     return result.surveys;
   }, []);
+
+  const columns = [
+    {
+      header: "id",
+      field: "id",
+      formatter: (v) => (
+        <Link href={`/surveys/${encodeURIComponent(v)}`}>{v}</Link>
+      ),
+    },
+    { header: "nickname", field: "nickname" },
+    { header: "questions", field: "questionCount" },
+  ];
+
   return (
     <>
       <Head>
         <title>Surveys</title>
       </Head>
-      <h1>Surveys</h1>
+      <h1 className="content-block">Surveys</h1>
       <Async data={surveys}>
-        <table className="table">
-          <thead>
-            <tr>
-              <th>id</th>
-              <th>nickname</th>
-              <th>questions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {surveys.value?.map((s) => (
-              <tr key={s.id}>
-                <td>
-                  <Link href={`/surveys/${encodeURIComponent(s.id)}`}>
-                    {s.id}
-                  </Link>
-                </td>
-                <td>{s.nickname}</td>
-                <td>{s.questionCount}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <Table columns={columns} data={surveys.value} />
       </Async>
     </>
   );

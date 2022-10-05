@@ -8,6 +8,8 @@
     padding: 0 .5em;
     background: #333;
     color: white;
+    position: sticky;
+    top: 0;
 }
 
 
@@ -15,5 +17,6 @@
     @include content-block;
     padding: 0 .5em;
     background: #eee;
+    overflow-x: hidden;
 }
 
