@@ -1,4 +1,4 @@
-import { getSurveys, getSurvey } from "../../lib/airtable";
+import { getSurveys, getSurveyDeep } from "../../lib/airtable";
 
 export default async function handler(req, res) {
   if (req.method === "GET") {
@@ -13,7 +13,7 @@ export default async function handler(req, res) {
 async function listSurveys(req, res) {
   console.log(req.query);
   if (req.query.id) {
-    const survey = await getSurvey(req.query.id);
+    const survey = await getSurveyDeep(req.query.id);
     return res.status(200).json({ success: true, survey });
   } else {
     const surveys = await getSurveys();

@@ -1,3 +1,4 @@
+import React from "react";
 import styles from "./ShowJSON.module.scss";
 
 export function ShowJSON(props) {

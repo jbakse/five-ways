@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useAsync } from "react-use";
 import Head from "next/head";
-import { formatDate } from "../../lib/util";
+import { formatDate, formatShort } from "../../lib/util";
 import { Async } from "../../components/Async";
 import { Table } from "../../components/Table";
 import { ShowJSON } from "../../components/ShowJSON";
@@ -16,21 +16,20 @@ export default function ResponsesPage(/*props*/) {
     const response = await fetch(
       `/api/responses?start=${startDate}&end=${endDate}`
     );
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
     const result = await response.json();
+
     return result.responses;
   }, [startDate, endDate]);
-
-  function shorten(s) {
-    //recVZKGGAb7BaWPvf -> re..vf
-    return s.substr(0, 2) + ".." + s.substr(-2);
-  }
 
   const columns = [
     { header: "responseId", field: "id" },
     { header: "createdAt", field: "createdAt", formatter: formatDate },
-    { header: "responderId", field: "responderId", formatter: shorten },
-    { header: "surveyId", field: "surveyId", formatter: shorten },
-    { header: "questionId", field: "questionId", formatter: shorten },
+    { header: "responderId", field: "responderId", formatter: formatShort },
+    { header: "surveyId", field: "surveyId", formatter: formatShort },
+    { header: "questionId", field: "questionId", formatter: formatShort },
     { header: "response", field: "selections", formatter: JSON.stringify },
   ];
 

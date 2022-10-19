@@ -1,3 +1,4 @@
+import React from "react";
 import "../styles/reset.css";
 import "../styles/global.css";
 import "../styles/table.css";

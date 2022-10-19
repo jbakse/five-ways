@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import React, { useState, useEffect } from "react";
+import React, { useMemo } from "react";
 import { useAsync } from "react-use";
 import unzip from "lodash/unzip";
 import { Async } from "../../components/Async";
@@ -53,9 +53,9 @@ export default function ResultPage(/*props*/) {
 }
 
 function Result({ responses, question }) {
-  const [data, setData] = useState(false);
+  // const [data, setData] = useState(false);
 
-  useEffect(
+  const data = useMemo(
     function updateData() {
       if (!Array.isArray(responses)) return;
       if (!question) return;
@@ -85,7 +85,7 @@ function Result({ responses, question }) {
         response: "No Selections",
       });
 
-      setData(data);
+      return data;
     },
     [responses, question]
   );

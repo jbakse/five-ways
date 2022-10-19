@@ -25,7 +25,7 @@ export async function getQuestionData(id) {
   };
 }
 
-async function getQuestions(questionIds) {
+async function getQuestionDatas(questionIds) {
   try {
     const questionPromises = questionIds.map(getQuestionData);
     const questions = await Promise.all(questionPromises);
@@ -36,10 +36,10 @@ async function getQuestions(questionIds) {
   }
 }
 
-export async function getSurvey(surveyId) {
+export async function getSurveyDeep(surveyId) {
   const surveyData = await getSurveyData(surveyId);
   console.log("surveyData", surveyData);
-  const questions = await getQuestions(surveyData.questionIds);
+  const questions = await getQuestionDatas(surveyData.questionIds);
   return {
     id: surveyData.id,
     nickname: surveyData.nickname,
@@ -55,15 +55,6 @@ export async function getSurveys() {
     await new Promise((resolve, reject) => {
       pages.eachPage(
         function page(records, fetchNextPage) {
-          // const promises = records.map(async (r) => {
-          //   const qs = await getQuestions(r.fields.questions ?? []);
-          //   surveys.push({
-          //     id: r.id,
-          //     nickname: r.fields.nickname,
-          //     questions: qs,
-          //   });
-          // });
-          // await Promise.allSettled(promises);
           records.forEach((r) => {
             surveys.push({
               id: r.id,

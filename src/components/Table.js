@@ -1,3 +1,5 @@
+import React from "react";
+
 export function Table({ columns, data }) {
   return (
     <table className="table content-block">
