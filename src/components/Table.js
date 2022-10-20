@@ -1,8 +1,10 @@
 import React from "react";
+import classNames from "classnames";
+import styles from "./Table.module.scss";
 
 export function Table({ columns, data }) {
   return (
-    <table className="table content-block">
+    <table className={classNames(styles.table, "content-block")}>
       <thead>
         <tr>
           {columns.map((c) => (
