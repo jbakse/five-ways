@@ -45,32 +45,39 @@
   @include button;
 
   position: absolute;
-  bottom: 0;
-  left: 0;
+  bottom: 36px;
+  left: 36px;
   z-index: 1;
 
-  &.hidden {
-    opacity: 0;
-  }
+  font-family: "Maxeville-Regular";
+  font-size: 24px;
+  font-weight: 400;
 }
 
 .SlideShow__Next {
   @include button;
 
   position: absolute;
-  bottom: 0;
-  right: 0;
+  bottom: 36px;
+  right: 36px;
   z-index: 1;
+
+  font-family: "Maxeville-Regular";
+  font-size: 24px;
+  font-weight: 400;
 }
 
 .SlideShow__Finish {
   @include button;
-  background: blue;
 
   position: absolute;
-  bottom: 0;
-  right: 0;
+  bottom: 36px;
+  right: 36px;
   z-index: 1;
+
+  font-family: "Maxeville-Regular";
+  font-size: 24px;
+  font-weight: 400;
 }
 
 .SlideShow__Info {

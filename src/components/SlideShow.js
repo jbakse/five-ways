@@ -40,7 +40,7 @@ export default function SlideShow(props) {
         )}
         onClick={previous}
       >
-        Previous
+        ←
       </button>
 
       <button
@@ -50,7 +50,7 @@ export default function SlideShow(props) {
         )}
         onClick={next}
       >
-        Next
+        →
       </button>
 
       <button
@@ -60,7 +60,7 @@ export default function SlideShow(props) {
         )}
         onClick={finish}
       >
-        Finish
+        ↑
       </button>
 
       <ProgressBar percent={(currentSlide / props.children.length) * 100} />
