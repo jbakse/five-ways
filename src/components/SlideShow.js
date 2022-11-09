@@ -3,24 +3,21 @@ import classNames from "classnames";
 import styles from "./SlideShow.module.scss";
 
 export default function SlideShow(props) {
+  const children = props.children.flat();
+
   const [currentSlide, setCurrentSlide] = useState(0);
 
   function previous() {
-    console.log("previous");
     setCurrentSlide(Math.max(0, currentSlide - 1));
   }
 
   function next() {
-    console.log("next");
-    setCurrentSlide(Math.min(props.children.length - 1, currentSlide + 1));
+    setCurrentSlide(Math.min(children.length - 1, currentSlide + 1));
   }
 
-  function finish() {
-    console.log("finish");
-  }
+  function finish() {}
 
   useEffect(() => {
-    console.log("scroll to", currentSlide);
     const slide = document.querySelector(`#slide-${currentSlide}`);
     if (slide) {
       slide.scrollIntoView({
@@ -46,7 +43,7 @@ export default function SlideShow(props) {
       <button
         className={classNames(
           styles.SlideShow__Next,
-          currentSlide + 1 === props.children.length && styles.hidden
+          currentSlide + 1 === children.length && styles.hidden
         )}
         onClick={next}
       >
@@ -56,26 +53,25 @@ export default function SlideShow(props) {
       <button
         className={classNames(
           styles.SlideShow__Finish,
-          currentSlide + 1 !== props.children.length && styles.hidden
+          currentSlide + 1 !== children.length && styles.hidden
         )}
         onClick={finish}
       >
         ↑
       </button>
 
-      <ProgressBar percent={(currentSlide / props.children.length) * 100} />
+      <ProgressBar percent={(currentSlide / children.length) * 100} />
       {/* <div className={styles.SlideShow__Info}>
-        {currentSlide + 1} / {props.children.length}
+        {currentSlide + 1} / {children.length}
       </div> */}
 
-      {props.children.map((child, index) => (
+      {children.map((child, index) => (
         <div
           className={styles.SlideShow__Slide}
           id={`slide-${index}`}
           key={child.key}
         >
-          {" "}
-          {child}{" "}
+          {child}
         </div>
       ))}
     </div>

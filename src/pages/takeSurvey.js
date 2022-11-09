@@ -23,15 +23,26 @@ export default function TakeSurveyPage(props) {
         <title>Survey</title>
       </Head>
       <SlideShow>
-        {props.survey.questions.map((q) => (
+        <LanguageSelect />
+
+        {props.survey.questions.map((q, index) => (
           <Question
             responderId={responderId}
             surveyId={props.survey.id}
             {...q}
+            questionNumber={index + 1}
             key={q.id}
           />
         ))}
       </SlideShow>
     </>
+  );
+}
+
+function LanguageSelect() {
+  return (
+    <div>
+      <h1>Language Select</h1>
+    </div>
   );
 }
