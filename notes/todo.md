@@ -1,10 +1,8 @@
 # Tooling
 
-Is there a react eslint package i am/should be using? Can i turn more rules on?
-
 # API
 
-Add cache headers
+Add cache headers so that Next will cache the API responses from airtable
 
 # Refactor
 

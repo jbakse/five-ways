@@ -2,7 +2,8 @@
   "extends": [
     "next/core-web-vitals",
     "eslint:recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:unicorn/recommended"
   ],
   "env": {
     "es6": true
@@ -58,15 +59,17 @@
       {
         "additionalHooks": "(useDeepCompareEffect|useAsync)"
       }
-    ]
+    ],
 
-    // "react/jsx-props-no-spreading": [
-    //   "error",
-    //   {
-    //     "html": "ignore",
-    //     "custom": "enforce",
-    //     "exceptions": ["Component"]
-    //   }
-    // ]
+    "unicorn/filename-case": "off",
+    "unicorn/consistent-function-scoping": "off",
+    "unicorn/prevent-abbreviations": [
+      "error",
+      {
+        "allowList": {
+          "props": true
+        }
+      }
+    ]
   }
 }

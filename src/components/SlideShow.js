@@ -21,7 +21,7 @@ export default function SlideShow(props) {
 
   useEffect(() => {
     console.log("scroll to", currentSlide);
-    const slide = document.getElementById(`slide-${currentSlide}`);
+    const slide = document.querySelector(`#slide-${currentSlide}`);
     if (slide) {
       slide.scrollIntoView({
         behavior: "smooth",
@@ -68,10 +68,10 @@ export default function SlideShow(props) {
         {currentSlide + 1} / {props.children.length}
       </div> */}
 
-      {props.children.map((child, i) => (
+      {props.children.map((child, index) => (
         <div
           className={styles.SlideShow__Slide}
-          id={`slide-${i}`}
+          id={`slide-${index}`}
           key={child.key}
         >
           {" "}

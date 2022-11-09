@@ -98,6 +98,10 @@
     counter-increment: listStyle;
     content: counter(listStyle, upper-alpha) ": ";
   }
+
+  &:last-child {
+    margin-bottom: 5em;
+  }
 }
 
 .checkbox {

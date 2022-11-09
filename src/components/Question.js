@@ -14,7 +14,7 @@ import styles from "./Question.module.scss";
 
 export default function Question(props) {
   const [selections, setSelections] = useState(
-    new Array(props.optionTextsEnglish.length).fill(false)
+    Array.from({ length: props.optionTextsEnglish.length }).fill(false)
   );
 
   // post data to backend when data changes (use deep compare)
@@ -31,7 +31,9 @@ export default function Question(props) {
   function optionClicked(optionIndex) {
     if (props.type === "single") {
       // single select
-      const newSelections = Array(props.optionTextsEnglish.length).fill(false);
+      const newSelections = Array.from({
+        length: props.optionTextsEnglish.length,
+      }).fill(false);
       newSelections[optionIndex] = true;
       setSelections(newSelections);
     } else if (props.type === "multiple") {
@@ -50,14 +52,14 @@ export default function Question(props) {
         {props.type === "single" ? "Select one" : "Select many"}
       </span>
       <ul className={styles.options} role="list">
-        {props.optionTextsEnglish.map((optionText, i) => (
+        {props.optionTextsEnglish.map((optionText, index) => (
           <li
             className={classNames(
               styles.option,
-              selections[i] && styles.selected
+              selections[index] && styles.selected
             )}
-            key={i}
-            onClick={(e) => optionClicked(i, e)}
+            key={index}
+            onClick={(error) => optionClicked(index, error)}
           >
             <span className={styles.checkbox}></span>
             {optionText}

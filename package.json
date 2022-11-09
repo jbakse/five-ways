@@ -31,6 +31,7 @@
   "devDependencies": {
     "eslint": "8.23.1",
     "eslint-config-next": "12.3.0",
+    "eslint-plugin-unicorn": "^44.0.2",
     "prisma": "^4.3.1"
   }
 }
