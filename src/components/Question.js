@@ -44,9 +44,10 @@ export default function Question(props) {
 
   return (
     <div className={styles.question}>
+      <h2 className={styles.number}>02</h2>
       <h2 className={styles.prompt}>{props.promptTextEnglish}</h2>
       <span className={styles.instruction}>
-        {props.type === "single" ? "choose one" : "choose many"}
+        {props.type === "single" ? "Select one" : "Select many"}
       </span>
       <ul className={styles.options} role="list">
         {props.optionTextsEnglish.map((optionText, i) => (

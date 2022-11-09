@@ -5,6 +5,14 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "Maxeville-Regular";
+  src: url("/fonts/Maxeville-Regular.woff2") format("woff2"),
+    url("/fonts/Maxeville-Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 @mixin content-block {
   display: block;
   max-width: 800px;

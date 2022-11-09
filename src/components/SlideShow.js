@@ -66,6 +66,7 @@ export default function SlideShow(props) {
       <div className={styles.SlideShow__Info}>
         {currentSlide + 1} / {props.children.length}
       </div>
+
       {props.children.map((child, i) => (
         <div
           className={styles.SlideShow__Slide}
