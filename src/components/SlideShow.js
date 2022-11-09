@@ -63,9 +63,10 @@ export default function SlideShow(props) {
         Finish
       </button>
 
-      <div className={styles.SlideShow__Info}>
+      <ProgressBar percent={(currentSlide / props.children.length) * 100} />
+      {/* <div className={styles.SlideShow__Info}>
         {currentSlide + 1} / {props.children.length}
-      </div>
+      </div> */}
 
       {props.children.map((child, i) => (
         <div
@@ -77,6 +78,17 @@ export default function SlideShow(props) {
           {child}{" "}
         </div>
       ))}
+    </div>
+  );
+}
+
+function ProgressBar(props) {
+  return (
+    <div className={styles.Slideshow__ProgressBar}>
+      <div
+        style={{ width: `${props.percent}%` }}
+        className={styles.Slideshow__ProgressBarFill}
+      ></div>
     </div>
   );
 }
