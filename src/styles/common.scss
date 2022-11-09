@@ -1,3 +1,10 @@
+@font-face {
+  font-family: "Maxeville-Construct";
+  src: url("/fonts/MaxevilleTrial-Construct.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 @mixin content-block {
   display: block;
   max-width: 800px;
