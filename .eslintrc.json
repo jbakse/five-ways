@@ -63,6 +63,7 @@
 
     "unicorn/filename-case": "off",
     "unicorn/consistent-function-scoping": "off",
+    "unicorn/no-array-callback-reference": "off",
     "unicorn/prevent-abbreviations": [
       "error",
       {

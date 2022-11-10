@@ -1,3 +1,4 @@
+// eslint-disable-next-line unicorn/prefer-module
 const Airtable = require("airtable");
 
 Airtable.configure({
@@ -18,9 +19,24 @@ async function getSurveyData(id) {
 
 export async function getQuestionData(id) {
   const result = await base("Question").find(id);
+
+  let images = [];
+  const alts = result.fields.imagesAlts?.split("\n") || [];
+  if (result.fields.images?.length) {
+    images = result.fields.images.map((image, index) => ({
+      src: image.url,
+      alt: alts[index] || "",
+      width: image.width,
+      height: image.height,
+    }));
+  }
+
+  // TODO: come back here and carefully normalize input
+
   return {
     id,
     ...result.fields,
+    images,
     optionTextsEnglish: result.fields.optionTextsEnglish.split("\n"),
   };
 }
@@ -30,8 +46,8 @@ async function getQuestionDatas(questionIds) {
     const questionPromises = questionIds.map(getQuestionData);
     const questions = await Promise.all(questionPromises);
     return questions;
-  } catch (e) {
-    console.log("Error loading survey questions.\n", e);
+  } catch (error) {
+    console.log("Error loading survey questions.\n", error);
     return [];
   }
 }
@@ -55,18 +71,18 @@ export async function getSurveys() {
     await new Promise((resolve, reject) => {
       pages.eachPage(
         function page(records, fetchNextPage) {
-          records.forEach((r) => {
+          for (const r of records) {
             surveys.push({
               id: r.id,
               nickname: r.fields.nickname,
               questionCount: r.fields.questions?.length ?? 0,
             });
-          });
+          }
           fetchNextPage();
         },
-        function done(err) {
-          if (err) {
-            console.error(err);
+        function done(error) {
+          if (error) {
+            console.error(error);
             reject();
           }
           resolve();
@@ -74,8 +90,8 @@ export async function getSurveys() {
       );
     });
     return surveys;
-  } catch (e) {
-    console.log("Error loading surveys.\n", e);
+  } catch (error) {
+    console.log("Error loading surveys.\n", error);
     return [];
   }
 }

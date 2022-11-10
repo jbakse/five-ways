@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React, { useState } from "react";
 import classNames from "classnames";
 import { useAsyncDeep } from "../lib/hooks";
@@ -29,6 +30,7 @@ export default function Question(props) {
   ]);
 
   function optionClicked(optionIndex) {
+    console.log("clicked", optionIndex);
     if (props.type === "single") {
       // single select
       const newSelections = Array.from({
@@ -61,8 +63,16 @@ export default function Question(props) {
             key={index}
             onClick={(error) => optionClicked(index, error)}
           >
-            <span className={styles.checkbox}></span>
-            {optionText}
+            <div className={styles.optionBorder}></div>
+            {props.images[index] && (
+              <Image
+                src={props.images[index].src}
+                alt={props.images[index].alt}
+                width={props.images[index].width}
+                height={props.images[index].height}
+              />
+            )}
+            <div className={styles.optionText}>{optionText}</div>
           </li>
         ))}
       </ul>

@@ -1,7 +1,10 @@
+$option-border-radius: 20px;
+
 .question {
   //   border: 10px solid red;
   margin-left: 2em;
   margin-right: 2em;
+  max-width: 960px;
   + .question {
     margin-top: 1em;
   }
@@ -30,7 +33,7 @@
   margin-top: 1em;
 
   border: 1.5px solid black;
-  border-radius: 50px;
+  border-radius: 15px;
   padding: 4px 8px;
 
   font-family: "Maxeville-Regular";
@@ -45,10 +48,10 @@
 
 .option {
   margin-top: 0.75em;
+  position: relative;
+  // padding: 1em;
 
-  padding: 1em;
-
-  border-radius: 20px;
+  border-radius: $option-border-radius;
 
   font-family: "Maxeville-Regular";
   font-size: 20px;
@@ -58,17 +61,8 @@
   cursor: pointer;
 
   background-color: white;
-  border: 1.5px solid white;
 
-  //   &:hover {
-  //     background-color: mix(white, black, 95%);
-  //     border-color: mix(white, black, 95%);
-  //   }
-
-  //   &:active {
-  //     background-color: mix(white, black, 90%);
-  //     border-color: mix(white, black, 90%);
-  //   }
+  overflow: hidden;
 
   &.selected {
     background-color: #efe;
@@ -76,16 +70,6 @@
   }
 
   transition: all 0.15s ease-in-out;
-
-  //   &.selected:hover {
-  //     background-color: mix(#efe, black, 95%);
-  //     border-color: black;
-  //   }
-
-  //   &.selected:hover {
-  //     background-color: mix(#efe, black, 90%);
-  //     border-color: black;
-  //   }
 
   + .option {
     margin-top: 0.5em;
@@ -96,11 +80,39 @@
   }
   &::before {
     counter-increment: listStyle;
-    content: counter(listStyle, upper-alpha) ": ";
+    // content: counter(listStyle, upper-alpha) ": ";
   }
 
   &:last-child {
     margin-bottom: 5em;
+  }
+}
+
+.optionText {
+  // border: 10px solid red;
+  padding: 0.75em 0.75em;
+}
+
+// span is the wrapper created by Next.js Image
+span + .optionText {
+  padding-top: 0.5em;
+  padding-bottom: 0.75em;
+}
+
+.optionBorder {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  border-radius: $option-border-radius;
+  border: 1.5px solid black;
+
+  pointer-events: none;
+
+  opacity: 0;
+  transition: opacity 0.15s ease-in-out;
+  .selected & {
+    opacity: 1;
   }
 }
 
