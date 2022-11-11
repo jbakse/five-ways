@@ -1,11 +1,12 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useAsync } from "react-use";
 import unzip from "lodash/unzip";
 import { Async } from "../../components/Async";
 import { formatPercent, allFalse } from "../../lib/util";
 import { ShowJSON } from "../../components/ShowJSON";
+import { PieChart } from "../../components/PieChart";
 
 export default function ResultPage(/*props*/) {
   const router = useRouter();
@@ -69,11 +70,11 @@ function Result({ responses, question }) {
       );
 
       // prepare data
-      const data = selectionCounts.map((count, i) => ({
+      const data = selectionCounts.map((count, index) => ({
         count,
-        index: i,
+        index: index,
         percent: count / selections.length,
-        response: question.optionTextsEnglish[i],
+        response: question.optionTextsEnglish[index],
       }));
 
       // add noSelection / none of the above
@@ -99,6 +100,7 @@ function Result({ responses, question }) {
           {option.response} {formatPercent(option.percent)}
         </div>
       ))}
+      <PieChart data={data.map((d) => d.count)} />
       <ShowJSON title="data">{data}</ShowJSON>
     </>
   );
