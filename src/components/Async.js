@@ -12,5 +12,5 @@ export function Async(props) {
       </div>
     );
   }
-  return <div className="content-block">{props.children}</div>;
+  return <div className="!content-block">{props.children}</div>;
 }

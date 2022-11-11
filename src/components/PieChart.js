@@ -18,6 +18,7 @@ export function PieChart({ data }) {
       data: { datasets: [{ data }] },
 
       options: {
+        rotation: 180,
         events: [],
         backgroundColor: colors,
         borderColor: "black",
@@ -32,6 +33,7 @@ export function PieChart({ data }) {
             color: "#black",
             font: {
               size: 100,
+              family: "'Maxeville-Construct'", // needs both quotes
             },
             formatter(value, context) {
               return labels[context.dataIndex];
