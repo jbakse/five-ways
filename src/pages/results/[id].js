@@ -4,7 +4,6 @@ import React, { useMemo } from "react";
 import { useAsync } from "react-use";
 import unzip from "lodash/unzip";
 import { Async } from "../../components/Async";
-import { formatPercent } from "../../lib/util";
 import { ShowJSON } from "../../components/ShowJSON";
 import { PieChart } from "../../components/PieChart";
 import styles from "../../components/Result.module.scss";

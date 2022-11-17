@@ -12,6 +12,8 @@
     "prefer-const": "error",
     "no-var": "error",
     "arrow-body-style": ["error", "as-needed"],
+
+    // import plugin
     "import/order": [
       "error",
       {
@@ -42,10 +44,9 @@
       }
     ],
 
+    // react plugin
     "react/prop-types": "off",
-
     "react/no-unescaped-entities": "off",
-
     "react/function-component-definition": [
       "error",
       {
@@ -61,6 +62,7 @@
       }
     ],
 
+    // unicorn plugin
     "unicorn/filename-case": "off",
     "unicorn/consistent-function-scoping": "off",
     "unicorn/no-array-callback-reference": "off",

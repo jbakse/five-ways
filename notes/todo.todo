@@ -1,0 +1,119 @@
+'Alt+Enter' // Triggers `Todo: Toggle Box`
+'Alt+D' // Triggers `Todo: Toggle Done`
+'Alt+C' // Triggers `Todo: Toggle Cancelled`
+'Alt+S' // Triggers `Todo: Toggle Start`
+'Cmd/Ctrl+Shift+A' // Triggers `Todo: Archive`
+
+Bugs:
+
+□ resizing window can cause scroll to be between slide
+
+Take Survey:
+□ splash screen
+    □ make sense of ...
+
+
+□ question types
+    □ single answer
+    □ multiple answer
+    □ open answer
+
+□ image options
+    □ image only
+    □ image + text
+    □ alt text
+
+□ language select
+    □ allow user to select language
+    □ display questins/prompts in selected language
+    □ record language with responses
+
+
+□ auto timeout (in gallery, reset after idle)
+
+□ design updates
+    □ update to reflect minor design revisions in figma
+
+□ scroll mode (rather than the slide mode) for users at home?
+
+Config:
+
+□ gallerySurvey
+    what is on the ipad
+□ homeSurvey
+    what is on people's devices (often the same!)
+□ lobbySurvey
+    what is shown in the lobby (might be the same, or altered version)
+□ surveyOpen
+    turn off survey for testing/etc
+□ galleryTimeout
+    how long before idle reset in gallery
+□ homeTimeout
+    how long before idle reset at home (can be long)
+
+Lobby Report:
+□ Splash Screen
+
+□ slideshow
+    □ cycle splash and questions on timer
+
+□ question types
+    □ single answer
+    □ multiple answer
+    □ open answer
+
+□ image options
+    □ image only
+    □ image + text
+    □ alt text
+
+
+□ languages
+
+? what about image questions
+? what about languages
+
+Admin Tools:
+
+□ style cleanup
+
+□ list surveys -> questions
+□ list all questions
+□ get responses for a question
+    □ filter date range
+    □ filter by survey? respondant?
+□ get responses for survey?
+    □ maybe require getting question one at a time
+
+□ summary view
+    □ total answers, percent each, etc
+
+□ table view of each response
+    □ copy as json
+    □ copy as csv
+    □ download as json
+    □ download as csv
+
+Tooling:
+
+Airtable:
+□ Question Survey -> Surveys
+
+API:
+□ Add cache headers so that Next will cache the API responses from airtable
+
+Refactor:
+□ Async probably shouldn't be imposing .content-block
+
+Database:
+□ Consider how we store unanswered questions. 
+    Options
+    - No response at all until an answer is given
+    - false
+    - []
+    - is it currently [false, false]?
+
+□ How to store question data in reponses?
+    (Currently) Shallow: Responses have IDs of question @done(22-11-17 13:06)
+    (Would this be better?) Deep: Responses store question/option text
+

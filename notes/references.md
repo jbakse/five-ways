@@ -1,14 +1,8 @@
-## Form Builders
-
-https://formik.org/
-https://surveyjs.io/
-
-## React Reference
+## React Tutorials and Articles
 
 https://www.robinwieruch.de/react-hooks-fetch-data/
 https://polvara.me/posts/fetching-asynchronous-data-with-react-hooks
 https://overreacted.io/a-complete-guide-to-useeffect/
-https://github.com/vercel/swr
 
 ## Planet Scale Reference
 
