@@ -25,6 +25,12 @@ export default function TakeSurveyPage(props) {
     <>
       <Head>
         <title>Survey</title>
+        <link
+          rel="preload"
+          href="/fonts/MaxevilleTrial-Construct.otf"
+          as="font"
+          crossOrigin="anonymous"
+        />
       </Head>
       <SlideShow>
         <Splash key="splash" />
