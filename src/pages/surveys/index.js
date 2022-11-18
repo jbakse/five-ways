@@ -30,7 +30,7 @@ export default function SurveysIndex(/*props*/) {
         <title>Surveys</title>
       </Head>
       <h1 className="content-block">Surveys</h1>
-      <Async data={surveys}>
+      <Async className="content-block" data={surveys}>
         <Table columns={columns} data={surveys.value} />
       </Async>
     </>

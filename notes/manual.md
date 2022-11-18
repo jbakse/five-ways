@@ -10,6 +10,12 @@
   - You could create duplicates of a question if you want to separate reporting.
   - Restated. Question results show all results for a question on all surveys the question is part of. If you want the results to be survey specific, you need to create duplicate of the question.
 
+# Airtable
+
+- Be VERY careful deleting or editing questions and surveys.
+  - Responses contain the ids of their questions and surveys, not the actual text.
+  - If you change the text of a question or answer, your responses will loose integrety.
+
 # Questions
 
 - Complete all fields. Airtable doesn't enforce required fields, but everything should be filled out.

@@ -55,7 +55,7 @@ export default function ResponsesIndex(/*props*/) {
         ></input>
       </div>
 
-      <Async data={responses}>
+      <Async className="content-block" data={responses}>
         <Table columns={columns} data={responses.value} />
         <ShowJSON title="responses">{responses.value}</ShowJSON>
       </Async>

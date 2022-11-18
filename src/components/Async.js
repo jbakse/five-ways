@@ -3,14 +3,16 @@ import styles from "./Async.module.scss";
 
 export function Async(props) {
   if (props.data.loading) {
-    return <div className={`content-block ${styles.loading}`}>Loading...</div>;
+    return (
+      <div className={`${props.className} ${styles.loading}`}>Loading...</div>
+    );
   }
   if (props.data.error) {
     return (
-      <div className={`content-block ${styles.error}`}>
+      <div className={`${props.className} ${styles.error}`}>
         Error: {props.data.error.message}
       </div>
     );
   }
-  return <div className="!content-block">{props.children}</div>;
+  return <div className={props.className}>{props.children}</div>;
 }

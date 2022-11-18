@@ -21,8 +21,8 @@ export default function SurveyPage(/*props*/) {
         <title>Survey</title>
       </Head>
 
-      <Async data={survey}>
-        <h1 className="content-block">Survey "{survey.value?.nickname}"</h1>
+      <Async className="content-block" data={survey}>
+        <h1>Survey "{survey.value?.nickname}"</h1>
         <ol>
           {survey.value?.questions.map((q) => (
             <li key={q.id}>

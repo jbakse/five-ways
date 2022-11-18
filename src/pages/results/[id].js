@@ -43,10 +43,10 @@ export default function ResultPage(/*props*/) {
         </Async>
       </Async>
 
-      <Async data={responses}>
+      <Async className="content-block" data={responses}>
         <ShowJSON title="responses">{responses.value}</ShowJSON>
       </Async>
-      <Async data={question}>
+      <Async className="content-block" data={question}>
         <ShowJSON title="question">{question.value}</ShowJSON>
       </Async>
     </>
