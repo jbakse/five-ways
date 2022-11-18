@@ -43,11 +43,15 @@ export default function ResultPage(/*props*/) {
         </Async>
       </Async>
 
-      <Async className="content-block" data={responses}>
-        <ShowJSON title="responses">{responses.value}</ShowJSON>
-      </Async>
       <Async className="content-block" data={question}>
-        <ShowJSON title="question">{question.value}</ShowJSON>
+        <ShowJSON title={`question_${question.value?.nickname}`}>
+          {question.value}
+        </ShowJSON>
+      </Async>
+      <Async className="content-block" data={responses}>
+        <ShowJSON title={`responses_${question.value?.nickname}`}>
+          {responses.value}
+        </ShowJSON>
       </Async>
     </>
   );
@@ -87,16 +91,6 @@ function Result({ responses, question }) {
         option.label = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[index];
       }
 
-      // // add noSelection / none of the above
-      // const noSelectionCount = selections.filter(allFalse).length;
-      // data.push({
-      //   index: data.length,
-      //   count: noSelectionCount,
-      //   percent: 0,
-      //   percentTotal: noSelectionCount / selections.length,
-      //   response: "No Selections",
-      // });
-
       const data = {
         totalCount,
         answeredCount,
@@ -127,7 +121,7 @@ function Result({ responses, question }) {
         </div>
       </div>
 
-      <ShowJSON title="data">{data}</ShowJSON>
+      <ShowJSON title={`report_${question.nickname}`}>{data}</ShowJSON>
     </>
   );
 }

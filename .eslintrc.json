@@ -71,7 +71,8 @@
       "error",
       {
         "allowList": {
-          "props": true
+          "props": true,
+          "e": true
         }
       }
     ]

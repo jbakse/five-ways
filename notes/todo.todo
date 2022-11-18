@@ -95,8 +95,9 @@ Admin Tools:
 □ table view of each response
     □ copy as json
     □ copy as csv
-    □ download as json
-    □ download as csv
+    ✓ download as json @done(22-11-18 16:09)
+    ✓ download as csv @done(22-11-18 16:09)
+    □ pretty buttons
 
 Tooling:
 
