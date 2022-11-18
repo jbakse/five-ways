@@ -4,6 +4,8 @@ import { v4 as uuidv4 } from "uuid";
 import { getSurveyDeep } from "../lib/airtable";
 import Question from "../components/Question";
 import SlideShow from "../components/SlideShow";
+import splash from "../components/Splash.module.scss";
+import LanguageSelect from "../components/LanguageSelect";
 
 export async function getServerSideProps(/*context*/) {
   const surveyId = "recVZKGGAb7BaWPvf"; //TODO: make configurable
@@ -17,13 +19,16 @@ export async function getServerSideProps(/*context*/) {
 export default function TakeSurveyPage(props) {
   const [responderId] = useState(uuidv4());
 
+  const [language, setLanguage] = useState("English");
+
   return (
     <>
       <Head>
         <title>Survey</title>
       </Head>
       <SlideShow>
-        <LanguageSelect />
+        <Splash key="splash" />
+        <LanguageSelect key="lang" setLanguage={setLanguage} />
 
         {props.survey.questions.map((q, index) => (
           <Question
@@ -32,6 +37,7 @@ export default function TakeSurveyPage(props) {
             {...q}
             questionNumber={index + 1}
             key={q.id}
+            language={language}
           />
         ))}
       </SlideShow>
@@ -39,10 +45,15 @@ export default function TakeSurveyPage(props) {
   );
 }
 
-function LanguageSelect() {
+function Splash() {
   return (
-    <div>
-      <h1>Language Select</h1>
+    <div className={splash.Splash}>
+      <h1>
+        Make
+        <br /> Sense
+        <br /> of
+        <br /> (This)
+      </h1>
     </div>
   );
 }

@@ -5,11 +5,10 @@ import Head from "next/head";
 import { Async } from "../../components/Async";
 import { Table } from "../../components/Table";
 
-export default function SurveysPage(/*props*/) {
+export default function SurveysIndex(/*props*/) {
   const surveys = useAsync(async () => {
     const response = await fetch(`/api/surveys`);
     const result = await response.json();
-    console.log(result);
     return result.surveys;
   }, []);
 

@@ -6,7 +6,7 @@ import { Async } from "../../components/Async";
 import { Table } from "../../components/Table";
 import { ShowJSON } from "../../components/ShowJSON";
 
-export default function ResponsesPage(/*props*/) {
+export default function ResponsesIndex(/*props*/) {
   const today = new Date().toLocaleDateString("en-CA");
 
   const [startDate, setStartDate] = useState(today);

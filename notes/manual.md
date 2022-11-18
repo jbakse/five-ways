@@ -31,6 +31,7 @@
     - png for logos
 
 - Provide 'alt' tags for all images. These are used for accessibility and SEO.
+- Alt tags do not support translation.
 
 # Details
 

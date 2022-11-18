@@ -38,6 +38,9 @@ export async function getQuestionData(id) {
     ...result.fields,
     images,
     optionTextsEnglish: result.fields.optionTextsEnglish.split("\n"),
+    optionTextsSpanish: result.fields.optionTextsSpanish.split("\n"),
+    optionTextsHmong: result.fields.optionTextsHmong.split("\n"),
+    optionTextsSomali: result.fields.optionTextsSomali.split("\n"),
   };
 }
 
@@ -47,14 +50,14 @@ async function getQuestionDatas(questionIds) {
     const questions = await Promise.all(questionPromises);
     return questions;
   } catch (error) {
-    console.log("Error loading survey questions.\n", error);
+    console.warn("Error loading survey questions.\n", error);
     return [];
   }
 }
 
 export async function getSurveyDeep(surveyId) {
   const surveyData = await getSurveyData(surveyId);
-  console.log("surveyData", surveyData);
+
   const questions = await getQuestionDatas(surveyData.questionIds);
   return {
     id: surveyData.id,

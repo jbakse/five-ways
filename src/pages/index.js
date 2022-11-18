@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-export default function IndexPage() {
+export default function Index() {
   return (
     <>
       <h1 className="content-block">Five Ways</h1>

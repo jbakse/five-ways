@@ -12,7 +12,6 @@ export default function SurveyPage(/*props*/) {
     if (!router.query.id) return;
     const response = await fetch(`/api/surveys?id=${router.query.id}`);
     const result = await response.json();
-    console.log(result);
     return result.survey;
   }, [router.query.id]);
 
