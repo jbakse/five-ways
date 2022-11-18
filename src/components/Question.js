@@ -21,6 +21,7 @@ export default function Question(props) {
       surveyId: props.surveyId,
       questionId: props.id,
       selections: selections,
+      language: props.language,
     },
   ]);
 

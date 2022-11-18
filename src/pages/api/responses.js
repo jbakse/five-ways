@@ -3,33 +3,33 @@ import pick from "lodash/pick";
 
 const prisma = new PrismaClient();
 
-export default async function handler(req, res) {
-  if (req.method === "POST") {
-    return await upsertResponse(req, res);
-  } else if (req.method === "GET") {
-    return await listRepsonses(req, res);
+export default async function handler(request, response) {
+  if (request.method === "POST") {
+    return await upsertResponse(request, response);
+  } else if (request.method === "GET") {
+    return await listRepsonses(request, response);
   } else {
-    return res
+    return response
       .status(405)
       .json({ message: "Method not allowed", success: false });
   }
 }
 
-async function listRepsonses(req, res) {
+async function listRepsonses(request, response) {
   // from start of day
   const start = new Date(
-    req.query.start ? req.query.start + "T00:00:00" : "2000-01-01"
+    request.query.start ? request.query.start + "T00:00:00" : "2000-01-01"
   );
 
   // to END of day
   const end = new Date(
-    req.query.end ? req.query.end + "T00:00:00" : "3000-01-01"
+    request.query.end ? request.query.end + "T00:00:00" : "3000-01-01"
   );
   end.setDate(end.getDate() + 1);
 
   const filters = {};
-  if (req.query.questionId) {
-    filters.questionId = { equals: req.query.questionId };
+  if (request.query.questionId) {
+    filters.questionId = { equals: request.query.questionId };
   }
 
   try {
@@ -45,33 +45,46 @@ async function listRepsonses(req, res) {
 
     const responses_cleaned = JSON.parse(JSON.stringify(responses));
 
-    return res
+    return response
       .status(200)
       .json({ success: true, responses: responses_cleaned });
   } catch (error) {
     console.error("Request error", error);
-    res.status(500).json({ error: "Error listing responses", success: false });
+    response
+      .status(500)
+      .json({ error: "Error listing responses", success: false });
   }
 }
-async function upsertResponse(req, res) {
+async function upsertResponse(request, response) {
   try {
-    const response = await prisma.response.upsert({
+    const prismaResponse = await prisma.response.upsert({
       where: {
-        responseId: pick(req.body, ["responderId", "surveyId", "questionId"]),
+        responseId: pick(request.body, [
+          "responderId",
+          "surveyId",
+          "questionId",
+        ]),
       },
       update: {
-        selections: req.body.selections,
+        selections: request.body.selections,
+        language: request.body.language,
       },
-      create: pick(req.body, [
+      create: pick(request.body, [
         "responderId",
         "surveyId",
         "questionId",
         "selections",
+        "language",
       ]),
     });
-    return res.status(200).json({ success: true, response: response });
+
+    return response
+      .status(200)
+      .json({ success: true, response: prismaResponse });
   } catch (error) {
     console.error("Request error", error);
-    res.status(500).json({ error: "Error logging response", success: false });
+    response
+      .status(500)
+      .json({ error: "Error logging response", success: false });
   }
 }

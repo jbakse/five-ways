@@ -8,7 +8,7 @@ generator client {
 
 datasource db {
   provider             = "mysql"
-  url                  = env("DIRECT_DATABASE_URL")
+  url                  = env("PROXY_DATABASE_URL")
   referentialIntegrity = "prisma"
 }
 
@@ -20,6 +20,7 @@ model Response {
   surveyId    String
   questionId  String
   selections  Json
+  language    String   @default("English")
 
   @@unique(fields: [responderId, surveyId, questionId], name: "responseId")
 }

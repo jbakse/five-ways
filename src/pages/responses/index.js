@@ -31,6 +31,7 @@ export default function ResponsesIndex(/*props*/) {
     { header: "surveyId", field: "surveyId", formatter: formatShort },
     { header: "questionId", field: "questionId", formatter: formatShort },
     { header: "response", field: "selections", formatter: JSON.stringify },
+    { header: "language", field: "language" },
   ];
 
   return (

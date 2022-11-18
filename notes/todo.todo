@@ -27,7 +27,7 @@ Take Survey:
     ✓ add translations to test questions @started(22-11-18 11:42) @done(22-11-18 11:53) @lasted(11m14s)
     ✓ allow user to select language @started(22-11-18 12:04) @done(22-11-18 12:33) @lasted(29m21s)
     ✓ display questins/prompts in selected language @started(22-11-18 12:33) @done(22-11-18 12:44) @lasted(11m23s)
-    □ record language with responses
+    ✓ record language with responses @done(22-11-18 13:29)
 
 
 □ auto timeout (in gallery, reset after idle)
@@ -118,3 +118,6 @@ Database:
     (Currently) Shallow: Responses have IDs of question @done(22-11-17 13:06)
     (Would this be better?) Deep: Responses store question/option text
 
+□ when to store response data
+    (Currently) Create when survey begins, update on change
+    (Would this be better?) Create/update on change
