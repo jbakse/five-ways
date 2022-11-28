@@ -50,3 +50,7 @@
 }
 
 $z-ui: 100;
+
+.image-block-hack > span {
+  display: block !important;
+}

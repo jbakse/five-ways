@@ -14,14 +14,14 @@ Take Survey:
     □ make dynamic w/ images
 
 □ question types
-    □ single answer
-    □ multiple answer
+    ✓ single answer @done(22-11-28 12:24)
+    ✓ multiple answer @done(22-11-28 12:24)
     □ open answer
 
 □ image options
-    □ image only
+    ✓ image only @done(22-11-28 13:19)
     □ image + text
-    □ alt text
+    ✓ alt text @done(22-11-28 12:25)
 
 □ language select
     ✓ add translations to test questions @started(22-11-18 11:42) @done(22-11-18 11:53) @lasted(11m14s)
@@ -37,6 +37,7 @@ Take Survey:
 
 □ scroll mode (rather than the slide mode) for users at home?
 
+□ browser back button support?
 Config:
 □ create config system
     □ config file probably to tech for users

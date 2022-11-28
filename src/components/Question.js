@@ -53,7 +53,8 @@ export default function Question(props) {
           <li
             className={classNames(
               styles.option,
-              selections[index] && styles.selected
+              selections[index] && styles.selected,
+              "image-block-hack"
             )}
             key={index}
             onClick={(error) => optionClicked(index, error)}
@@ -67,7 +68,9 @@ export default function Question(props) {
                 height={props.images[index].height}
               />
             )}
-            <div className={styles.optionText}>{optionText}</div>
+            {optionText && (
+              <div className={styles.optionText}>{optionText}</div>
+            )}
           </li>
         ))}
       </ul>

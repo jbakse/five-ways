@@ -17,30 +17,58 @@ async function getSurveyData(id) {
   };
 }
 
-export async function getQuestionData(id) {
-  const result = await base("Question").find(id);
+function lengthenArray(array, newLength, value) {
+  array.splice(
+    array.length,
+    0,
+    ...Array.from({ length: newLength - array.length }).fill(value)
+  );
+}
 
-  let images = [];
-  const alts = result.fields.imagesAlts?.split("\n") || [];
-  if (result.fields.images?.length) {
-    images = result.fields.images.map((image, index) => ({
+export async function getQuestionData(id) {
+  // const result = await base("Question").find(id);
+  const { fields } = await base("Question").find(id);
+
+  // note: not lengthed yet
+  const alts = fields.imagesAlts?.split("\n") || [];
+
+  const optionTextsEnglish = fields.optionTextsEnglish?.split("\n") || [];
+  const optionTextsSpanish = fields.optionTextsSpanish?.split("\n") || [];
+  const optionTextsHmong = fields.optionTextsHmong?.split("\n") || [];
+  const optionTextsSomali = fields.optionTextsSomali?.split("\n") || [];
+
+  const optionCount = Math.max(
+    alts.length,
+    optionTextsEnglish.length,
+    optionTextsSpanish.length,
+    optionTextsHmong.length,
+    optionTextsSomali.length
+  );
+
+  lengthenArray(optionTextsEnglish, optionCount, "");
+  lengthenArray(optionTextsSpanish, optionCount, "");
+  lengthenArray(optionTextsHmong, optionCount, "");
+  lengthenArray(optionTextsSomali, optionCount, "");
+
+  // note: not lengthed yet
+  const images =
+    fields.images?.map((image, index) => ({
       src: image.url,
       alt: alts[index] || "",
       width: image.width,
       height: image.height,
-    }));
-  }
+    })) || [];
 
   // TODO: come back here and carefully normalize input
 
   return {
     id,
-    ...result.fields,
+    ...fields,
+    optionTextsEnglish,
+    optionTextsSpanish,
+    optionTextsHmong,
+    optionTextsSomali,
     images,
-    optionTextsEnglish: result.fields.optionTextsEnglish.split("\n"),
-    optionTextsSpanish: result.fields.optionTextsSpanish.split("\n"),
-    optionTextsHmong: result.fields.optionTextsHmong.split("\n"),
-    optionTextsSomali: result.fields.optionTextsSomali.split("\n"),
   };
 }
 

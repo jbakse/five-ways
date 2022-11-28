@@ -39,6 +39,10 @@
 - Provide 'alt' tags for all images. These are used for accessibility and SEO.
 - Alt tags do not support translation.
 
+- Provide visible text (in additon to alts) for all images.
+  - This is good for accessibility
+  - This is good for UX/UI
+
 # Details
 
 - System expects all responses to come in between Jan 1 2000 and Jan 1 3000
