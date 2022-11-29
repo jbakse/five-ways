@@ -46,8 +46,8 @@ export function ShowJSON(props) {
     <>
       <div className={styles.title}>
         {props.title}
-        {isObject && <button onClick={downloadObject}>Download JSON</button>}
-        {isArray && <button onClick={downloadArray}>Download CSV</button>}
+        {isObject && <button onClick={downloadObject}>⬇ JSON</button>}
+        {isArray && <button onClick={downloadArray}>⬇ CSV</button>}
       </div>
       <pre className={styles.body}>
         {JSON.stringify(props.children, undefined, 2)}

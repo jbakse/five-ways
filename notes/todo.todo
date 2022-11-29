@@ -20,7 +20,7 @@ Take Survey:
 
 □ image options
     ✓ image only @done(22-11-28 13:19)
-    □ image + text
+    ✓ image + text @done(22-11-29 10:52)
     ✓ alt text @done(22-11-28 12:25)
 
 □ language select
@@ -38,10 +38,13 @@ Take Survey:
 □ scroll mode (rather than the slide mode) for users at home?
 
 □ browser back button support?
+
 Config:
 □ create config system
     □ config file probably to tech for users
     □ store in airtable?
+
+note: these next ones could be on survey in airtable...
 
 □ gallerySurvey
     what is on the ipad
@@ -51,6 +54,7 @@ Config:
     what is shown in the lobby (might be the same, or altered version)
 □ surveyOpen
     turn off survey for testing/etc
+
 □ galleryTimeout
     how long before idle reset in gallery
 □ homeTimeout
@@ -82,7 +86,7 @@ Admin Tools:
 
 □ style cleanup
 
-□ list surveys -> questions
+✓ list surveys -> questions @done(22-11-29 11:06)
 □ list all questions
 □ get responses for a question
     □ filter date range
@@ -94,11 +98,9 @@ Admin Tools:
     □ total answers, percent each, etc
 
 □ table view of each response
-    □ copy as json
-    □ copy as csv
     ✓ download as json @done(22-11-18 16:09)
     ✓ download as csv @done(22-11-18 16:09)
-    □ pretty buttons
+    ✓ pretty buttons @done(22-11-29 11:10)
 
 Tooling:
 

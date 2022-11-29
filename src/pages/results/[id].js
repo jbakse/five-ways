@@ -73,7 +73,7 @@ function Result({ responses, question }) {
         (a) => a.filter(Boolean).length
       );
 
-      const totalCount = responses.length;
+      const viewedCount = responses.length;
       const answeredCount = selectionCounts.reduce((a, b) => a + b, 0);
 
       // prepare data
@@ -81,7 +81,7 @@ function Result({ responses, question }) {
         count,
         index: index,
         percentOfAnswered: count / answeredCount,
-        precentOfTotal: count / totalCount,
+        precentOfViewed: count / viewedCount,
         response: question.optionTextsEnglish[index],
       }));
 
@@ -92,7 +92,7 @@ function Result({ responses, question }) {
       }
 
       const data = {
-        totalCount,
+        viewedCount,
         answeredCount,
         options,
       };
@@ -112,7 +112,7 @@ function Result({ responses, question }) {
               {option.label}:&nbsp;
               {option.response}&nbsp;
               {/* {formatPercent(option.percentOfAnswered)}&nbsp; */}
-              {/* {formatPercent(option.precentOfTotal)} */}
+              {/* {formatPercent(option.precentOfViewed)} */}
             </div>
           ))}
         </div>

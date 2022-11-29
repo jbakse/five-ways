@@ -1,22 +1,30 @@
 @import "../styles/common";
 
-
-
 .title {
-    @include content-block;
-    margin-top: 1em;
-    padding: 0 .5em;
-    background: #333;
-    color: white;
-    position: sticky;
-    top: 0;
+  @include content-block;
+  margin-top: 1em;
+  padding: 0 0.5em;
+  background: #333;
+  color: white;
+  position: sticky;
+  top: 0;
 }
 
+.title button {
+  float: right;
+  margin-top: 3px;
+
+  background: none;
+  color: white;
+  border: none;
+  font-size: 0.75em;
+
+  cursor: pointer;
+}
 
 .body {
-    @include content-block;
-    padding: 0 .5em;
-    background: #eee;
-    overflow-x: hidden;
+  @include content-block;
+  padding: 0 0.5em;
+  background: #eee;
+  overflow-x: hidden;
 }
-
