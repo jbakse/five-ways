@@ -9,6 +9,8 @@
   font-weight: 400;
   font-size: 2vw;
   line-height: 1;
+
+  counter-reset: option;
 }
 
 .QuestionWrap {
@@ -35,5 +37,10 @@
 
   + .Option {
     margin-top: 0.5em;
+  }
+
+  &::before {
+    counter-increment: option;
+    content: counter(option, upper-alpha) ": ";
   }
 }
