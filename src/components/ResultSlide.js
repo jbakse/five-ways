@@ -1,5 +1,4 @@
-import React, { useMemo } from "react";
-import { ShowJSON } from "./ShowJSON";
+import React from "react";
 import { PieChart } from "./PieChart";
 import styles from "./ResultSlide.module.scss";
 

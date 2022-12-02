@@ -8,7 +8,7 @@ export function formatDate(s) {
 
 export function formatShort(s) {
   //recVZKGGAb7BaWPvf -> re..vf
-  return s.substr(0, 2) + ".." + s.substr(-2);
+  return s.slice(0, 2) + ".." + s.slice(-2);
 }
 
 export function allFalse(a) {

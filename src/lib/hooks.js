@@ -5,8 +5,8 @@ import { useDeepCompareEffect } from "react-use";
 // https://polvara.me/posts/fetching-asynchronous-data-with-react-hooks
 
 export function useAsyncDeep(f, params) {
-  const [value, setValue] = useState(null);
-  const [error, setError] = useState(null);
+  const [value, setValue] = useState();
+  const [error, setError] = useState();
   const [loading, setLoading] = useState(true);
 
   useDeepCompareEffect(() => {
@@ -15,8 +15,8 @@ export function useAsyncDeep(f, params) {
         setLoading(true);
         const result = await f(...params);
         setValue(result);
-      } catch (e) {
-        setError(e);
+      } catch (error_) {
+        setError(error_);
       } finally {
         setLoading(false);
       }
