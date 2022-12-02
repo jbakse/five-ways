@@ -36,8 +36,11 @@ Take Survey:
     □ update to reflect minor design revisions in figma
 
 □ scroll mode (rather than the slide mode) for users at home?
+    :no
 
 □ browser back button support?
+    :no
+
 
 Config:
 □ create config system
