@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { Chart, PieController, ArcElement } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 
@@ -8,8 +8,10 @@ const labels = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
 const colors = ["#cfc", ...Array.from({ length: 25 }, () => "white")];
 
 export function PieChart({ data }) {
+  const canvas = useRef(null);
+
   useEffect(() => {
-    const context = document.querySelector("#myChart").getContext("2d");
+    const context = canvas.current.getContext("2d");
 
     /* exported myChart */
     const myChart = new Chart(context, {
@@ -53,5 +55,5 @@ export function PieChart({ data }) {
     };
   });
 
-  return <canvas id="myChart" width="400" height="400"></canvas>;
+  return <canvas ref={canvas} width="400" height="400"></canvas>;
 }
