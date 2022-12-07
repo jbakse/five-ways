@@ -1,5 +1,5 @@
 import unzip from "lodash/unzip";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useAsync, useDeepCompareEffect } from "react-use";
 
 // useAsyncDeep adapted from
@@ -92,4 +92,13 @@ export function useResultSummary(question, responses) {
     },
     [responses, question]
   );
+}
+
+export function useBodyClass(className) {
+  useEffect(() => {
+    document.body.classList.add(className);
+    return () => {
+      document.body.classList.remove(className);
+    };
+  });
 }

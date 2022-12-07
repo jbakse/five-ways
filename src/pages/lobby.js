@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import { getSurveyDeep } from "../lib/airtable";
-import SlideShow from "../components/SlideShow";
-import { Async } from "../components/Async";
 import { useAsyncResponses, useResultSummary } from "../lib/hooks";
 import { ResultSlide } from "../components/ResultSlide";
+import { useBodyClass } from "../lib/hooks";
 
 export async function getServerSideProps(/*context*/) {
   const surveyId = "recVZKGGAb7BaWPvf"; //TODO: make configurable
@@ -16,20 +15,40 @@ export async function getServerSideProps(/*context*/) {
 }
 
 export default function LobbyPage(props) {
+  useBodyClass("no-scroll");
+
+  const [questionIndex, setQuestionIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setQuestionIndex((index) => (index + 1) % props.survey.questions.length);
+    }, 10_000);
+    return () => clearInterval(interval);
+  }, [props.survey.questions.length]);
+
   return (
     <>
       <Head>
         <title>Survey</title>
       </Head>
-      <SlideShow>
-        {props.survey.questions.map((q) => (
-          <QuestionCard surveyId={props.survey.id} question={q} key={q.id} />
-        ))}
-      </SlideShow>
+      <Black></Black>
+      <QuestionCard question={props.survey.questions[questionIndex]} />
     </>
   );
 }
 
+function Black() {
+  return (
+    <div
+      style={{
+        position: "absolute",
+        inset: 0,
+        backgroundColor: "black",
+        zIndex: -1,
+      }}
+    ></div>
+  );
+}
 function QuestionCard({ question }) {
   // const question = useAsyncQuestion(question.id);
   const responses = useAsyncResponses(question.id);
@@ -43,9 +62,9 @@ function QuestionCard({ question }) {
 
   return (
     <>
-      <Async data={summary}>
+      {!summary.error && !summary.loading && (
         <ResultSlide data={summary}></ResultSlide>
-      </Async>
+      )}
     </>
   );
 }

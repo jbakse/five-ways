@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { PieChart } from "./PieChart";
 import styles from "./ResultSlide.module.scss";
 
@@ -11,9 +11,27 @@ export function ResultSlide({ data }) {
   //     option.label = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[index];
   //   }
 
+  const slide = useRef(null);
+
+  useEffect(() => {
+    const enter = setTimeout(() => {
+      slide.current.classList.add(styles.in);
+    }, 1);
+
+    // todo: make timing configurable
+    const exit = setTimeout(() => {
+      slide.current.classList.remove(styles.in);
+    }, 8000);
+
+    return () => {
+      clearTimeout(enter);
+      clearTimeout(exit);
+    };
+  }, []);
+
   return (
     <>
-      <div className={styles.Result}>
+      <div ref={slide} className={styles.ResultSlide}>
         <div className={styles.QuestionWrap}>
           <h1>{data.prompt}</h1>
           {data.options.map((option) => (

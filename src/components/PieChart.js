@@ -27,9 +27,11 @@ export function PieChart({ data }) {
         borderWidth: 1,
         responsive: true,
         animation: {
-          duration: 1000,
-          animateScale: true,
+          duration: 2000,
+          delay: 500,
+          easing: "easeInOutCubic",
         },
+
         plugins: {
           datalabels: {
             color: "#black",
@@ -40,6 +42,8 @@ export function PieChart({ data }) {
             formatter(value, context) {
               return labels[context.dataIndex];
             },
+
+            // hide unpopular responses
             display: (context) => {
               const value = context.dataset.data[context.dataIndex];
               const total = context.dataset.data.reduce((a, b) => a + b, 0);

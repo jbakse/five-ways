@@ -54,3 +54,8 @@ $z-ui: 100;
 .image-block-hack > span {
   display: block !important;
 }
+
+.no-scroll {
+  // border: 1px solid red;
+  overflow: hidden;
+}
