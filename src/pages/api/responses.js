@@ -50,9 +50,11 @@ async function listRepsonses(request, response) {
       .json({ success: true, responses: responses_cleaned });
   } catch (error) {
     console.error("Request error", error);
-    response
-      .status(500)
-      .json({ error: "Error listing responses", success: false });
+    response.status(500).json({
+      error: "Error listing responses",
+      success: false,
+      details: error,
+    });
   }
 }
 async function upsertResponse(request, response) {
@@ -83,12 +85,10 @@ async function upsertResponse(request, response) {
       .json({ success: true, response: prismaResponse });
   } catch (error) {
     console.error("Request error", error);
-    response
-      .status(500)
-      .json({
-        error: "Error logging response",
-        success: false,
-        details: error,
-      });
+    response.status(500).json({
+      error: "Error logging response",
+      success: false,
+      details: error,
+    });
   }
 }
