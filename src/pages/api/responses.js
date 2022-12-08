@@ -85,6 +85,10 @@ async function upsertResponse(request, response) {
     console.error("Request error", error);
     response
       .status(500)
-      .json({ error: "Error logging response", success: false });
+      .json({
+        error: "Error logging response",
+        success: false,
+        details: error,
+      });
   }
 }
