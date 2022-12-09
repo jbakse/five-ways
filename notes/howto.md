@@ -13,3 +13,10 @@
   - Start DB Local Proxy `npm run pscale:dev` (may require login confirmation)
 - run `npm run prisma:generate`
 - run `npm run prisma:push`
+
+# Upgrade NPM Packages
+
+```
+npm outdated
+npm install package-name@latest
+```
