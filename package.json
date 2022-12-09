@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@prisma/client": "^4.7.1",
-    "airtable": "^0.11.4",
+    "airtable": "^0.11.6",
     "chart.js": "^3.9.1",
     "chartjs-plugin-datalabels": "^2.1.0",
     "classnames": "^2.3.2",
@@ -32,9 +32,9 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
-    "eslint": "8.23.1",
-    "eslint-config-next": "12.3.0",
-    "eslint-plugin-unicorn": "^44.0.2",
+    "eslint": "^8.29.0",
+    "eslint-config-next": "^13.0.6",
+    "eslint-plugin-unicorn": "^45.0.1",
     "prisma": "^4.7.1"
   }
 }
