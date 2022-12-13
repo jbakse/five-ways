@@ -45,7 +45,7 @@ export default function ResponsesIndex(/*props*/) {
     return boolArray
       .map((value, index) => {
         if (value) {
-          return "ABCDEDFGHIJKLMNOPQRSTUVWXYZ"[index];
+          return "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[index];
         } else {
           return false;
         }
