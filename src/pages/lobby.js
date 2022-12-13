@@ -5,7 +5,12 @@ import { useAsyncResponses, useResultSummary } from "../lib/hooks";
 import { ResultSlide } from "../components/ResultSlide";
 import { useBodyClass } from "../lib/hooks";
 
-export async function getServerSideProps(/*context*/) {
+export async function getServerSideProps({ res }) {
+  res.setHeader(
+    "Cache-Control",
+    "public, s-maxage=60, stale-while-revalidate=600"
+  );
+
   const surveyId = "recVZKGGAb7BaWPvf"; //TODO: make configurable
   return {
     props: {

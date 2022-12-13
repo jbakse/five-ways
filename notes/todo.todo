@@ -35,36 +35,33 @@ Take Survey:
 □ design updates
     □ update to reflect minor design revisions in figma
 
-□ scroll mode (rather than the slide mode) for users at home?
-    :no
-
-□ browser back button support?
-    :no
-
 
 Config:
 □ create config system
     □ config file probably to tech for users
     □ store in airtable?
 
-note: these next ones could be on survey in airtable...
 
-□ gallerySurvey
-    what is on the ipad
-□ homeSurvey
-    what is on people's devices (often the same!)
-□ lobbySurvey
-    what is shown in the lobby (might be the same, or altered version)
-□ surveyOpen
-    turn off survey for testing/etc
 
-□ galleryTimeout
-    how long before idle reset in gallery
-□ homeTimeout
-    how long before idle reset at home (can be long)
+□ survey configs
+    □ gallerySurvey
+        what is on the ipad
+    □ homeSurvey
+        what is on people's devices (often the same!)
+    □ lobbySurvey
+        what is shown in the lobby (might be the same, or altered version)
+    □ surveyOpen
+        turn off summaryrvey for testing/etc
+
+□ developer configs
+    □ galleryTimeout
+        how long before idle reset in gallery
+    □ homeTimeout
+        how long before idle reset at home (can be long)
 
 Lobby Report:
 □ Splash Screen
+    □ how can i let designer add 1920x1080 slides to the lobby survey
 
 □ slideshow
     □ cycle splash and questions on timer
@@ -80,10 +77,10 @@ Lobby Report:
     □ alt text
 
 
-□ languages
 
-? what about image questions
-? what about languages
+✓ languages @done(22-12-09 11:08)
+    :english only
+
 
 Admin Tools:
 
@@ -91,22 +88,31 @@ Admin Tools:
 
 ✓ list surveys -> questions @done(22-11-29 11:06)
 □ list all questions
-□ get responses for a question
-    □ filter date range
-    □ filter by survey? respondant?
-□ get responses for survey?
-    □ maybe require getting question one at a time
 
-□ summary view
-    □ total answers, percent each, etc
+□ view/export responses
+    ✓ filter by date @done(22-12-13 13:45)
+    ✓ filter by question @done(22-12-13 13:45)
+    ✓ filter by survey @done(22-12-13 13:45)
+    ✓ fitler by respondant @done(22-12-13 13:45)
+    ✓ fitler by language @done(22-12-13 13:45)
+    □ filter by has response
 
-□ table view of each response
+✓ view/export surveys @done(22-12-09 11:12)
+    ✓ airtable data @done(22-12-09 11:14)
+
+□ view/export questions
+    □ add small slide view without the fade in/out
+    ✓ report summary @done(22-12-09 11:14)
+    ✓ airtable data @done(22-12-09 11:14)
+    ✓ responses @done(22-12-09 11:14)
+
+□ export data
     ✓ download as json @done(22-11-18 16:09)
     ✓ download as csv @done(22-11-18 16:09)
     ✓ pretty buttons @done(22-11-29 11:10)
 
 Tooling:
-□ get running on vercel/production (how to set up the db proxy?)
+✓ get running on vercel/production @done(22-12-09 11:17)
     
 
 Airtable:
@@ -114,22 +120,30 @@ Airtable:
 
 API:
 □ Add cache headers so that Next will cache the API responses from airtable
+□ where are the responses tabulated currently? client side? should this be moved to an api route sever function?
 
 Refactor:
+□ should `/results/id` be `/questions/id` (the id is a question id after all)
+□ was async a bad path anyway? the async/error/loading/value thing is inconsistent
 ✓ Async probably shouldn't be imposing .content-block @done(22-11-18 14:57)
 
 Database:
 □ Consider how we store unanswered questions. 
     Options
     - No response at all until an answer is given
-    - false
+    - false <- i think this is best
     - []
-    - is it currently [false, false]?
+    - it is currently [false, false]? 
+        okay for single answer but not multiple answer
 
 □ How to store question data in reponses?
-    (Currently) Shallow: Responses have IDs of question @done(22-11-17 13:06)
+    (Currently) Shallow: Responses have IDs of question <- keep shallow, lighter on database, less work. can expand later if needed
     (Would this be better?) Deep: Responses store question/option text
 
 □ when to store response data
-    (Currently) Create when survey begins, update on change
+    (Currently) Create when survey begins, update on change <- lets keep this, but with false for unanswerd question
     (Would this be better?) Create/update on change
+
+
+
+

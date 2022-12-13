@@ -16,7 +16,11 @@ export function Table({ columns, data }) {
         {data?.map((row) => (
           <tr key={row.id}>
             {columns.map((c) => (
-              <td key={c.field}>
+              <td
+                key={c.field}
+                onClick={() => c.onClick?.(row)}
+                className={c.onClick && styles.clickable}
+              >
                 {c.formatter ? c.formatter(row[c.field]) : row[c.field]}
               </td>
             ))}

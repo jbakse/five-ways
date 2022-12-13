@@ -16,28 +16,41 @@ export default async function handler(request, response) {
 }
 
 async function listRepsonses(request, response) {
-  // from start of day
-  const start = new Date(
-    request.query.start ? request.query.start + "T00:00:00" : "2000-01-01"
+  console.log("request.query", request.query);
+
+  // from START of day
+  const startDate = new Date(
+    request.query.startDate
+      ? request.query.startDate + "T00:00:00"
+      : "2000-01-01"
   );
 
   // to END of day
-  const end = new Date(
-    request.query.end ? request.query.end + "T00:00:00" : "3000-01-01"
+  const endDate = new Date(
+    request.query.endDate ? request.query.endDate + "T00:00:00" : "3000-01-01"
   );
-  end.setDate(end.getDate() + 1);
+  endDate.setDate(endDate.getDate() + 1);
 
   const filters = {};
   if (request.query.questionId) {
     filters.questionId = { equals: request.query.questionId };
+  }
+  if (request.query.surveyId) {
+    filters.surveyId = { equals: request.query.surveyId };
+  }
+  if (request.query.responderId) {
+    filters.responderId = { equals: request.query.responderId };
+  }
+  if (request.query.language) {
+    filters.language = { equals: request.query.language };
   }
 
   try {
     const responses = await prisma.response.findMany({
       where: {
         createdAt: {
-          gte: start,
-          lte: end,
+          gte: startDate,
+          lte: endDate,
         },
         ...filters,
       },

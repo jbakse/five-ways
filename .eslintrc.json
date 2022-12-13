@@ -12,7 +12,12 @@
     "prefer-const": "error",
     "no-var": "error",
     "arrow-body-style": ["error", "as-needed"],
-
+    "no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "_"
+      }
+    ],
     // import plugin
     "import/order": [
       "error",
