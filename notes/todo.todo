@@ -6,7 +6,7 @@
 
 Bugs:
 □ FOUT on splash screen
-□ resizing window can cause scroll to be between slide
+✓ resizing window can cause scroll to be between slide @done(22-12-13 14:37)
 
 Take Survey:
 □ splash screen

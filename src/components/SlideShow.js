@@ -5,6 +5,8 @@ import styles from "./SlideShow.module.scss";
 export default function SlideShow(props) {
   const children = props.children.flat();
 
+  const slideShow = React.createRef();
+
   const [currentSlide, setCurrentSlide] = useState(0);
 
   function previous() {
@@ -17,8 +19,10 @@ export default function SlideShow(props) {
 
   function finish() {}
 
+  // scroll on button press
   useEffect(() => {
     const slide = document.querySelector(`#slide-${currentSlide}`);
+
     if (slide) {
       slide.scrollIntoView({
         behavior: "smooth",
@@ -28,8 +32,24 @@ export default function SlideShow(props) {
     }
   }, [currentSlide]);
 
+  // scroll on window resize
+  useEffect(() => {
+    function onResize() {
+      const slide = document.querySelector(`#slide-${currentSlide}`);
+      if (slide) {
+        slideShow.current.scrollTo({
+          top: 0,
+          left: slide.offsetLeft,
+          behavior: "instant",
+        });
+      }
+    }
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, [slideShow, currentSlide]);
+
   return (
-    <div className={styles.SlideShow}>
+    <div ref={slideShow} className={styles.SlideShow}>
       <button
         className={classNames(
           styles.SlideShow__Previous,
