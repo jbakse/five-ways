@@ -5,7 +5,7 @@
 'Cmd/Ctrl+Shift+A' // Triggers `Todo: Archive`
 
 Bugs:
-□ FOUT on splash screen
+✓ FOUT on splash screen @done(22-12-14 10:45)
 ✓ resizing window can cause scroll to be between slide @done(22-12-13 14:37)
 
 Take Survey:
