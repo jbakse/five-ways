@@ -96,16 +96,20 @@ export async function getSurveyDeep(surveyId) {
 
 export async function getSurveys() {
   try {
-    const pages = await base("Survey").select({});
+    const pages = await base("Survey").select({
+      sort: [{ field: "updated", direction: "desc" }],
+    });
     const surveys = [];
 
     await new Promise((resolve, reject) => {
       pages.eachPage(
         function page(records, fetchNextPage) {
           for (const r of records) {
+            console.log("r", r);
             surveys.push({
               id: r.id,
               nickname: r.fields.nickname,
+              updated: r.fields.updated,
               questionCount: r.fields.questions?.length ?? 0,
             });
           }

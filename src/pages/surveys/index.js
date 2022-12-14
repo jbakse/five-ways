@@ -4,6 +4,7 @@ import { useAsync } from "react-use";
 import Head from "next/head";
 import { Async } from "../../components/Async";
 import { Table } from "../../components/Table";
+import { formatDate } from "../../lib/util";
 
 export default function SurveysIndex(/*props*/) {
   const surveys = useAsync(async () => {
@@ -15,6 +16,7 @@ export default function SurveysIndex(/*props*/) {
   const columns = [
     { header: "nickname", field: "nickname" },
     { header: "questions", field: "questionCount" },
+    { header: "updated", field: "updated", formatter: formatDate },
     {
       header: "details",
       field: "id",
@@ -41,6 +43,7 @@ export default function SurveysIndex(/*props*/) {
         <title>Surveys</title>
       </Head>
       <h1 className="content-block">Surveys</h1>
+
       <Async className="content-block" data={surveys}>
         <Table columns={columns} data={surveys.value} />
       </Async>
