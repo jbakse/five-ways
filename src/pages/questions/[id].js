@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React from "react";
+import Link from "next/link";
 import { Async } from "../../components/Async";
 import { ShowJSON } from "../../components/ShowJSON";
 import { ResultSlide } from "../../components/ResultSlide";
@@ -10,7 +11,7 @@ import {
   useResultSummary,
 } from "../../lib/hooks";
 
-export default function ResultPage(/*props*/) {
+export default function QuestionPage(/*props*/) {
   const router = useRouter();
 
   // todo: could/should this be a getServersideProp?
@@ -21,28 +22,40 @@ export default function ResultPage(/*props*/) {
   return (
     <>
       <Head>
-        <title>Results</title>
+        <title>Question</title>
       </Head>
 
-      <Async data={summary}>
+      {/* <Async data={summary}>
         <ResultSlide data={summary}></ResultSlide>
+      </Async> */}
+
+      <Async className="content-block" data={question}>
+        <h1 className="content-block">Question "{question.value?.nickname}"</h1>
+
+        <Link
+          href={`/responses?questionId=${encodeURIComponent(
+            question.value?.id
+          )}`}
+        >
+          responses
+        </Link>
       </Async>
 
-      <Async data={summary}>
-        <ShowJSON title={`report_${question.value?.nickname}`}>
+      <Async className="content-block" data={summary}>
+        <ShowJSON title={`${question.value?.nickname}_report`}>
           {summary}
         </ShowJSON>
       </Async>
       <Async className="content-block" data={question}>
-        <ShowJSON title={`question_${question.value?.nickname}`}>
+        <ShowJSON title={`${question.value?.nickname}_export`}>
           {question.value}
         </ShowJSON>
       </Async>
-      <Async className="content-block" data={responses}>
+      {/* <Async className="content-block" data={responses}>
         <ShowJSON title={`responses_${question.value?.nickname}`}>
           {responses.value}
         </ShowJSON>
-      </Async>
+      </Async> */}
     </>
   );
 }

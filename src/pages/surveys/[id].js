@@ -32,7 +32,9 @@ export default function SurveyPage(/*props*/) {
             </li>
           ))}
         </ol>
-        <ShowJSON title="survey">{survey.value}</ShowJSON>
+        <ShowJSON title={`${survey.value?.nickname}_export`}>
+          {survey.value}
+        </ShowJSON>
       </Async>
     </>
   );
