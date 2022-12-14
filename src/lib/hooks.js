@@ -102,3 +102,28 @@ export function useBodyClass(className) {
     };
   });
 }
+
+export function useTimerReset(minutes = 5) {
+  useEffect(() => {
+    // reload page after .1 minute
+
+    let timer = setTimeout(() => {
+      window.location.reload();
+    }, minutes * 60 * 1000);
+
+    // restart timer on any user interaction
+    const restartTimer = () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        window.location.reload();
+      }, minutes * 60 * 1000);
+    };
+    window.addEventListener("touchmove", restartTimer);
+    window.addEventListener("mousemove", restartTimer);
+    window.addEventListener("mousedown", restartTimer);
+    window.addEventListener("keypress", restartTimer);
+    window.addEventListener("scroll", restartTimer);
+
+    return () => clearTimeout(timer);
+  }, [minutes]);
+}

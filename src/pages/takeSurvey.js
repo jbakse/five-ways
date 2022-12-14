@@ -6,6 +6,7 @@ import Question from "../components/Question";
 import SlideShow from "../components/SlideShow";
 import splash from "../components/Splash.module.scss";
 import LanguageSelect from "../components/LanguageSelect";
+import { useTimerReset } from "../lib/hooks";
 
 export async function getServerSideProps({ res }) {
   res.setHeader(
@@ -25,6 +26,8 @@ export default function TakeSurveyPage(props) {
   const [responderId] = useState(uuidv4());
 
   const [language, setLanguage] = useState("English");
+
+  useTimerReset(5);
 
   return (
     <>

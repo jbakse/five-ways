@@ -30,7 +30,8 @@ Take Survey:
     ✓ record language with responses @done(22-11-18 13:29)
 
 
-□ auto timeout (in gallery, reset after idle)
+✓ auto timeout (in gallery, reset after idle) @done(22-12-14 10:58)
+    □ make timeout only happen when in gallery
 
 □ design updates
     □ update to reflect minor design revisions in figma
@@ -59,7 +60,7 @@ Config:
     □ homeTimeout
         how long before idle reset at home (can be long)
 
-Lobby Report:
+Lobby:
 □ Splash Screen
     □ how can i let designer add 1920x1080 slides to the lobby survey
 
