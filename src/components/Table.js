@@ -8,7 +8,7 @@ export function Table({ columns, data }) {
       <thead>
         <tr>
           {columns.map((c) => (
-            <th key={c.field}>{c.header}</th>
+            <th key={c.key || c.field}>{c.header}</th>
           ))}
         </tr>
       </thead>
@@ -17,7 +17,7 @@ export function Table({ columns, data }) {
           <tr key={row.id}>
             {columns.map((c) => (
               <td
-                key={c.field}
+                key={c.key || c.field}
                 onClick={() => c.onClick?.(row)}
                 className={c.onClick && styles.clickable}
               >

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import { useAsync } from "react-use";
 import Head from "next/head";
 import { formatDateShort, formatShort, buildQuery } from "../../lib/util";
@@ -6,15 +7,42 @@ import { Async } from "../../components/Async";
 import { Table } from "../../components/Table";
 import { ShowJSON } from "../../components/ShowJSON";
 
-export default function ResponsesIndex(/*props*/) {
+export async function getServerSideProps(context) {
+  return { props: { query: context.query } };
+}
+
+export default function ResponsesIndex({ query }) {
   const today = new Date().toLocaleDateString("en-CA");
 
-  const [startDate, setStartDate] = useState(today);
-  const [endDate, setEndDate] = useState(today);
-  const [language, setLanguage] = useState();
-  const [responderId, setResponderId] = useState();
-  const [surveyId, setSurveyId] = useState();
-  const [questionId, setQuestionId] = useState();
+  const [startDate, setStartDate] = useState(query.startDate || today);
+  const [endDate, setEndDate] = useState(query.endDate || today);
+  const [language, setLanguage] = useState(query.language);
+  const [responderId, setResponderId] = useState(query.responderId);
+  const [surveyId, setSurveyId] = useState(query.surveyId);
+  const [questionId, setQuestionId] = useState(query.questionId);
+
+  // update url when params change
+  const router = useRouter();
+  useEffect(
+    () => {
+      const url = new URL(window.location);
+      const query = buildQuery({
+        startDate,
+        endDate,
+        language,
+        responderId,
+        surveyId,
+        questionId,
+      });
+      url.search = query;
+      console.log("replace", url.toString());
+      router.replace(url.toString(), undefined, { shallow: true });
+    },
+    // ignore the router as a dependency, otherwise we get an infinite loop
+    // https://stackoverflow.com/questions/69203538/useeffect-dependencies-when-using-nextjs-router
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [startDate, endDate, language, responderId, surveyId, questionId]
+  );
 
   // fetch the matching responses
   const responses = useAsync(async () => {

@@ -13,15 +13,26 @@ export default function SurveysIndex(/*props*/) {
   }, []);
 
   const columns = [
-    {
-      header: "id",
-      field: "id",
-      formatter: (v) => (
-        <Link href={`/surveys/${encodeURIComponent(v)}`}>{v}</Link>
-      ),
-    },
     { header: "nickname", field: "nickname" },
     { header: "questions", field: "questionCount" },
+    {
+      header: "details",
+      field: "id",
+      key: "details",
+      formatter: (v) => (
+        <Link href={`/surveys/${encodeURIComponent(v)}`}>details</Link>
+      ),
+    },
+    {
+      header: "responses",
+      field: "id",
+      key: "responses",
+      formatter: (v) => (
+        <Link href={`/responses?surveyId=${encodeURIComponent(v)}`}>
+          responses
+        </Link>
+      ),
+    },
   ];
 
   return (
