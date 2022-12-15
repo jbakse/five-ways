@@ -4,7 +4,6 @@ import React from "react";
 import Link from "next/link";
 import { Async } from "../../components/Async";
 import { ShowJSON } from "../../components/ShowJSON";
-import { ResultSlide } from "../../components/ResultSlide";
 import {
   useAsyncQuestion,
   useAsyncResponses,
