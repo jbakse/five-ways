@@ -20,6 +20,7 @@ export default function ResponsesIndex({ query }) {
   const [responderId, setResponderId] = useState(query.responderId);
   const [surveyId, setSurveyId] = useState(query.surveyId);
   const [questionId, setQuestionId] = useState(query.questionId);
+  const [onlyAnswered, setOnlyAnswered] = useState(query.onlyAnswered || false);
 
   // update url when params change
   const router = useRouter();
@@ -33,6 +34,7 @@ export default function ResponsesIndex({ query }) {
         responderId,
         surveyId,
         questionId,
+        onlyAnswered,
       });
       url.search = query;
       console.log("replace", url.toString());
@@ -41,7 +43,15 @@ export default function ResponsesIndex({ query }) {
     // ignore the router as a dependency, otherwise we get an infinite loop
     // https://stackoverflow.com/questions/69203538/useeffect-dependencies-when-using-nextjs-router
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [startDate, endDate, language, responderId, surveyId, questionId]
+    [
+      startDate,
+      endDate,
+      language,
+      responderId,
+      surveyId,
+      questionId,
+      onlyAnswered,
+    ]
   );
 
   // fetch the matching responses
@@ -54,6 +64,7 @@ export default function ResponsesIndex({ query }) {
         responderId,
         surveyId,
         questionId,
+        onlyAnswered,
       })}`
     );
 
@@ -63,7 +74,15 @@ export default function ResponsesIndex({ query }) {
     const result = await response.json();
 
     return result.responses;
-  }, [startDate, endDate, language, responderId, surveyId, questionId]);
+  }, [
+    startDate,
+    endDate,
+    language,
+    responderId,
+    surveyId,
+    questionId,
+    onlyAnswered,
+  ]);
 
   // configure the table
 
@@ -196,6 +215,15 @@ export default function ResponsesIndex({ query }) {
             value={questionId}
             onChange={(e) => setQuestionId(e.target.value)}
           ></input>
+        </div>
+
+        <div className="input-group">
+          <input
+            type="checkbox"
+            checked={onlyAnswered}
+            onChange={() => setOnlyAnswered(!onlyAnswered)}
+          />
+          <label htmlFor="onlyAnswered">Only Answered</label>
         </div>
       </div>
       <Async className="content-block" data={responses}>

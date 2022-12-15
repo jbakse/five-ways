@@ -67,8 +67,15 @@ $z-ui: 100;
     display: block;
     font-size: 0.75em;
   }
-  input {
+
+  input[type="text"],
+  input[type="date"],
+  input[type="search"] {
     width: 100%;
+  }
+  input[type="checkbox"] {
+    float: left;
+    margin-right: 0.5em;
   }
   + .input-group {
     margin-top: 0.5em;

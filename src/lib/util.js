@@ -29,7 +29,7 @@ export function allFalse(a) {
 
 export function buildQuery(params) {
   return Object.entries(params)
-    .filter(([_, value]) => value !== undefined && value !== "")
+    .filter(([_, value]) => value) // remove falsy values
     .map(([key, value]) => `${key}=${value}`)
     .join("&");
 }

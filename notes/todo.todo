@@ -129,6 +129,14 @@ Refactor:
 ✓ Async probably shouldn't be imposing .content-block @done(22-11-18 14:57)
 
 Database:
+□ Note: storage [false, false] doesn't allow for efficent filtering for answered questions
+ □ update prisma schema to allow false instead of array of answers
+ □ update prisma to also allow string
+    - false: not answered
+    - string: open answer
+    - array: single/multiple answer
+
+□ and "x matching entires" to response page
 □ Consider how we store unanswered questions. 
     Options
     - No response at all until an answer is given
