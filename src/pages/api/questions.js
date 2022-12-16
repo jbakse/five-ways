@@ -1,8 +1,12 @@
-import { getQuestionData } from "../../lib/airtable";
+import { getQuestionData, listQuestions } from "../../lib/airtable";
 
 export default async function handler(request, response) {
   if (request.method === "GET") {
-    return await getQuestion(request, response);
+    if (request.query.id) {
+      return await getQuestion(request.query.id, request, response);
+    } else {
+      return await getQuestions(request, response);
+    }
   } else {
     return response
       .status(405)
@@ -10,13 +14,16 @@ export default async function handler(request, response) {
   }
 }
 
-async function getQuestion(request, response) {
-  if (!request.query.id) {
-    return response
-      .status(400)
-      .json({ success: false, message: "id required" });
-  }
-
-  const question = await getQuestionData(request.query.id);
+async function getQuestion(id, request, response) {
+  const question = await getQuestionData(id);
+  // todo error handling
   return response.status(200).json({ success: true, question });
+}
+
+async function getQuestions(request, response) {
+  console.log("getQuestions");
+  const questions = await listQuestions();
+  console.log("questions", questions);
+  // todo error handling
+  return response.status(200).json({ success: true, questions });
 }

@@ -91,7 +91,7 @@ Admin Tools:
 
 ✓ list all surveys @done(22-11-29 11:06)
 
-□ list all questions
+✓ list all questions @done(22-12-16 15:23)
 
 □ view/export responses
     ✓ filter by date @done(22-12-13 13:45)
@@ -145,3 +145,5 @@ Database:
 
 
 
+□ normalize airtable funciton names and return values
+    □ eg listQuestions returns a survey[], but surveys has questionCount

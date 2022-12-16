@@ -10,6 +10,8 @@ export default function Index() {
         <br />
         <Link href="/lobby">Lobby</Link>
         <br />
+        <Link href="/questions">Questions</Link>
+        <br />
         <Link href="/surveys">Surveys</Link>
         <br />
         <Link href="/responses">Responses</Link>

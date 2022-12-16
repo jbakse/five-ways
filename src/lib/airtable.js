@@ -72,6 +72,44 @@ export async function getQuestionData(id) {
   };
 }
 
+export async function listQuestions() {
+  try {
+    const pages = await base("Question").select({
+      fields: ["nickname", "type", "promptTextEnglish", "Surveys", "updated"],
+      sort: [{ field: "updated", direction: "desc" }],
+    });
+    const questions = [];
+
+    await new Promise((resolve, reject) => {
+      pages.eachPage(
+        function page(records, fetchNextPage) {
+          for (const r of records) {
+            questions.push({
+              id: r.id,
+              nickname: r.fields.nickname,
+              type: r.fields.type,
+              prompt: r.fields.promptTextEnglish,
+              Surveys: r.fields.Surveys,
+              updated: r.fields.updated,
+            });
+          }
+          fetchNextPage();
+        },
+        function done(error) {
+          if (error) {
+            console.error(error);
+            reject();
+          }
+          resolve();
+        }
+      );
+    });
+    return questions;
+  } catch (error) {
+    console.log("Error loading surveys.\n", error);
+    return [];
+  }
+}
 async function getQuestionDatas(questionIds) {
   try {
     const questionPromises = questionIds.map(getQuestionData);
