@@ -20,7 +20,7 @@ export default function ResponsesIndex({ query }) {
   const [responderId, setResponderId] = useState(query.responderId);
   const [surveyId, setSurveyId] = useState(query.surveyId);
   const [questionId, setQuestionId] = useState(query.questionId);
-  const [onlyAnswered, setOnlyAnswered] = useState(query.onlyAnswered || false);
+  const [onlyAnswered, setOnlyAnswered] = useState(query.onlyAnswered || true);
 
   // update url when params change
   const router = useRouter();
@@ -37,7 +37,7 @@ export default function ResponsesIndex({ query }) {
         onlyAnswered,
       });
       url.search = query;
-      console.log("replace", url.toString());
+
       router.replace(url.toString(), undefined, { shallow: true });
     },
     // ignore the router as a dependency, otherwise we get an infinite loop
@@ -86,10 +86,13 @@ export default function ResponsesIndex({ query }) {
 
   // configure the table
 
-  function formatResponse(boolArray) {
+  function formatResponse(response) {
+    if (response === false) return "";
+    if (typeof response === "string") return response;
+
     // loop over array getting key and value
     // return JSON.stringify(boolArray);
-    return boolArray
+    return response
       .map((value, index) => {
         if (value) {
           return "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[index];
@@ -135,7 +138,7 @@ export default function ResponsesIndex({ query }) {
         setLanguage(row.language);
       },
     },
-    { header: "response", field: "selections", formatter: formatResponse }, //JSON.stringify
+    { header: "response", field: "response", formatter: formatResponse }, //JSON.stringify
   ];
 
   // render the page
@@ -226,7 +229,12 @@ export default function ResponsesIndex({ query }) {
           <label htmlFor="onlyAnswered">Only Answered</label>
         </div>
       </div>
+      <br />
       <Async className="content-block" data={responses}>
+        <h2>
+          {responses.value?.length} matching response
+          {responses.value?.length === 1 ? "" : "s"}
+        </h2>
         <Table columns={columns} data={responses.value} />
         <ShowJSON title="responses">{responses.value}</ShowJSON>
       </Async>

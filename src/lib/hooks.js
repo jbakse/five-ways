@@ -51,40 +51,43 @@ export function useAsyncResponses(questionId) {
 export function useResultSummary(question, responses) {
   return useMemo(
     function updateData() {
+      // make sure data is ready
       if (responses.loading) return { loading: true, error: false };
       if (responses.error) return { loading: false, error: responses.error };
-      if (question.loading) return { loading: true, error: false };
-      if (question.error) return { loading: false, error: question.error };
-
       if (!Array.isArray(responses.value))
         return { loading: true, error: false };
+
+      if (question.loading) return { loading: true, error: false };
+      if (question.error) return { loading: false, error: question.error };
       if (!question.value) return { loading: true, error: false };
 
-      // gather selections
-      const selections = responses.value.map((r) => r.selections);
-
-      // count how many respondants choose option 1, option 2, etc.
-      const selectionCounts = unzip(selections).map(
-        (a) => a.filter(Boolean).length
-      );
-
       const viewedCount = responses.value.length;
-      const answeredCount = selectionCounts.reduce((a, b) => a + b, 0);
+      // gather responses and throw out if unasnswered
+      const answers = responses.value.map((r) => r.response).filter(Boolean);
+      const answeredCount = answers.length;
+      let options = [];
+      if (["multiple", "single"].includes(question.value.type)) {
+        // count how many respondants choose option 1, option 2, etc.
+        const counts = unzip(answers).map((a) => a.filter(Boolean).length);
 
-      // prepare data
-      const options = selectionCounts.map((count, index) => ({
-        count,
-        index: index,
-        percentOfAnswered: count / answeredCount,
-        precentOfViewed: count / viewedCount,
-        response: question.value.optionTextsEnglish[index],
-      }));
+        options = counts.map((count, index) => ({
+          count,
+          index,
+          percentOfAnswered: count / answeredCount,
+          precentOfViewed: count / viewedCount,
+          response: question.value.optionTextsEnglish[index],
+        }));
+        // count how many respondants choose option 1, option 2, etc.
+      } else {
+        // its an open question
+        // todo: handle this when open questions are added
+      }
 
       const data = {
         nickname: question.value.nickname,
         prompt: question.value.promptTextEnglish,
-        viewedCount,
-        answeredCount,
+        viewedCount: 0,
+        answeredCount: 0,
         options,
       };
 

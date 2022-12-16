@@ -15,9 +15,43 @@ export default async function handler(request, response) {
   }
 }
 
-async function listRepsonses(request, response) {
-  console.log("request.query", request.query);
+async function upsertResponse(request, response) {
+  try {
+    const prismaResponse = await prisma.response.upsert({
+      where: {
+        responseId: pick(request.body, [
+          "responderId",
+          "surveyId",
+          "questionId",
+        ]),
+      },
+      update: {
+        response: request.body.response,
+        language: request.body.language,
+      },
+      create: pick(request.body, [
+        "responderId",
+        "surveyId",
+        "questionId",
+        "response",
+        "language",
+      ]),
+    });
 
+    return response
+      .status(200)
+      .json({ success: true, response: prismaResponse });
+  } catch (error) {
+    console.error("Request error", error);
+    response.status(500).json({
+      error: "Error logging response",
+      success: false,
+      details: error,
+    });
+  }
+}
+
+async function listRepsonses(request, response) {
   // from START of day
   const startDate = new Date(
     request.query.startDate
@@ -44,6 +78,9 @@ async function listRepsonses(request, response) {
   if (request.query.language) {
     filters.language = { equals: request.query.language };
   }
+  if (request.query.onlyAnswered) {
+    filters.response = { not: false };
+  }
 
   try {
     const responses = await prisma.response.findMany({
@@ -65,41 +102,6 @@ async function listRepsonses(request, response) {
     console.error("Request error", error);
     response.status(500).json({
       error: "Error listing responses",
-      success: false,
-      details: error,
-    });
-  }
-}
-async function upsertResponse(request, response) {
-  try {
-    const prismaResponse = await prisma.response.upsert({
-      where: {
-        responseId: pick(request.body, [
-          "responderId",
-          "surveyId",
-          "questionId",
-        ]),
-      },
-      update: {
-        selections: request.body.selections,
-        language: request.body.language,
-      },
-      create: pick(request.body, [
-        "responderId",
-        "surveyId",
-        "questionId",
-        "selections",
-        "language",
-      ]),
-    });
-
-    return response
-      .status(200)
-      .json({ success: true, response: prismaResponse });
-  } catch (error) {
-    console.error("Request error", error);
-    response.status(500).json({
-      error: "Error logging response",
       success: false,
       details: error,
     });

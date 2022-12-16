@@ -9,7 +9,6 @@ export function ShowJSON(props) {
   const isArray = Array.isArray(props.children);
 
   function downloadObject() {
-    console.log("downloadObject as JSON");
     if (!isObject) return;
     const json = JSON.stringify(props.children, undefined, 2);
     const blob = new Blob([json], { type: "application/json" });
@@ -21,7 +20,6 @@ export function ShowJSON(props) {
   }
 
   function downloadArray() {
-    console.log("downloadArray as CSV");
     if (!isArray) return;
     if (props.children.length === 0) return;
     const keys = Object.keys(props.children[0]);
@@ -32,7 +30,6 @@ export function ShowJSON(props) {
     );
     csv.unshift(keys.join(","));
     const csvString = csv.join("\n");
-    // console.log(csvString);
 
     const blob = new Blob([csvString], { type: "text/csv" });
     const url = URL.createObjectURL(blob);

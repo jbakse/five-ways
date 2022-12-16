@@ -30,7 +30,11 @@ export default function SurveysIndex(/*props*/) {
       field: "id",
       key: "responses",
       formatter: (v) => (
-        <Link href={`/responses?surveyId=${encodeURIComponent(v)}`}>
+        <Link
+          href={`/responses?surveyId=${encodeURIComponent(
+            v
+          )}&startDate=2000-01-01&endDate=3000-01-01`}
+        >
           responses
         </Link>
       ),

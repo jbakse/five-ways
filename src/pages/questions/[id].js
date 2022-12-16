@@ -34,7 +34,7 @@ export default function QuestionPage(/*props*/) {
         <Link
           href={`/responses?questionId=${encodeURIComponent(
             question.value?.id
-          )}`}
+          )}&startDate=2000-01-01&endDate=3000-01-01`}
         >
           responses
         </Link>

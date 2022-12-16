@@ -14,6 +14,12 @@
 - run `npm run prisma:generate`
 - run `npm run prisma:push`
 
+# Reset Database
+
+Delete all the data, and rebuild database from schema
+
+- `npx prisma migrate reset`
+
 # Upgrade NPM Packages
 
 ```

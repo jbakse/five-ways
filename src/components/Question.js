@@ -9,9 +9,7 @@ export default function Question(props) {
   const prompt = props[`promptText${props.language}`];
   const optionTexts = props[`optionTexts${props.language}`];
 
-  const [selections, setSelections] = useState(
-    Array.from({ length: optionTexts.length }).fill(false)
-  );
+  const [response, setResponse] = useState(false);
 
   // post data to backend when data changes (use deep compare)
   useAsyncDeep(postData, [
@@ -20,7 +18,7 @@ export default function Question(props) {
       responderId: props.responderId,
       surveyId: props.surveyId,
       questionId: props.id,
-      selections: selections,
+      response: response,
       language: props.language,
     },
   ]);
@@ -28,16 +26,17 @@ export default function Question(props) {
   function optionClicked(optionIndex) {
     if (props.type === "single") {
       // single select
-      const newSelections = Array.from({
+      const newResponse = Array.from({
         length: optionTexts.length,
       }).fill(false);
-      newSelections[optionIndex] = true;
-      setSelections(newSelections);
+      newResponse[optionIndex] = true;
+      setResponse(newResponse);
     } else if (props.type === "multiple") {
       // multiple select
-      const newSelections = [...selections];
-      newSelections[optionIndex] = !newSelections[optionIndex];
-      setSelections(newSelections);
+      const allFalse = Array.from({ length: optionTexts.length }).fill(false);
+      const newResponse = [...(response || allFalse)];
+      newResponse[optionIndex] = !newResponse[optionIndex];
+      setResponse(newResponse);
     }
   }
 
@@ -53,7 +52,7 @@ export default function Question(props) {
           <li
             className={classNames(
               styles.option,
-              selections[index] && styles.selected,
+              response[index] && styles.selected,
               "image-block-hack"
             )}
             key={index}

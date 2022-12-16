@@ -18,7 +18,10 @@ model Response {
   responderId String
   surveyId    String
   questionId  String
-  selections  Json
+  // Note:
+  // prisma studio is showing Json `false` as `null` in the UI
+  // but the value does appear to be retreived as `false`
+  response    Json
   language    String   @default("English")
 
   @@unique(fields: [responderId, surveyId, questionId], name: "responseId")
