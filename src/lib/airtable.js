@@ -105,7 +105,6 @@ export async function getSurveys() {
       pages.eachPage(
         function page(records, fetchNextPage) {
           for (const r of records) {
-            console.log("r", r);
             surveys.push({
               id: r.id,
               nickname: r.fields.nickname,

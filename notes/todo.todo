@@ -22,8 +22,9 @@ Take Survey:
     ✓ image only @done(22-11-28 13:19)
     ✓ image + text @done(22-11-29 10:52)
     ✓ alt text @done(22-11-28 12:25)
+    □ try two up design
 
-□ language select
+✓ language select @done(22-12-16 14:13)
     ✓ add translations to test questions @started(22-11-18 11:42) @done(22-11-18 11:53) @lasted(11m14s)
     ✓ allow user to select language @started(22-11-18 12:04) @done(22-11-18 12:33) @lasted(29m21s)
     ✓ display questins/prompts in selected language @started(22-11-18 12:33) @done(22-11-18 12:44) @lasted(11m23s)
@@ -36,13 +37,15 @@ Take Survey:
 □ design updates
     □ update to reflect minor design revisions in figma
 
+□ add router id for survey to take
+    □ also accept `gallery`, `home`, or `lobby` to look up active survey
+
+□ add 'survey closed' message
 
 Config:
 □ create config system
     □ config file probably to tech for users
     □ store in airtable?
-
-
 
 □ survey configs
     □ gallerySurvey
@@ -55,6 +58,7 @@ Config:
         turn off summaryrvey for testing/etc
 
 □ developer configs
+  it there are no more than this, just hardcode?
     □ galleryTimeout
         how long before idle reset in gallery
     □ homeTimeout
@@ -77,8 +81,6 @@ Lobby:
     □ image + text
     □ alt text
 
-
-
 ✓ languages @done(22-12-09 11:08)
     :english only
 
@@ -87,7 +89,8 @@ Admin Tools:
 
 □ style cleanup
 
-✓ list surveys -> questions @done(22-11-29 11:06)
+✓ list all surveys @done(22-11-29 11:06)
+
 □ list all questions
 
 □ view/export responses
@@ -96,7 +99,7 @@ Admin Tools:
     ✓ filter by survey @done(22-12-13 13:45)
     ✓ fitler by respondant @done(22-12-13 13:45)
     ✓ fitler by language @done(22-12-13 13:45)
-    □ filter by has response
+    ✓ filter by has response @done(22-12-16 14:27)
 
 ✓ view/export surveys @done(22-12-09 11:12)
     ✓ airtable data @done(22-12-09 11:14)
@@ -124,34 +127,20 @@ API:
 □ where are the responses tabulated currently? client side? should this be moved to an api route sever function?
 
 Refactor:
-□ should `/results/id` be `/questions/id` (the id is a question id after all)
-□ was async a bad path anyway? the async/error/loading/value thing is inconsistent
-✓ Async probably shouldn't be imposing .content-block @done(22-11-18 14:57)
+✓ should `/results/id` be `/questions/id` (the id is a question id after all) @done(22-12-16 14:28)
+□ rethink Async
+    it was a quick solution for showing loading screen, but prob too quick
+    the async/error/loading/value thing is inconsistent
+    ✓ Async probably shouldn't be imposing .content-block @done(22-11-18 14:57)
 
 Database:
-□ Note: storage [false, false] doesn't allow for efficent filtering for answered questions
- □ update prisma schema to allow false instead of array of answers
- □ update prisma to also allow string
-    - false: not answered
-    - string: open answer
-    - array: single/multiple answer
-
-□ and "x matching entires" to response page
-□ Consider how we store unanswered questions. 
-    Options
-    - No response at all until an answer is given
-    - false <- i think this is best
-    - []
-    - it is currently [false, false]? 
-        okay for single answer but not multiple answer
-
 □ How to store question data in reponses?
     (Currently) Shallow: Responses have IDs of question <- keep shallow, lighter on database, less work. can expand later if needed
     (Would this be better?) Deep: Responses store question/option text
 
 □ when to store response data
-    (Currently) Create when survey begins, update on change <- lets keep this, but with false for unanswerd question
-    (Would this be better?) Create/update on change
+    ✓ Create when survey begins, update on change
+    
 
 
 

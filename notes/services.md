@@ -24,3 +24,7 @@ Username: justin@tsfim
 Provider: MongoDB Atlas
 Database: fiveways
 https://cloud.mongodb.com/v2/632e8c454a33233472992043#clusters
+
+# Design Files
+
+https://www.figma.com/file/Vit8pQES2leJqj4NMbseJO/Make-Sense-of-This%3A-Salons?node-id=0%3A1

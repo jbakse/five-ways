@@ -1,9 +1,9 @@
 # Survey
 
 ```
-string      |  nickname             | human readable nickname (not unique!)
-<<Question  | Questions             | ordered questions in this survey
-
+string      | nickname               | human readable nickname (not unique!)
+<<Question  | Questions              | ordered questions in this survey
+date        | updated                | last modified date
 ```
 
 # Question
