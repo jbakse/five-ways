@@ -13,7 +13,7 @@ async function getSurveyData(id) {
   return {
     id,
     nickname: result.fields.nickname ?? "unnamed",
-    questionIds: result.fields.questions ?? [],
+    questionIds: result.fields.Questions ?? [],
   };
 }
 
@@ -147,7 +147,7 @@ export async function getSurveys() {
               id: r.id,
               nickname: r.fields.nickname,
               updated: r.fields.updated,
-              questionCount: r.fields.questions?.length ?? 0,
+              questionCount: r.fields.Questions?.length ?? 0,
             });
           }
           fetchNextPage();

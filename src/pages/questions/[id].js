@@ -13,7 +13,7 @@ import {
 export default function QuestionPage(/*props*/) {
   const router = useRouter();
 
-  // todo: could/should this be a getServersideProp?
+  // todo: could/should this be a getServersideProp? yes, probably
   const question = useAsyncQuestion(router.query.id);
   const responses = useAsyncResponses(router.query.id);
   const summary = useResultSummary(question, responses);
