@@ -8,6 +8,16 @@ Airtable.configure({
 
 const base = Airtable.base(process.env.AIRTABLE_BASE_ID);
 
+/**
+
+# Airtable Question Schema
+
+string      | nickname               | human readable nickname (not unique!)
+<<Question  | Questions              | ordered questions in this survey
+date        | updated                | last modified date
+
+*/
+
 async function getSurveyData(id) {
   const result = await base("Survey").find(id);
   return {
@@ -25,45 +35,80 @@ function lengthenArray(array, newLength, value) {
   );
 }
 
+/**
+
+# Airtable Question Schema
+
+string     | nickname                | human readable nickname (not unique!)
+<<Survey   | Surveys                 | survey this question belongs too
+
+enum       | type                    | single, multiple, open
+
+string     | promptTextEnglish       |
+string     | optionTextsEnglish      | newline delimited
+string     | promptTextSpanish       |
+string     | optionTextsSpanish      | newline delimited
+string     | promptTextHmong         |
+string     | optionTextsHmong        | newline delimited
+string     | promtTextSomali         |
+string     | optionTextsSomali       | newline delimited
+
+attach[]   | images                  | image attachments
+string     | imagesAlts              | newline delimited
+
+date       | updated                 | last modified date
+
+
+*/
+
 export async function getQuestionData(id) {
-  // const result = await base("Question").find(id);
   const { fields } = await base("Question").find(id);
 
-  // note: not lengthed yet
-  const alts = fields.imagesAlts?.split("\n") || [];
+  // todo: handle error
+  // actually maybe not? just let the exception bubble up?
 
+  // normalize data
+  const type = fields.type || "single";
+  const promptTextEnglish = fields.promptTextEnglish || "";
+  const promptTextSpanish = fields.promptTextSpanish || "";
+  const promptTextHmong = fields.promptTextHmong || "";
+  const promtTextSomali = fields.promtTextSomali || "";
   const optionTextsEnglish = fields.optionTextsEnglish?.split("\n") || [];
   const optionTextsSpanish = fields.optionTextsSpanish?.split("\n") || [];
   const optionTextsHmong = fields.optionTextsHmong?.split("\n") || [];
   const optionTextsSomali = fields.optionTextsSomali?.split("\n") || [];
+  const imageAlts = fields.imagesAlts?.split("\n") || [];
 
+  // pad arrays with empty strings to make them all the same length
   const optionCount = Math.max(
-    alts.length,
     optionTextsEnglish.length,
     optionTextsSpanish.length,
     optionTextsHmong.length,
-    optionTextsSomali.length
+    optionTextsSomali.length,
+    imageAlts.length
   );
-
   lengthenArray(optionTextsEnglish, optionCount, "");
   lengthenArray(optionTextsSpanish, optionCount, "");
   lengthenArray(optionTextsHmong, optionCount, "");
   lengthenArray(optionTextsSomali, optionCount, "");
 
-  // note: not lengthed yet
+  // create image data array
   const images =
     fields.images?.map((image, index) => ({
       src: image.url,
-      alt: alts[index] || "",
+      alt: imageAlts[index] || "",
       width: image.width,
       height: image.height,
     })) || [];
 
-  // TODO: come back here and carefully normalize input
-
+  // return normalized data
   return {
     id,
-    ...fields,
+    type,
+    promptTextEnglish,
+    promptTextSpanish,
+    promptTextHmong,
+    promtTextSomali,
     optionTextsEnglish,
     optionTextsSpanish,
     optionTextsHmong,

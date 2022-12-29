@@ -18,7 +18,6 @@ export async function getServerSideProps({ res, query }) {
   const config = await getConfiguration();
   const surveyId = isGallery ? config.gallerySurveyId : config.homeSurveyId;
   const survey = surveyId ? await getSurveyDeep(surveyId) : null;
-  console.log(config, survey);
 
   return {
     props: {

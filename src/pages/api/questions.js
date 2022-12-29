@@ -21,9 +21,8 @@ async function getQuestion(id, request, response) {
 }
 
 async function getQuestions(request, response) {
-  console.log("getQuestions");
   const questions = await listQuestions();
-  console.log("questions", questions);
+
   // todo error handling
   return response.status(200).json({ success: true, questions });
 }

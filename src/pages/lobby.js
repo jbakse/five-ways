@@ -24,14 +24,9 @@ export async function getServerSideProps({ res }) {
 }
 
 export default function LobbyPage({ config, survey }) {
-  console.log("LobbyPage", config.lobbySlideTime);
-
-  console.log("survey", survey);
-
   useBodyClass("no-scroll");
 
   const [questionIndex, setQuestionIndex] = useState(0);
-  // console.log("lst", config.lobbySlideTime);
 
   useEffect(() => {
     if (!survey) return;
