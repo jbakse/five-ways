@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import { getSurveyDeep, getConfiguration } from "../lib/airtable";
 import { useAsyncResponses, useResultSummary } from "../lib/hooks";
@@ -11,33 +11,45 @@ export async function getServerSideProps({ res }) {
     "public, s-maxage=60, stale-while-revalidate=600"
   );
 
-  // const surveyId = "recVZKGGAb7BaWPvf"; //TODO: make configurable
-
   const config = await getConfiguration();
-  console.log("config", config);
-
+  const survey = config.lobbySurveyId
+    ? await getSurveyDeep(config.lobbySurveyId)
+    : null;
   return {
     props: {
       config,
-      survey: await getSurveyDeep(config.lobbySurveyId),
+      survey,
     },
   };
 }
 
-export default function LobbyPage(props) {
-  console.log("LobbyPage", props.config.lobbySlideTime);
+export default function LobbyPage({ config, survey }) {
+  console.log("LobbyPage", config.lobbySlideTime);
+
+  console.log("survey", survey);
 
   useBodyClass("no-scroll");
 
   const [questionIndex, setQuestionIndex] = useState(0);
-  // console.log("lst", props.config.lobbySlideTime);
+  // console.log("lst", config.lobbySlideTime);
 
   useEffect(() => {
+    if (!survey) return;
     const interval = setInterval(() => {
-      setQuestionIndex((index) => (index + 1) % props.survey.questions.length);
-    }, props.config.lobbySlideTime * 1000);
+      setQuestionIndex((index) => (index + 1) % survey.questions.length);
+    }, config.lobbySlideTime * 1000);
     return () => clearInterval(interval);
-  }, [props.survey.questions.length, props.config.lobbySlideTime]);
+  }, [survey, survey?.questions.length, config.lobbySlideTime]);
+
+  if (!survey)
+    return (
+      <>
+        <Head>
+          <title>Survey</title>
+        </Head>
+        <Black></Black>
+      </>
+    );
 
   return (
     <>
@@ -46,8 +58,8 @@ export default function LobbyPage(props) {
       </Head>
       <Black></Black>
       <QuestionCard
-        question={props.survey.questions[questionIndex]}
-        visibleSeconds={props.config.lobbySlideTime - 2}
+        question={survey.questions[questionIndex]}
+        visibleSeconds={config.lobbySlideTime - 2}
       />
     </>
   );

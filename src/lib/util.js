@@ -19,7 +19,7 @@ export function formatDateShort(s) {
 
 export function formatShort(s) {
   if (typeof s !== "string") return s;
-  //recVZKGGAb7BaWPvf -> re..vf
+  //converts string like this: recVZKGGAb7BaWPvf -> re..vf
   return s.slice(0, 2) + ".." + s.slice(-2);
 }
 

@@ -48,21 +48,21 @@ Config:
     □ store in airtable?
 
 □ survey configs
-    □ gallerySurvey
+    ✓ gallerySurvey @done(22-12-29 14:36)
         what is on the ipad
-    □ homeSurvey
+    ✓ homeSurvey @done(22-12-29 14:36)
         what is on people's devices (often the same!)
-    □ lobbySurvey
+    ✓ lobbySurvey @done(22-12-29 14:08)
         what is shown in the lobby (might be the same, or altered version)
-    □ surveyOpen
-        turn off summaryrvey for testing/etc
+    ✓ surveyOpen @done(22-12-29 15:11)
+        turn off survey for testing/etc
 
 □ developer configs
   it there are no more than this, just hardcode?
     □ galleryTimeout
         how long before idle reset in gallery
-    □ homeTimeout
-        how long before idle reset at home (can be long)
+        this is going to take some thinking
+
 
 Lobby:
 □ Splash Screen

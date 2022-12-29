@@ -46,3 +46,7 @@
 # Details
 
 - System expects all responses to come in between Jan 1 2000 and Jan 1 3000
+
+# Lobby
+
+- The lobby webpage needs to be reloaded after you update the airtable data.

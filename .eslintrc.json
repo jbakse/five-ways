@@ -68,6 +68,7 @@
     ],
 
     // unicorn plugin
+    "unicorn/no-null": "off",
     "unicorn/prefer-ternary": "off",
     "unicorn/filename-case": "off",
     "unicorn/consistent-function-scoping": "off",

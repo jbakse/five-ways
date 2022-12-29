@@ -181,9 +181,9 @@ export async function getConfiguration() {
     const [record] = await configurations.firstPage();
 
     return {
-      gallerySurveyId: record.fields.gallerySurvey?.[0] || undefined,
-      homeSurveyId: record.fields.homeSurvey?.[0] || undefined,
-      lobbySurveyId: record.fields.lobbySurvey?.[0] || undefined,
+      gallerySurveyId: record.fields.gallerySurvey?.[0] || false,
+      homeSurveyId: record.fields.homeSurvey?.[0] || false,
+      lobbySurveyId: record.fields.lobbySurvey?.[0] || false,
       galleryTimeout: record.fields.galleryTimeout || 60 * 5, // 5 minutes
       lobbySlideTime: record.fields.lobbySlideTime || 30, // 30 seconds
     };

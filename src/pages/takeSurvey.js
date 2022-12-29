@@ -1,23 +1,29 @@
 import React, { useState } from "react";
 import Head from "next/head";
 import { v4 as uuidv4 } from "uuid";
-import { getSurveyDeep } from "../lib/airtable";
+import { getSurveyDeep, getConfiguration } from "../lib/airtable";
 import Question from "../components/Question";
 import SlideShow from "../components/SlideShow";
 import splash from "../components/Splash.module.scss";
 import LanguageSelect from "../components/LanguageSelect";
 import { useTimerReset } from "../lib/hooks";
 
-export async function getServerSideProps({ res }) {
+export async function getServerSideProps({ res, query }) {
   res.setHeader(
     "Cache-Control",
     "public, s-maxage=60, stale-while-revalidate=600"
   );
 
-  const surveyId = "recVZKGGAb7BaWPvf"; //TODO: make configurable
+  const isGallery = "gallery" in query;
+  const config = await getConfiguration();
+  const surveyId = isGallery ? config.gallerySurveyId : config.homeSurveyId;
+  const survey = surveyId ? await getSurveyDeep(surveyId) : null;
+  console.log(config, survey);
+
   return {
     props: {
-      survey: await getSurveyDeep(surveyId),
+      config,
+      survey,
     },
   };
 }
@@ -28,6 +34,13 @@ export default function TakeSurveyPage(props) {
   const [language, setLanguage] = useState("English");
 
   useTimerReset(5);
+  if (!props.survey)
+    return (
+      <>
+        <Head>Survey Closed</Head>
+        <SplashClosed />
+      </>
+    );
 
   return (
     <>
@@ -67,6 +80,17 @@ function Splash() {
         <br /> Sense
         <br /> of
         <br /> (This)
+      </h1>
+    </div>
+  );
+}
+
+function SplashClosed() {
+  return (
+    <div className={splash.Splash}>
+      <h1>
+        Survey
+        <br /> Closed
       </h1>
     </div>
   );
