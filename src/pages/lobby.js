@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Head from "next/head";
-import { getSurveyDeep } from "../lib/airtable";
+import { getSurveyDeep, getConfiguration } from "../lib/airtable";
 import { useAsyncResponses, useResultSummary } from "../lib/hooks";
 import { ResultSlide } from "../components/ResultSlide";
 import { useBodyClass } from "../lib/hooks";
@@ -11,25 +11,33 @@ export async function getServerSideProps({ res }) {
     "public, s-maxage=60, stale-while-revalidate=600"
   );
 
-  const surveyId = "recVZKGGAb7BaWPvf"; //TODO: make configurable
+  // const surveyId = "recVZKGGAb7BaWPvf"; //TODO: make configurable
+
+  const config = await getConfiguration();
+  console.log("config", config);
+
   return {
     props: {
-      survey: await getSurveyDeep(surveyId),
+      config,
+      survey: await getSurveyDeep(config.lobbySurveyId),
     },
   };
 }
 
 export default function LobbyPage(props) {
+  console.log("LobbyPage", props.config.lobbySlideTime);
+
   useBodyClass("no-scroll");
 
   const [questionIndex, setQuestionIndex] = useState(0);
+  // console.log("lst", props.config.lobbySlideTime);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setQuestionIndex((index) => (index + 1) % props.survey.questions.length);
-    }, 10_000);
+    }, props.config.lobbySlideTime * 1000);
     return () => clearInterval(interval);
-  }, [props.survey.questions.length]);
+  }, [props.survey.questions.length, props.config.lobbySlideTime]);
 
   return (
     <>
@@ -37,7 +45,10 @@ export default function LobbyPage(props) {
         <title>Survey</title>
       </Head>
       <Black></Black>
-      <QuestionCard question={props.survey.questions[questionIndex]} />
+      <QuestionCard
+        question={props.survey.questions[questionIndex]}
+        visibleSeconds={props.config.lobbySlideTime - 2}
+      />
     </>
   );
 }
@@ -54,7 +65,7 @@ function Black() {
     ></div>
   );
 }
-function QuestionCard({ question }) {
+function QuestionCard({ question, visibleSeconds }) {
   // const question = useAsyncQuestion(question.id);
   const responses = useAsyncResponses(question.id);
 
@@ -68,7 +79,10 @@ function QuestionCard({ question }) {
   return (
     <>
       {!summary.error && !summary.loading && (
-        <ResultSlide data={summary}></ResultSlide>
+        <ResultSlide
+          data={summary}
+          visibleSeconds={visibleSeconds}
+        ></ResultSlide>
       )}
     </>
   );

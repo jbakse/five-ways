@@ -1,15 +1,11 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { PieChart } from "./PieChart";
 import styles from "./ResultSlide.module.scss";
 
-export function ResultSlide({ data }) {
-  // if (!data) return <></>;
-
-  //   data.options.sort((a, b) => b.count - a.count);
-  //   // assign letter after sorting
-  //   for (const [index, option] of data.options.entries()) {
-  //     option.label = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[index];
-  //   }
+export function ResultSlide({ data, visibleSeconds = 5 }) {
+  // todo: would be nice to pull the timing callbacks up to the parent
+  // tried a couple appraoches (passing a class and forwardRef) but they
+  // were looking messy. They might work if rethought. revist.
 
   const slide = useRef(null);
 
@@ -18,17 +14,17 @@ export function ResultSlide({ data }) {
       slide.current.classList.add(styles.in);
     }, 1);
 
-    // todo: make timing configurable
     const exit = setTimeout(() => {
       slide.current.classList.remove(styles.in);
-    }, 8000);
+    }, visibleSeconds * 1000);
 
     return () => {
       clearTimeout(enter);
       clearTimeout(exit);
     };
-  }, []);
+  }, [visibleSeconds]);
 
+  if (!data) return <></>;
   return (
     <>
       <div ref={slide} className={styles.ResultSlide}>
