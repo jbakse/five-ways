@@ -33,3 +33,11 @@ export function buildQuery(params) {
     .map(([key, value]) => `${key}=${value}`)
     .join("&");
 }
+
+export function padArray(array, newLength, value) {
+  array.splice(
+    array.length,
+    0,
+    ...Array.from({ length: newLength - array.length }).fill(value)
+  );
+}
