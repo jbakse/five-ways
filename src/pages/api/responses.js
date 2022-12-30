@@ -11,7 +11,7 @@ export default async function handler(request, response) {
   } else {
     return response
       .status(405)
-      .json({ message: "Method not allowed", success: false });
+      .json({ message: "Five Ways API: Method not allowed", success: false });
   }
 }
 
@@ -42,9 +42,8 @@ async function upsertResponse(request, response) {
       .status(200)
       .json({ success: true, response: prismaResponse });
   } catch (error) {
-    console.error("Request error", error);
     response.status(500).json({
-      error: "Error logging response",
+      error: "Five Ways API: Error logging response",
       success: false,
       details: error,
     });
@@ -99,9 +98,8 @@ async function listRepsonses(request, response) {
       .status(200)
       .json({ success: true, responses: responses_cleaned });
   } catch (error) {
-    console.error("Request error", error);
     response.status(500).json({
-      error: "Error listing responses",
+      error: "Five Ways API: Error listing responses",
       success: false,
       details: error,
     });
