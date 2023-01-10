@@ -8,6 +8,8 @@ export default function Index() {
       <div className="content-block">
         <Link href="/takeSurvey">Take Survey</Link>
         <br />
+        <Link href="/takeSurvey?gallery">Take Survey in Gallery</Link>
+        <br />
         <Link href="/lobby">Lobby</Link>
         <br />
         <Link href="/questions">Questions</Link>

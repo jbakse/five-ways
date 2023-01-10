@@ -33,8 +33,8 @@ Take Survey:
 
 □ auto timeout
     ✓ reset on idle timeout @done(23-01-09 15:32)
-    □ configure from airtable
-    □ make timeout only happen when in gallery
+    ✓ configure from airtable @done(23-01-10 13:10)
+    ✓ make timeout only happen when in gallery @done(23-01-10 13:22)
 
 □ design updates
     □ update to reflect minor design revisions in figma
@@ -63,9 +63,8 @@ Config:
 
 □ developer configs
   it there are no more than this, just hardcode?
-    □ galleryTimeout
-        how long before idle reset in gallery
-        this is going to take some thinking
+    ✓ galleryTimeout @done(23-01-10 13:10)
+       
 
 
 Design:

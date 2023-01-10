@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 import Head from "next/head";
 import { v4 as uuidv4 } from "uuid";
 import { getSurveyDeep, getConfiguration } from "../lib/airtable";
@@ -6,7 +7,7 @@ import Question from "../components/Question";
 import SlideShow from "../components/SlideShow";
 import splash from "../components/Splash.module.scss";
 import LanguageSelect from "../components/LanguageSelect";
-import { useTimerReset } from "../lib/hooks";
+import { useTimeout } from "../lib/hooks";
 
 export async function getServerSideProps({ res, query }) {
   res.setHeader(
@@ -32,8 +33,9 @@ export default function TakeSurveyPage(props) {
 
   const [language, setLanguage] = useState("English");
 
-  // todo use config from airtable
-  useTimerReset(5);
+  const router = useRouter();
+  useTimeout("gallery" in router.query ? props.config.galleryTimeout : false);
+
   if (!props.survey)
     return (
       <>
@@ -53,6 +55,7 @@ export default function TakeSurveyPage(props) {
           crossOrigin="anonymous"
         />
       </Head>
+
       <SlideShow>
         <Splash key="splash" />
         <LanguageSelect key="lang" setLanguage={setLanguage} />
