@@ -76,7 +76,7 @@ function QuestionCard({ question, visibleSeconds }) {
   // const question = useAsyncQuestion(question.id);
   const responses = useAsyncResponses(question.id);
 
-  // Todo:
+  // refactor:
   // wrapping question in object as o.value is needed because
   // useResultSummary expects question param to be an async object
   // in the useAsync* format, refactor?

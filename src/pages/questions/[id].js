@@ -13,7 +13,7 @@ import {
 export default function QuestionPage(/*props*/) {
   const router = useRouter();
 
-  // todo: could/should this be a getServersideProp? yes, probably
+  // review: could/should this be a getServersideProp? yes, probably
   const question = useAsyncQuestion(router.query.id);
   const responses = useAsyncResponses(router.query.id);
   const summary = useResultSummary(question, responses);
@@ -23,10 +23,6 @@ export default function QuestionPage(/*props*/) {
       <Head>
         <title>Question</title>
       </Head>
-
-      {/* <Async data={summary}>
-        <ResultSlide data={summary}></ResultSlide>
-      </Async> */}
 
       <Async className="content-block" data={question}>
         <h1 className="content-block">Question "{question.value?.nickname}"</h1>

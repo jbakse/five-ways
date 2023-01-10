@@ -1,9 +1,10 @@
 import React, { useRef, useEffect } from "react";
-import { PieChart } from "./PieChart";
+import { PieChart } from "../components/PieChart";
 import styles from "./ResultSlide.module.scss";
 
 export function ResultSlide({ data, visibleSeconds = 5 }) {
-  // todo: would be nice to pull the timing callbacks up to the parent
+  // review: lobby slide show clock
+  // would be nice to pull the timing callbacks up to the parent
   // tried a couple appraoches (passing a class and forwardRef) but they
   // were looking messy. They might work if rethought. revist.
 

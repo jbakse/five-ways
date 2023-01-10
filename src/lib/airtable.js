@@ -240,7 +240,8 @@ export async function getConfiguration() {
       sort: [{ field: "updated", direction: "desc" }],
     });
     // await the first page, get the record
-    record = (await configurations.firstPage())[0];
+    const page = await configurations.firstPage();
+    record = page[0];
   } catch (error) {
     console.warn("Error loading configuration.\n", error);
   }

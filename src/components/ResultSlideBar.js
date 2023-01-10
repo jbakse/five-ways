@@ -3,7 +3,8 @@ import { formatPercent } from "../lib/util";
 import styles from "./ResultSlideBar.module.scss";
 
 export function ResultSlideBar({ data, visibleSeconds = 5 }) {
-  // todo: would be nice to pull the timing callbacks up to the parent
+  // review: lobby slide show clock
+  // would be nice to pull the timing callbacks up to the parent
   // tried a couple appraoches (passing a class and forwardRef) but they
   // were looking messy. They might work if rethought. revist.
 
