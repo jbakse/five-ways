@@ -3,4 +3,17 @@
   font-size: 140px;
 
   line-height: 1;
+
+  p {
+    font-size: 30px;
+    line-height: 36px;
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-top: 1em;
+    max-width: 16em;
+  }
+
+  p:first-child {
+    margin-top: 184px;
+  }
 }

@@ -17,7 +17,9 @@ export default function SlideShow(props) {
     setCurrentSlide(Math.min(children.length - 1, currentSlide + 1));
   }
 
-  function finish() {}
+  function finish() {
+    window.location.reload();
+  }
 
   // scroll on button press
   useEffect(() => {

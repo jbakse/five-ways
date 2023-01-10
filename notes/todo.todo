@@ -44,14 +44,11 @@ Take Survey:
 
 □ add 'survey closed' message
 
-□ add 'thank you' slide
+✓ add 'thank you' slide @done(23-01-10 14:22)
 
 Config:
-□ create config system
-    □ config file probably to tech for users
-    □ store in airtable?
 
-□ survey configs
+□ configs
     ✓ gallerySurvey @done(22-12-29 14:36)
         what is on the ipad
     ✓ homeSurvey @done(22-12-29 14:36)
@@ -60,9 +57,6 @@ Config:
         what is shown in the lobby (might be the same, or altered version)
     ✓ surveyOpen @done(22-12-29 15:11)
         turn off survey for testing/etc
-
-□ developer configs
-  it there are no more than this, just hardcode?
     ✓ galleryTimeout @done(23-01-10 13:10)
        
 
@@ -142,9 +136,6 @@ Refactor:
     ✓ Async probably shouldn't be imposing .content-block @done(22-11-18 14:57)
 
 
-Database:
 
-□ when to store response data
-    ✓ Create when survey begins, update on change
 
 

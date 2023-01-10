@@ -70,6 +70,8 @@ export default function TakeSurveyPage(props) {
             language={language}
           />
         ))}
+
+        <ThankYou key="thankyou" />
       </SlideShow>
     </>
   );
@@ -95,6 +97,19 @@ function SplashClosed() {
         Survey
         <br /> Closed
       </h1>
+    </div>
+  );
+}
+
+function ThankYou() {
+  return (
+    <div className={splash.Splash}>
+      <p>Thank you!</p>
+      <p>
+        Your responses will help shape future exhibitions at the Walker. Take a
+        look at the monitor in the gallery to see how your answers compare with
+        others.
+      </p>
     </div>
   );
 }
