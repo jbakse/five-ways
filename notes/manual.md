@@ -56,3 +56,7 @@
 - I'm not sure why you would want to have multiple configurations, but you can.
 - Only one configuration should be marked active at a time.
 - If more than one configuration is marked active, the system will use the most recently updated one.
+
+# Setup
+
+- The takeSurvey page can be set to gallery mode with the query string `/takeSurvey?gallery`

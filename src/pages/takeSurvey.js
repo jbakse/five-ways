@@ -40,7 +40,7 @@ export default function TakeSurveyPage(props) {
     return (
       <>
         <Head>Survey Closed</Head>
-        <SplashClosed />
+        <NoSurvey />
       </>
     );
 
@@ -90,13 +90,11 @@ function Splash() {
   );
 }
 
-function SplashClosed() {
+function NoSurvey() {
   return (
     <div className={splash.Splash}>
-      <h1>
-        Survey
-        <br /> Closed
-      </h1>
+      <p>Sorry!</p>
+      <p>The survey is currently closed.</p>
     </div>
   );
 }
