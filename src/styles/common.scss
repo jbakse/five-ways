@@ -1,6 +1,10 @@
 @font-face {
   font-family: "Maxeville-Construct";
-  src: url("/fonts/MaxevilleTrial-Construct.otf") format("opentype");
+  src: //
+    url("/fonts/Maxeville-Construct/Maxeville-Construct.woff") format("woff"),
+    url("/fonts/Maxeville-Construct/Maxeville-Construct.woff2") format("woff2"),
+    url("/fonts/Maxeville-Construct/Maxeville-Construct.eot") format("eot");
+
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -8,8 +12,10 @@
 
 @font-face {
   font-family: "Maxeville-Regular";
-  src: url("/fonts/Maxeville-Regular.woff2") format("woff2"),
-    url("/fonts/Maxeville-Regular.otf") format("opentype");
+  src: //
+    url("/fonts/Maxeville-Regular/Maxeville-Regular.woff") format("woff"),
+    url("/fonts/Maxeville-Regular/Maxeville-Regular.woff2") format("woff2"),
+    url("/fonts/Maxeville-Regular/Maxeville-Regular.eot") format("eot");
   font-weight: normal;
   font-style: normal;
   font-display: block;

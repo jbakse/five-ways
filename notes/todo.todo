@@ -61,11 +61,11 @@ Config:
 
 
 Design:
-□ new fonts
+□ #todo: 1 new fonts
 
 Lobby:
 □ Splash Screen
-    □ how can i let designer add 1920x1080 slides to the lobby survey
+    □ #todo: 2 how can i let designer add 1920x1080 slides to the lobby survey
 
 ✓ replace piechart with new bars @done(23-01-10 11:29)
 
@@ -73,14 +73,12 @@ Lobby:
     □ cycle splash slides and questions on timer
 
 □ question types
-    □ single answer
-    □ multiple answer
+    ✓ single answer @done(23-01-10 15:12)
+    ✓ multiple answer @done(23-01-10 15:12)
     □ open answer
 
-□ image options
-    □ image only
-    □ image + text
-    □ alt text
+□ support image options?
+
 
 ✓ languages @done(22-12-09 11:08)
     :english only
@@ -143,3 +141,5 @@ For Call:
 □ final copy for thank you?
 □ final copy for lang select?
 □ stacked images are pretty big on desktop
+□ you need an up to date ipad, iPadOS 16.2
+□ you need some kiosk browser software, i'm trying [Kiosker](https://kiosker.io/)
