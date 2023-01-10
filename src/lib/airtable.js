@@ -44,15 +44,23 @@ export async function getQuestionData(id) {
   // normalize data
   const nickname = fields.nickname ?? "unnamed";
   const type = fields.type ?? "single";
-  const promptTextEnglish = fields.promptTextEnglish ?? "";
-  const promptTextSpanish = fields.promptTextSpanish ?? "";
-  const promptTextHmong = fields.promptTextHmong ?? "";
-  const promtTextSomali = fields.promtTextSomali ?? "";
-  const optionTextsEnglish = fields.optionTextsEnglish?.split("\n") ?? [];
-  const optionTextsSpanish = fields.optionTextsSpanish?.split("\n") ?? [];
-  const optionTextsHmong = fields.optionTextsHmong?.split("\n") ?? [];
-  const optionTextsSomali = fields.optionTextsSomali?.split("\n") ?? [];
-  const imageAlts = fields.imagesAlts?.split("\n") ?? [];
+  const promptTextEnglish = fields.promptTextEnglish?.trim() ?? "";
+  const promptTextSpanish = fields.promptTextSpanish?.trim() ?? "";
+  const promptTextHmong = fields.promptTextHmong?.trim() ?? "";
+  const promtTextSomali = fields.promtTextSomali?.trim() ?? "";
+  let optionTextsEnglish = fields.optionTextsEnglish?.trim().split("\n") ?? [];
+  let optionTextsSpanish = fields.optionTextsSpanish?.trim().split("\n") ?? [];
+  let optionTextsHmong = fields.optionTextsHmong?.trim().split("\n") ?? [];
+  let optionTextsSomali = fields.optionTextsSomali?.trim().split("\n") ?? [];
+
+  // remove empty strings
+  optionTextsEnglish = optionTextsEnglish.filter((text) => text !== "");
+  optionTextsSpanish = optionTextsSpanish.filter((text) => text !== "");
+  optionTextsHmong = optionTextsHmong.filter((text) => text !== "");
+  optionTextsSomali = optionTextsSomali.filter((text) => text !== "");
+
+  let imageAlts = fields.imagesAlts?.trim().split("\n") ?? [];
+  imageAlts = imageAlts.filter((text) => text !== "");
 
   // pad arrays with empty strings to make them all the same length
   const optionCount = Math.max(
