@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import { getSurveyDeep, getConfiguration } from "../lib/airtable";
 import { useAsyncResponses, useResultSummary } from "../lib/hooks";
-import { ResultSlide } from "../components/ResultSlide";
+import { ResultSlideBar } from "../components/ResultSlideBar";
 import { useBodyClass } from "../lib/hooks";
 
 export async function getServerSideProps({ res }) {
@@ -86,10 +86,10 @@ function QuestionCard({ question, visibleSeconds }) {
   return (
     <>
       {!summary.error && !summary.loading && (
-        <ResultSlide
+        <ResultSlideBar
           data={summary}
           visibleSeconds={visibleSeconds}
-        ></ResultSlide>
+        ></ResultSlideBar>
       )}
     </>
   );

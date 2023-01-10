@@ -31,7 +31,9 @@ Take Survey:
     ✓ record language with responses @done(22-11-18 13:29)
 
 
-✓ auto timeout (in gallery, reset after idle) @done(22-12-14 10:58)
+□ auto timeout
+    ✓ reset on idle timeout @done(23-01-09 15:32)
+    □ configure from airtable
     □ make timeout only happen when in gallery
 
 □ design updates
@@ -41,6 +43,8 @@ Take Survey:
     □ also accept `gallery`, `home`, or `lobby` to look up active survey
 
 □ add 'survey closed' message
+
+□ add 'thank you' slide
 
 Config:
 □ create config system
@@ -64,12 +68,18 @@ Config:
         this is going to take some thinking
 
 
+Design:
+□ new fonts
+
 Lobby:
 □ Splash Screen
     □ how can i let designer add 1920x1080 slides to the lobby survey
 
+#todo
+✓ replace piechart with new bars @done(23-01-10 11:29)
+
 □ slideshow
-    □ cycle splash and questions on timer
+    □ cycle splash slides and questions on timer
 
 □ question types
     □ single answer
@@ -128,22 +138,15 @@ API:
 
 Refactor:
 ✓ should `/results/id` be `/questions/id` (the id is a question id after all) @done(22-12-16 14:28)
-□ rethink Async
+□ rethink Async component
     it was a quick solution for showing loading screen, but prob too quick
     the async/error/loading/value thing is inconsistent
     ✓ Async probably shouldn't be imposing .content-block @done(22-11-18 14:57)
 
+
 Database:
-□ How to store question data in reponses?
-    (Currently) Shallow: Responses have IDs of question <- keep shallow, lighter on database, less work. can expand later if needed
-    (Would this be better?) Deep: Responses store question/option text
 
 □ when to store response data
     ✓ Create when survey begins, update on change
-    
 
 
-
-
-□ normalize airtable funciton names and return values
-    □ eg listQuestions returns a survey[], but surveys has questionCount

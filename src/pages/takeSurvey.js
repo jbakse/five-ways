@@ -32,6 +32,7 @@ export default function TakeSurveyPage(props) {
 
   const [language, setLanguage] = useState("English");
 
+  // todo use config from airtable
   useTimerReset(5);
   if (!props.survey)
     return (
