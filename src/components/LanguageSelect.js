@@ -19,7 +19,7 @@ export default function LanguageSelect(props) {
 
   return (
     <div className={styles.question}>
-      <h2 className={styles.number}>xx</h2>
+      <h2 className={styles.number}>&nbsp;</h2>
       <h2 className={styles.prompt}>
         I would like to help rethink how the Walker makes exhibitions!
       </h2>

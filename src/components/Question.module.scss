@@ -1,4 +1,4 @@
-$option-border-radius: 20px;
+$option-border-radius: 26px;
 
 .question {
   //   border: 10px solid red;
@@ -32,9 +32,10 @@ $option-border-radius: 20px;
   display: inline-block;
   margin-top: 1em;
 
-  border: 1.5px solid black;
+  // border: 1.5px solid black;
   border-radius: 15px;
   padding: 4px 8px;
+  background-color: #c6c7c8;
 
   font-family: "Maxeville-Regular";
   font-size: 14px;
@@ -65,8 +66,9 @@ $option-border-radius: 20px;
   overflow: hidden;
 
   &.selected {
-    background-color: #efe;
-    border-color: black;
+    background: #e9f3fb;
+    color: black;
+    // border-color: black;
   }
 
   transition: all 0.15s ease-in-out;
@@ -114,6 +116,8 @@ span + .optionText {
   .selected & {
     opacity: 1;
   }
+
+  display: none;
 }
 
 .checkbox {

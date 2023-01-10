@@ -31,20 +31,17 @@ Take Survey:
     ✓ record language with responses @done(22-11-18 13:29)
 
 
-□ auto timeout
+✓ auto timeout @done(23-01-10 14:52)
     ✓ reset on idle timeout @done(23-01-09 15:32)
     ✓ configure from airtable @done(23-01-10 13:10)
     ✓ make timeout only happen when in gallery @done(23-01-10 13:22)
 
-□ design updates
-    □ update to reflect minor design revisions in figma
+✓ design updates @done(23-01-10 14:52)
+    ✓ update to reflect minor design revisions in figma @done(23-01-10 14:52)
 
-□ add router id for survey to take
-    □ also accept `gallery`, `home`, or `lobby` to look up active survey
-
-□ add 'survey closed' message
+✓ add 'survey closed' message @done(23-01-10 14:52)
     ✓ make it work @done(23-01-10 14:32)
-    □ get real copy
+    
 
 ✓ add 'thank you' slide @done(23-01-10 14:22)
 
@@ -140,4 +137,9 @@ Refactor:
 
 
 
-
+For Call:
+□ selected option contrast too low
+□ barchart bar contrast too low
+□ final copy for thank you?
+□ final copy for lang select?
+□ stacked images are pretty big on desktop
