@@ -19,6 +19,10 @@ export async function getServerSideProps({ res, query }) {
   const config = await getConfiguration();
   const surveyId = isGallery ? config.gallerySurveyId : config.homeSurveyId;
   const survey = surveyId ? await getSurveyDeep(surveyId) : null;
+  // remove slides, they are shown only in the lobby report
+  survey.questions = survey.questions.filter((q) => q.type !== "slide");
+  // open questions are not supported yet
+  survey.questions = survey.questions.filter((q) => q.type !== "open");
 
   return {
     props: {

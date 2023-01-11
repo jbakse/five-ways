@@ -21,7 +21,7 @@ const base = Airtable.base(process.env.AIRTABLE_BASE_ID);
  * string     | nickname                | human readable nickname (not unique!)
  * <<Survey   | Surveys                 | survey this question belongs too
  *
- * enum       | type                    | single, multiple, open
+ * enum       | type                    | single, multiple, open, slide
  *
  * string     | promptTextEnglish       |
  * string     | optionTextsEnglish      | newline delimited
@@ -36,6 +36,13 @@ const base = Airtable.base(process.env.AIRTABLE_BASE_ID);
  * string     | imagesAlts              | newline delimited
  *
  * date       | updated                 | last modified date
+ *
+ *
+ * type = single -> multiple choice question allows one answer
+ * type = multiple -> multiple choice question allows multiple answers
+ * type = open -> allows user to enter text
+ * type = slide -> not a question, just images to display on lobby screen
+ *
  */
 
 export async function getQuestionData(id) {
@@ -185,7 +192,10 @@ async function getSurveyData(id) {
 export async function getSurveyDeep(surveyId) {
   const surveyData = await getSurveyData(surveyId);
 
-  const questions = await getQuestionDatas(surveyData.questionIds);
+  let questions = await getQuestionDatas(surveyData.questionIds);
+  // remove questions that don't have a valid type!
+  questions = questions.filter((q) => q.type !== "");
+
   return {
     id: surveyId,
     nickname: surveyData.nickname,

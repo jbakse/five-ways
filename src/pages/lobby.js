@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 import Head from "next/head";
 import { getSurveyDeep, getConfiguration } from "../lib/airtable";
 import { useAsyncResponses, useResultSummary } from "../lib/hooks";
@@ -15,6 +16,10 @@ export async function getServerSideProps({ res }) {
   const survey = config.lobbySurveyId
     ? await getSurveyDeep(config.lobbySurveyId)
     : null;
+
+  // open questions are not supported yet
+  survey.questions = survey.questions.filter((q) => q.type !== "open");
+
   return {
     props: {
       config,
@@ -52,10 +57,14 @@ export default function LobbyPage({ config, survey }) {
         <title>Survey</title>
       </Head>
       <Black></Black>
-      <QuestionCard
-        question={survey.questions[questionIndex]}
-        visibleSeconds={config.lobbySlideTime - 2}
-      />
+      {survey.questions[questionIndex].type === "slide" ? (
+        <Slide images={survey.questions[questionIndex].images}></Slide>
+      ) : (
+        <QuestionCard
+          question={survey.questions[questionIndex]}
+          visibleSeconds={config.lobbySlideTime - 2}
+        />
+      )}
     </>
   );
 }
@@ -70,6 +79,20 @@ function Black() {
         zIndex: -1,
       }}
     ></div>
+  );
+}
+
+function Slide({ images }) {
+  return (
+    <div style={{ position: "absolute", inset: 0 }}>
+      <Image
+        src={images[0].src}
+        alt={images[0].alt}
+        layout="fill"
+        objectPosition="center top"
+        objectFit="cover"
+      />
+    </div>
   );
 }
 function QuestionCard({ question, visibleSeconds }) {

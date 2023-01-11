@@ -61,23 +61,24 @@ Config:
 
 
 Design:
-□ #todo: 1 new fonts
+✓ #todo: 1 new fonts @done(23-01-11 10:00)
 
 Lobby:
-□ Splash Screen
-    □ #todo: 2 how can i let designer add 1920x1080 slides to the lobby survey
-
 ✓ replace piechart with new bars @done(23-01-10 11:29)
 
-□ slideshow
-    □ cycle splash slides and questions on timer
+□ image slides/splash
+    ✓ allow adding 1920x1080 slides to the lobby survey @done(23-01-11 11:15)
+    ✓ cycle splash slides and questions on timer @done(23-01-11 11:15)
+    □ improve image preloading
+    
+□ improve timer factoring
 
 □ question types
     ✓ single answer @done(23-01-10 15:12)
     ✓ multiple answer @done(23-01-10 15:12)
     □ open answer
 
-□ support image options?
+□ support showing image options on lobby slides?
 
 
 ✓ languages @done(22-12-09 11:08)
