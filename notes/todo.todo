@@ -61,7 +61,7 @@ Config:
 
 
 Design:
-✓ #todo: 1 new fonts @done(23-01-11 10:00)
+✓ 1 new fonts @done(23-01-11 10:00)
 
 Lobby:
 ✓ replace piechart with new bars @done(23-01-10 11:29)
@@ -69,16 +69,17 @@ Lobby:
 □ image slides/splash
     ✓ allow adding 1920x1080 slides to the lobby survey @done(23-01-11 11:15)
     ✓ cycle splash slides and questions on timer @done(23-01-11 11:15)
-    □ improve image preloading
+    ✓ improve image preloading @done(23-01-12 10:16)
     
-□ improve timer factoring
+✓ improve timer factoring @done(23-01-12 10:16)
 
 □ question types
     ✓ single answer @done(23-01-10 15:12)
     ✓ multiple answer @done(23-01-10 15:12)
     □ open answer
 
-□ support showing image options on lobby slides?
+□ support showing image options on lobby slides? 
+    meaning questions that have imaage answers
 
 
 ✓ languages @done(22-12-09 11:08)

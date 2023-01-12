@@ -10,17 +10,12 @@
   font-size: 2vw;
   line-height: 1;
 
-  opacity: 0;
   transition: opacity 1000ms;
 
   * {
     font-weight: normal;
     line-height: 1.1;
   }
-}
-
-.ResultSlide.in {
-  opacity: 1;
 }
 
 .QuestionWrap {

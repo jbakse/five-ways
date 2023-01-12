@@ -1,0 +1,13 @@
+.blocker {
+  position: absolute;
+  inset: 0;
+  background-color: black;
+  z-index: 100;
+
+  opacity: 1;
+  transition: opacity 1000ms;
+}
+
+.hidden {
+  opacity: 0;
+}

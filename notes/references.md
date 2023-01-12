@@ -16,3 +16,7 @@ https://community.airtable.com/t/filterbyformula-using-link-record-id/30418
 
 https://www.chartjs.org/docs/latest/getting-started/integration.html
 https://chartjs-plugin-datalabels.netlify.app/guide/options.html#scriptable-options
+
+## React SCSS Nested Classes in Modules
+
+https://github.com/vercel/next.js/discussions/19417#discussioncomment-381306

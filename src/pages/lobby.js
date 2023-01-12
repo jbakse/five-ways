@@ -5,6 +5,7 @@ import { getSurveyDeep, getConfiguration } from "../lib/airtable";
 import { useAsyncResponses, useResultSummary } from "../lib/hooks";
 import { ResultSlideBar } from "../components/ResultSlideBar";
 import { useBodyClass } from "../lib/hooks";
+import { Blocker } from "../components/Blocker";
 
 export async function getServerSideProps({ res }) {
   res.setHeader(
@@ -32,11 +33,26 @@ export default function LobbyPage({ config, survey }) {
   useBodyClass("no-scroll");
 
   const [questionIndex, setQuestionIndex] = useState(0);
+  const [blockerHidden, setBlockerHidden] = useState(true);
 
   useEffect(() => {
     if (!survey) return;
+
+    function transition() {
+      setBlockerHidden(false);
+
+      setTimeout(() => {
+        setQuestionIndex((index) => (index + 1) % survey.questions.length);
+      }, 1000);
+
+      setTimeout(() => {
+        setBlockerHidden(true);
+      }, 2000);
+    }
+
     const interval = setInterval(() => {
-      setQuestionIndex((index) => (index + 1) % survey.questions.length);
+      transition();
+      // setQuestionIndex((index) => (index + 1) % survey.questions.length);
     }, config.lobbySlideTime * 1000);
     return () => clearInterval(interval);
   }, [survey, survey?.questions.length, config.lobbySlideTime]);
@@ -47,7 +63,7 @@ export default function LobbyPage({ config, survey }) {
         <Head>
           <title>Survey</title>
         </Head>
-        <Black></Black>
+        <Blocker hidden={true}></Blocker>
       </>
     );
 
@@ -56,29 +72,13 @@ export default function LobbyPage({ config, survey }) {
       <Head>
         <title>Survey</title>
       </Head>
-      <Black></Black>
       {survey.questions[questionIndex].type === "slide" ? (
         <Slide images={survey.questions[questionIndex].images}></Slide>
       ) : (
-        <QuestionCard
-          question={survey.questions[questionIndex]}
-          visibleSeconds={config.lobbySlideTime - 2}
-        />
+        <QuestionCard question={survey.questions[questionIndex]} />
       )}
+      <Blocker hidden={blockerHidden}></Blocker>
     </>
-  );
-}
-
-function Black() {
-  return (
-    <div
-      style={{
-        position: "absolute",
-        inset: 0,
-        backgroundColor: "black",
-        zIndex: -1,
-      }}
-    ></div>
   );
 }
 
@@ -90,12 +90,12 @@ function Slide({ images }) {
         alt={images[0].alt}
         layout="fill"
         objectPosition="center top"
-        objectFit="cover"
+        objectFit="contain"
       />
     </div>
   );
 }
-function QuestionCard({ question, visibleSeconds }) {
+function QuestionCard({ question }) {
   // const question = useAsyncQuestion(question.id);
   const responses = useAsyncResponses(question.id);
 
@@ -109,10 +109,7 @@ function QuestionCard({ question, visibleSeconds }) {
   return (
     <>
       {!summary.error && !summary.loading && (
-        <ResultSlideBar
-          data={summary}
-          visibleSeconds={visibleSeconds}
-        ></ResultSlideBar>
+        <ResultSlideBar data={summary}></ResultSlideBar>
       )}
     </>
   );
