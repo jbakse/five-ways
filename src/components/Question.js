@@ -42,7 +42,9 @@ export default function Question(props) {
 
   return (
     <div className={styles.question}>
-      <h2 className={styles.number}>{props.questionNumber}</h2>
+      <h2 className={styles.number}>
+        {props.questionNumber.toString().padStart(2, "0")}
+      </h2>
       <h2 className={styles.prompt}>{prompt}</h2>
       <span className={styles.instruction}>
         {props.type === "single" ? "Select one" : "Select many"}

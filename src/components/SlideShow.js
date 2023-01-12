@@ -82,7 +82,7 @@ export default function SlideShow(props) {
         ↑
       </button>
 
-      <ProgressBar percent={(currentSlide / children.length) * 100} />
+      <ProgressBar percent={(currentSlide / (children.length - 1)) * 100} />
       {/* <div className={styles.SlideShow__Info}>
         {currentSlide + 1} / {children.length}
       </div> */}

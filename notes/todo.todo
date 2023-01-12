@@ -26,6 +26,9 @@ Take Survey:
     ✓ alt text @done(22-11-28 12:25)
     □ try two up design
 
+✓ don't count "thank you page" in the progress bar (bar should 100% on thank you page) @done(23-01-12 16:53)
+
+
 ✓ language select @done(22-12-16 14:13)
     ✓ add translations to test questions @started(22-11-18 11:42) @done(22-11-18 11:53) @lasted(11m14s)
     ✓ allow user to select language @started(22-11-18 12:04) @done(22-11-18 12:33) @lasted(29m21s)
@@ -134,11 +137,12 @@ API:
 Refactor:
 ✓ should `/results/id` be `/questions/id` (the id is a question id after all) @done(22-12-16 14:28)
 
-□ where are the responses tabulated currently? client side? should this be moved to an api route sever function?
+□ where are the responses tabulated currently? client side? should this be moved to an api route sever function? serversideprops?
 
 □ rethink Async component
     it was a quick solution for showing loading screen, but prob too quick
     the async/error/loading/value thing is inconsistent
+    □ somewhere i'm wrapping stuff up to look like the result of a useAsync, and thats weird, look into it
     ✓ Async probably shouldn't be imposing .content-block @done(22-11-18 14:57)
 
 □ clean up all the CSS
@@ -148,6 +152,7 @@ Refactor:
     □ :global?
     □ css comb?
     □ css lint?
+
 
 
 

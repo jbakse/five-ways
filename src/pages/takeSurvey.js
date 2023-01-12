@@ -1,13 +1,13 @@
+import { v4 as uuidv4 } from "uuid";
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
-import { v4 as uuidv4 } from "uuid";
+import { useTimeout } from "../lib/hooks";
 import { getSurveyDeep, getConfiguration } from "../lib/airtable";
 import Question from "../components/Question";
 import SlideShow from "../components/SlideShow";
-import splash from "../components/Splash.module.scss";
 import LanguageSelect from "../components/LanguageSelect";
-import { useTimeout } from "../lib/hooks";
+import styles from "../components/takeSurvey.module.scss";
 
 export async function getServerSideProps({ res, query }) {
   res.setHeader(
@@ -19,6 +19,7 @@ export async function getServerSideProps({ res, query }) {
   const config = await getConfiguration();
   const surveyId = isGallery ? config.gallerySurveyId : config.homeSurveyId;
   const survey = surveyId ? await getSurveyDeep(surveyId) : null;
+
   // remove slides, they are shown only in the lobby report
   survey.questions = survey.questions.filter((q) => q.type !== "slide");
   // open questions are not supported yet
@@ -33,45 +34,39 @@ export async function getServerSideProps({ res, query }) {
 }
 
 export default function TakeSurveyPage(props) {
-  const [responderId] = useState(uuidv4());
-
-  const [language, setLanguage] = useState("English");
-
   const router = useRouter();
   useTimeout("gallery" in router.query ? props.config.galleryTimeout : false);
+  const [language, setLanguage] = useState("English");
 
-  if (!props.survey)
+  const responderId = uuidv4();
+
+  if (!props.survey) {
     return (
       <>
         <Head>Survey Closed</Head>
         <NoSurvey />
       </>
     );
+  }
 
   return (
     <>
       <Head>
         <title>Survey</title>
-        <link
-          rel="preload"
-          href="/fonts/MaxevilleTrial-Construct.otf"
-          as="font"
-          crossOrigin="anonymous"
-        />
       </Head>
 
       <SlideShow>
-        <Splash key="splash" />
+        <Welcome key="welcome" />
         <LanguageSelect key="lang" setLanguage={setLanguage} />
 
         {props.survey.questions.map((q, index) => (
           <Question
+            key={q.id}
             responderId={responderId}
             surveyId={props.survey.id}
-            {...q}
             questionNumber={index + 1}
-            key={q.id}
             language={language}
+            {...q}
           />
         ))}
 
@@ -81,9 +76,9 @@ export default function TakeSurveyPage(props) {
   );
 }
 
-function Splash() {
+function Welcome() {
   return (
-    <div className={splash.Splash}>
+    <div className={styles.message}>
       <h1>
         Make
         <br /> Sense
@@ -94,24 +89,24 @@ function Splash() {
   );
 }
 
-function NoSurvey() {
-  return (
-    <div className={splash.Splash}>
-      <p>Sorry!</p>
-      <p>The survey is currently closed.</p>
-    </div>
-  );
-}
-
 function ThankYou() {
   return (
-    <div className={splash.Splash}>
+    <div className={styles.message}>
       <p>Thank you!</p>
       <p>
         Your responses will help shape future exhibitions at the Walker. Take a
         look at the monitor in the gallery to see how your answers compare with
         others.
       </p>
+    </div>
+  );
+}
+
+function NoSurvey() {
+  return (
+    <div className={styles.message}>
+      <p>Sorry!</p>
+      <p>The survey is currently closed.</p>
     </div>
   );
 }
