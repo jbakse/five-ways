@@ -129,16 +129,25 @@ Airtable:
 ✓ Question Survey -> Surveys @done(22-11-29 11:12)
 
 API:
-□ Add cache headers so that Next will cache the API responses from airtable
-□ where are the responses tabulated currently? client side? should this be moved to an api route sever function?
+✓ Add cache headers so that Next will cache the API responses from airtable @done(23-01-12 13:48)
 
 Refactor:
 ✓ should `/results/id` be `/questions/id` (the id is a question id after all) @done(22-12-16 14:28)
+
+□ where are the responses tabulated currently? client side? should this be moved to an api route sever function?
+
 □ rethink Async component
     it was a quick solution for showing loading screen, but prob too quick
     the async/error/loading/value thing is inconsistent
     ✓ Async probably shouldn't be imposing .content-block @done(22-11-18 14:57)
 
+□ clean up all the CSS
+    □ change module system?
+    □ no more BEM?
+    □ improve class names
+    □ :global?
+    □ css comb?
+    □ css lint?
 
 
 
