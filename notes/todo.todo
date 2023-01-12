@@ -4,6 +4,8 @@
 'Alt+S' // Triggers `Todo: Toggle Start`
 'Cmd/Ctrl+Shift+A' // Triggers `Todo: Archive`
 
+@low @high @today
+
 Bugs:
 ✓ FOUT on splash screen @done(22-12-14 10:45)
 ✓ resizing window can cause scroll to be between slide @done(22-12-13 14:37)
@@ -44,6 +46,8 @@ Take Survey:
     
 
 ✓ add 'thank you' slide @done(23-01-10 14:22)
+
+✓ improve image preloading (no more lazy load) @done(23-01-12 12:01)
 
 Config:
 
@@ -145,3 +149,4 @@ For Call:
 □ stacked images are pretty big on desktop
 □ you need an up to date ipad, iPadOS 16.2
 □ you need some kiosk browser software, i'm trying [Kiosker](https://kiosker.io/)
+□ hide back button on survey

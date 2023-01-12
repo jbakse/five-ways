@@ -61,6 +61,7 @@ export default function Question(props) {
             <div className={styles.optionBorder}></div>
             {props.images[index] && (
               <Image
+                priority
                 src={props.images[index].src}
                 alt={props.images[index].alt}
                 width={props.images[index].width}
