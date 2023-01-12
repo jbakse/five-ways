@@ -27,7 +27,7 @@ export default function SurveyPage(/*props*/) {
           {survey.value?.questions.map((q) => (
             <li key={q.id}>
               <Link href={`/questions/${encodeURIComponent(q.id)}`}>
-                {q.promptTextEnglish}
+                {q.nickname || "unnamed"}
               </Link>
             </li>
           ))}

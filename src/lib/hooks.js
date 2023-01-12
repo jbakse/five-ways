@@ -86,8 +86,8 @@ export function useResultSummary(question, responses) {
       const data = {
         nickname: question.value.nickname,
         prompt: question.value.promptTextEnglish,
-        viewedCount: 0,
-        answeredCount: 0,
+        viewedCount,
+        answeredCount,
         options,
       };
 

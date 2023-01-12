@@ -70,7 +70,7 @@ Design:
 Lobby:
 ✓ replace piechart with new bars @done(23-01-10 11:29)
 
-□ image slides/splash
+✓ image slides/splash @done(23-01-12 12:11)
     ✓ allow adding 1920x1080 slides to the lobby survey @done(23-01-11 11:15)
     ✓ cycle splash slides and questions on timer @done(23-01-11 11:15)
     ✓ improve image preloading @done(23-01-12 10:16)
@@ -91,14 +91,16 @@ Lobby:
 
 
 Admin Tools:
+✓ `viewedCount` and `answeredCount` wrong (=0) in report @done(23-01-12 12:55)
+✓ surveys should list short name instead of prompt @done(23-01-12 13:00)
 
-□ style cleanup
+
 
 ✓ list all surveys @done(22-11-29 11:06)
 
 ✓ list all questions @done(22-12-16 15:23)
 
-□ view/export responses
+✓ view/export responses @done(23-01-12 12:53)
     ✓ filter by date @done(22-12-13 13:45)
     ✓ filter by question @done(22-12-13 13:45)
     ✓ filter by survey @done(22-12-13 13:45)
@@ -109,13 +111,12 @@ Admin Tools:
 ✓ view/export surveys @done(22-12-09 11:12)
     ✓ airtable data @done(22-12-09 11:14)
 
-□ view/export questions
-    □ add small slide view without the fade in/out
+✓ view/export questions @done(23-01-12 12:49)
     ✓ report summary @done(22-12-09 11:14)
     ✓ airtable data @done(22-12-09 11:14)
     ✓ responses @done(22-12-09 11:14)
 
-□ export data
+✓ export data @done(23-01-12 12:52)
     ✓ download as json @done(22-11-18 16:09)
     ✓ download as csv @done(22-11-18 16:09)
     ✓ pretty buttons @done(22-11-29 11:10)
