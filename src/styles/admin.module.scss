@@ -1,0 +1,29 @@
+.inputGroup {
+  label {
+    display: block;
+    font-size: 0.75em;
+  }
+
+  input[type="text"],
+  input[type="date"],
+  input[type="search"] {
+    width: 100%;
+  }
+  input[type="checkbox"] {
+    float: left;
+    margin-right: 0.5em;
+  }
+  + .inputGroup {
+    margin-top: 0.5em;
+  }
+}
+
+input.date,
+input.search {
+  border: 1px solid #ccc;
+  border-radius: 2px;
+}
+
+input.search:not(:placeholder-shown)::-webkit-search-cancel-button {
+  opacity: 1 !important;
+}

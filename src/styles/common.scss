@@ -1,3 +1,5 @@
+$z-ui: 100;
+
 @font-face {
   font-family: "Maxeville-Construct";
   src: //
@@ -36,7 +38,7 @@
 
   min-width: 50px;
   padding: 0;
-  // width: 50px;
+
   height: 50px;
   border-radius: 25px;
 
@@ -59,45 +61,4 @@
 
 .content-block {
   @include content-block;
-}
-
-$z-ui: 100;
-
-.image-block-hack > span {
-  display: block !important;
-}
-
-.no-scroll {
-  // border: 1px solid red;
-  overflow: hidden;
-}
-
-.input-group {
-  label {
-    display: block;
-    font-size: 0.75em;
-  }
-
-  input[type="text"],
-  input[type="date"],
-  input[type="search"] {
-    width: 100%;
-  }
-  input[type="checkbox"] {
-    float: left;
-    margin-right: 0.5em;
-  }
-  + .input-group {
-    margin-top: 0.5em;
-  }
-}
-
-input.date,
-input.search {
-  border: 1px solid #ccc;
-  border-radius: 2px;
-}
-
-input.search:not(:placeholder-shown)::-webkit-search-cancel-button {
-  opacity: 1 !important;
 }

@@ -7,9 +7,13 @@ body {
     line-height: 1.5;
 }
 
-html {
-    /* user-select: none; */
+body.no-scroll {
+    overflow: hidden;
 }
+
+/* body.no-select {
+    user-select: none;
+} */
 
 pre, ol, ul {
     padding: 0;
@@ -19,4 +23,19 @@ pre, ol, ul {
 a {
     color: #333;
 }
+
+
+
+/**
+ * The next/Image component sets the image to have display inline-block inline.
+ * This causes a little margin. The image-block-hack class is used to fix this.
+ * next/Image is changed in next.js 13, if we upgrade to that, we might not
+ * need this hack.
+ * 
+ * https: //github.com/vercel/next.js/issues/18915
+ */
+.image-block-hack > span {
+    display: block !important;
+}
+
 

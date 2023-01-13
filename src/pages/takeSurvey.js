@@ -7,7 +7,7 @@ import { getSurveyDeep, getConfiguration } from "../lib/airtable";
 import Question from "../components/Question";
 import SlideShow from "../components/SlideShow";
 import LanguageSelect from "../components/LanguageSelect";
-import styles from "../components/takeSurvey.module.scss";
+import styles from "./takeSurvey.module.scss";
 
 export async function getServerSideProps({ res, query }) {
   res.setHeader(

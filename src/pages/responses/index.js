@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { useAsync } from "react-use";
 import Head from "next/head";
+import { useAsync } from "react-use";
 import { formatDateShort, formatShort, buildQuery } from "../../lib/util";
 import { Async } from "../../components/Async";
 import { Table } from "../../components/Table";
 import { ShowJSON } from "../../components/ShowJSON";
+import styles from "../../styles/admin.module.scss";
 
 export async function getServerSideProps(context) {
   return { props: { query: context.query } };
@@ -150,7 +151,7 @@ export default function ResponsesIndex({ query }) {
       <h1 className="content-block">Responses</h1>
 
       <div className="content-block">
-        <div className="input-group">
+        <div className={styles.inputGroup}>
           <label htmlFor="from">From:</label>
           <input
             name="from"
@@ -161,7 +162,7 @@ export default function ResponsesIndex({ query }) {
           ></input>
         </div>
 
-        <div className="input-group">
+        <div className={styles.inputGroup}>
           <label htmlFor="to">To:</label>
           <input
             name="to"
@@ -172,7 +173,7 @@ export default function ResponsesIndex({ query }) {
           ></input>
         </div>
 
-        <div className="input-group">
+        <div className={styles.inputGroup}>
           <label htmlFor="language">Language:</label>
           <input
             name="language"
@@ -184,7 +185,7 @@ export default function ResponsesIndex({ query }) {
           ></input>
         </div>
 
-        <div className="input-group">
+        <div className={styles.inputGroup}>
           <label htmlFor="responder">Responder:</label>
           <input
             name="responder"
@@ -196,7 +197,7 @@ export default function ResponsesIndex({ query }) {
           ></input>
         </div>
 
-        <div className="input-group">
+        <div className={styles.inputGroup}>
           <label htmlFor="survey">Survey:</label>
           <input
             name="survey"
@@ -208,7 +209,7 @@ export default function ResponsesIndex({ query }) {
           ></input>
         </div>
 
-        <div className="input-group">
+        <div className={styles.inputGroup}>
           <label htmlFor="question">Question:</label>
           <input
             name="question"
@@ -220,7 +221,7 @@ export default function ResponsesIndex({ query }) {
           ></input>
         </div>
 
-        <div className="input-group">
+        <div className={styles.inputGroup}>
           <input
             type="checkbox"
             checked={onlyAnswered}
