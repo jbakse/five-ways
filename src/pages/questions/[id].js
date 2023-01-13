@@ -13,7 +13,11 @@ import {
 export default function QuestionPage(/*props*/) {
   const router = useRouter();
 
-  // review: could/should this be a getServersideProp? yes, probably
+  // review: should this be a getServersideProp?
+  // data depends on query id only, and can't be changed from this page
+  // i think serverSideProps is better then, double check
+  // is there a good article on when to use?
+
   const question = useAsyncQuestion(router.query.id);
   const responses = useAsyncResponses(router.query.id);
   const summary = useResultSummary(question, responses);
@@ -23,34 +27,33 @@ export default function QuestionPage(/*props*/) {
       <Head>
         <title>Question</title>
       </Head>
+      <div className="content-block">
+        <Async data={question}>
+          <h1>Question "{question.value?.nickname}"</h1>
 
-      <Async className="content-block" data={question}>
-        <h1 className="content-block">Question "{question.value?.nickname}"</h1>
+          <Link
+            href={`/responses?questionId=${encodeURIComponent(
+              question.value?.id
+            )}&startDate=2000-01-01&endDate=3000-01-01`}
+          >
+            responses
+          </Link>
+        </Async>
 
-        <Link
-          href={`/responses?questionId=${encodeURIComponent(
-            question.value?.id
-          )}&startDate=2000-01-01&endDate=3000-01-01`}
-        >
-          responses
-        </Link>
-      </Async>
+        <Async data={summary}>
+          <ShowJSON
+            title={`${question.value?.nickname}_report`}
+            data={summary}
+          ></ShowJSON>
+        </Async>
 
-      <Async className="content-block" data={summary}>
-        <ShowJSON title={`${question.value?.nickname}_report`}>
-          {summary}
-        </ShowJSON>
-      </Async>
-      <Async className="content-block" data={question}>
-        <ShowJSON title={`${question.value?.nickname}_export`}>
-          {question.value}
-        </ShowJSON>
-      </Async>
-      {/* <Async className="content-block" data={responses}>
-        <ShowJSON title={`responses_${question.value?.nickname}`}>
-          {responses.value}
-        </ShowJSON>
-      </Async> */}
+        <Async data={question}>
+          <ShowJSON
+            title={`${question.value?.nickname}_export`}
+            data={question.value}
+          ></ShowJSON>
+        </Async>
+      </div>
     </>
   );
 }

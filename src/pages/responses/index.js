@@ -148,97 +148,99 @@ export default function ResponsesIndex({ query }) {
       <Head>
         <title>Responses</title>
       </Head>
-      <h1 className="content-block">Responses</h1>
-
       <div className="content-block">
-        <div className={styles.inputGroup}>
-          <label htmlFor="from">From:</label>
-          <input
-            name="from"
-            type="date"
-            className="date"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
-          ></input>
-        </div>
+        <h1>Responses</h1>
 
-        <div className={styles.inputGroup}>
-          <label htmlFor="to">To:</label>
-          <input
-            name="to"
-            type="date"
-            className="date"
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
-          ></input>
-        </div>
+        <div>
+          <div className={styles.inputGroup}>
+            <label htmlFor="from">From:</label>
+            <input
+              name="from"
+              type="date"
+              className="date"
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
+            ></input>
+          </div>
 
-        <div className={styles.inputGroup}>
-          <label htmlFor="language">Language:</label>
-          <input
-            name="language"
-            type="search"
-            className="search"
-            placeholder=" "
-            value={language}
-            onChange={(e) => setLanguage(e.target.value)}
-          ></input>
-        </div>
+          <div className={styles.inputGroup}>
+            <label htmlFor="to">To:</label>
+            <input
+              name="to"
+              type="date"
+              className="date"
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
+            ></input>
+          </div>
 
-        <div className={styles.inputGroup}>
-          <label htmlFor="responder">Responder:</label>
-          <input
-            name="responder"
-            type="search"
-            className="search"
-            placeholder=" "
-            value={responderId}
-            onChange={(e) => setResponderId(e.target.value)}
-          ></input>
-        </div>
+          <div className={styles.inputGroup}>
+            <label htmlFor="language">Language:</label>
+            <input
+              name="language"
+              type="search"
+              className="search"
+              placeholder=" "
+              value={language}
+              onChange={(e) => setLanguage(e.target.value)}
+            ></input>
+          </div>
 
-        <div className={styles.inputGroup}>
-          <label htmlFor="survey">Survey:</label>
-          <input
-            name="survey"
-            type="search"
-            className="search"
-            placeholder=" "
-            value={surveyId}
-            onChange={(e) => setSurveyId(e.target.value)}
-          ></input>
-        </div>
+          <div className={styles.inputGroup}>
+            <label htmlFor="responder">Responder:</label>
+            <input
+              name="responder"
+              type="search"
+              className="search"
+              placeholder=" "
+              value={responderId}
+              onChange={(e) => setResponderId(e.target.value)}
+            ></input>
+          </div>
 
-        <div className={styles.inputGroup}>
-          <label htmlFor="question">Question:</label>
-          <input
-            name="question"
-            type="search"
-            className="search"
-            placeholder=" "
-            value={questionId}
-            onChange={(e) => setQuestionId(e.target.value)}
-          ></input>
-        </div>
+          <div className={styles.inputGroup}>
+            <label htmlFor="survey">Survey:</label>
+            <input
+              name="survey"
+              type="search"
+              className="search"
+              placeholder=" "
+              value={surveyId}
+              onChange={(e) => setSurveyId(e.target.value)}
+            ></input>
+          </div>
 
-        <div className={styles.inputGroup}>
-          <input
-            type="checkbox"
-            checked={onlyAnswered}
-            onChange={() => setOnlyAnswered(!onlyAnswered)}
-          />
-          <label htmlFor="onlyAnswered">Only Answered</label>
+          <div className={styles.inputGroup}>
+            <label htmlFor="question">Question:</label>
+            <input
+              name="question"
+              type="search"
+              className="search"
+              placeholder=" "
+              value={questionId}
+              onChange={(e) => setQuestionId(e.target.value)}
+            ></input>
+          </div>
+
+          <div className={styles.inputGroup}>
+            <input
+              type="checkbox"
+              checked={onlyAnswered}
+              onChange={() => setOnlyAnswered(!onlyAnswered)}
+            />
+            <label htmlFor="onlyAnswered">Only Answered</label>
+          </div>
         </div>
+        <br />
+        <Async data={responses}>
+          <h2>
+            {responses.value?.length} matching response
+            {responses.value?.length === 1 ? "" : "s"}
+          </h2>
+          <Table columns={columns} data={responses.value} />
+          <ShowJSON title="responses" data={responses.value}></ShowJSON>
+        </Async>
       </div>
-      <br />
-      <Async className="content-block" data={responses}>
-        <h2>
-          {responses.value?.length} matching response
-          {responses.value?.length === 1 ? "" : "s"}
-        </h2>
-        <Table columns={columns} data={responses.value} />
-        <ShowJSON title="responses">{responses.value}</ShowJSON>
-      </Async>
     </>
   );
 }

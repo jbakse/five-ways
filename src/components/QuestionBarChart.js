@@ -1,8 +1,8 @@
 import React from "react";
 import { formatPercent } from "../lib/util";
-import styles from "./ResultSlideBar.module.scss";
+import styles from "./QuestionBarChart.module.scss";
 
-export function ResultSlideBar({ data }) {
+export function QuestionBarChart({ data }) {
   if (!data) return <></>;
   return (
     <>

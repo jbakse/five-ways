@@ -21,21 +21,26 @@ export default function SurveyPage(/*props*/) {
         <title>Survey</title>
       </Head>
 
-      <Async className="content-block" data={survey}>
-        <h1>Survey "{survey.value?.nickname}"</h1>
-        <ol>
-          {survey.value?.questions.map((q) => (
-            <li key={q.id}>
-              <Link href={`/questions/${encodeURIComponent(q.id)}`}>
-                {q.nickname || "unnamed"}
-              </Link>
-            </li>
-          ))}
-        </ol>
-        <ShowJSON title={`${survey.value?.nickname}_export`}>
-          {survey.value}
-        </ShowJSON>
-      </Async>
+      <div className="content-block">
+        <Async data={survey}>
+          <h1>Survey "{survey.value?.nickname}"</h1>
+
+          <ol>
+            {survey.value?.questions.map((q) => (
+              <li key={q.id}>
+                <Link href={`/questions/${encodeURIComponent(q.id)}`}>
+                  {q.nickname || "unnamed"}
+                </Link>
+              </li>
+            ))}
+          </ol>
+
+          <ShowJSON
+            title={`${survey.value?.nickname}_export`}
+            data={survey.value}
+          ></ShowJSON>
+        </Async>
+      </div>
     </>
   );
 }

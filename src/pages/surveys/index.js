@@ -14,10 +14,14 @@ export default function SurveysIndex(/*props*/) {
 
   const columns = [
     // configure table columns
-    { header: "nickname", field: "nickname" },
-
-    { header: "questions", field: "questionCount" },
-    // { header: "updated", field: "updated", formatter: formatDate },
+    {
+      header: "nickname",
+      field: "nickname",
+    },
+    {
+      header: "questions",
+      field: "questionCount",
+    },
     {
       header: "details",
       field: "id",
@@ -47,11 +51,13 @@ export default function SurveysIndex(/*props*/) {
       <Head>
         <title>Surveys</title>
       </Head>
-      <h1 className="content-block">Surveys</h1>
+      <div className="content-block">
+        <h1>Surveys</h1>
 
-      <Async className="content-block" data={surveys}>
-        <Table columns={columns} data={surveys.value} />
-      </Async>
+        <Async data={surveys}>
+          <Table columns={columns} data={surveys.value} />
+        </Async>
+      </div>
     </>
   );
 }

@@ -93,7 +93,7 @@ export function useResultSummary(question, responses) {
 
       return data;
     },
-    [responses, question]
+    [question, responses]
   );
 }
 

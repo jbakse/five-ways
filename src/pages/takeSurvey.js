@@ -20,10 +20,13 @@ export async function getServerSideProps({ res, query }) {
   const surveyId = isGallery ? config.gallerySurveyId : config.homeSurveyId;
   const survey = surveyId ? await getSurveyDeep(surveyId) : null;
 
-  // remove slides, they are shown only in the lobby report
-  survey.questions = survey.questions.filter((q) => q.type !== "slide");
-  // open questions are not supported yet
-  survey.questions = survey.questions.filter((q) => q.type !== "open");
+  if (survey) {
+    // keep questions only if type is "single" or "multiple"
+    // "open" and "slide" questions are not supported, other names unknown
+    survey.questions = survey.questions.filter(
+      (q) => q.type === "single" || q.type === "multiple"
+    );
+  }
 
   return {
     props: {
@@ -35,7 +38,9 @@ export async function getServerSideProps({ res, query }) {
 
 export default function TakeSurveyPage(props) {
   const router = useRouter();
+
   useTimeout("gallery" in router.query ? props.config.galleryTimeout : false);
+
   const [language, setLanguage] = useState("English");
 
   const responderId = uuidv4();
@@ -44,7 +49,10 @@ export default function TakeSurveyPage(props) {
     return (
       <>
         <Head>Survey Closed</Head>
-        <NoSurvey />
+        <div className={styles.message}>
+          <p>Sorry!</p>
+          <p>The survey is currently closed.</p>
+        </div>
       </>
     );
   }
@@ -57,6 +65,7 @@ export default function TakeSurveyPage(props) {
 
       <SlideShow>
         <Welcome key="welcome" />
+
         <LanguageSelect key="lang" setLanguage={setLanguage} />
 
         {props.survey.questions.map((q, index) => (
@@ -98,15 +107,6 @@ function ThankYou() {
         look at the monitor in the gallery to see how your answers compare with
         others.
       </p>
-    </div>
-  );
-}
-
-function NoSurvey() {
-  return (
-    <div className={styles.message}>
-      <p>Sorry!</p>
-      <p>The survey is currently closed.</p>
     </div>
   );
 }
