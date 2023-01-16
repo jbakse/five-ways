@@ -12,7 +12,7 @@ export default function SurveysIndex(/*props*/) {
     return result.surveys;
   }, []);
 
-  const columns = [
+  const columnConfig = [
     // configure table columns
     {
       header: "nickname",
@@ -55,7 +55,7 @@ export default function SurveysIndex(/*props*/) {
         <h1>Surveys</h1>
 
         <Async data={surveys}>
-          <Table columns={columns} data={surveys.value} />
+          <Table columnConfig={columnConfig} data={surveys.value} />
         </Async>
       </div>
     </>

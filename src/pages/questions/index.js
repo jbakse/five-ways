@@ -14,7 +14,7 @@ export default function QuestionsIndex(/*props*/) {
     return result.questions;
   }, []);
 
-  const columns = [
+  const columnConfig = [
     // configure table columns
     {
       header: "nickname",
@@ -68,7 +68,7 @@ export default function QuestionsIndex(/*props*/) {
         <h1>Questions</h1>
 
         <Async data={questions}>
-          <Table columns={columns} data={questions.value} />
+          <Table columnConfig={columnConfig} data={questions.value} />
         </Async>
       </div>
     </>

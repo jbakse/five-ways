@@ -1,7 +1,5 @@
 @import "../styles/common";
 
-// review: is using BEM overkill?
-
 .SlideShow {
   user-select: none;
 
@@ -14,7 +12,7 @@
   display: flex;
 }
 
-.Slideshow__ProgressBar {
+.ProgressBar {
   position: absolute;
   top: 0;
   left: 0;
@@ -23,27 +21,21 @@
   z-index: $z-ui;
 }
 
-.Slideshow__ProgressBarFill {
+.ProgressBarFill {
   background: black;
   height: 4px;
   transition: width 0.5s ease-in-out;
 }
 
-.SlideShow__Slide {
+.Slide {
   height: 100vh;
   width: 100vw;
   flex: 1 0 100%;
 
   overflow-y: auto;
-
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
-
-  // border: 10px solid green;
 }
 
-.SlideShow__Previous {
+.Previous {
   @include button;
 
   position: absolute;
@@ -58,7 +50,7 @@
   // display: none;
 }
 
-.SlideShow__Next {
+.Next {
   @include button;
 
   position: absolute;
@@ -71,7 +63,7 @@
   font-weight: 400;
 }
 
-.SlideShow__Finish {
+.Finish {
   @include button;
 
   position: absolute;
@@ -84,7 +76,7 @@
   font-weight: 400;
 }
 
-.SlideShow__Info {
+.Info {
   position: absolute;
   bottom: 0;
   left: 0;

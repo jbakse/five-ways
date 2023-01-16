@@ -5,6 +5,10 @@ import { useAsyncDeep } from "../lib/hooks";
 import { postData } from "../lib/network";
 import styles from "./Question.module.scss";
 
+// review: destructure props?
+// generally i'm destructuring props in the function signature
+// there are many props here so i'll come back to this later if needed
+
 export default function Question(props) {
   const prompt = props[`promptText${props.language}`];
   const optionTexts = props[`optionTexts${props.language}`];
@@ -41,26 +45,26 @@ export default function Question(props) {
   }
 
   return (
-    <div className={styles.question}>
-      <h2 className={styles.number}>
+    <div className={styles.Question}>
+      <h2 className={styles.Number}>
         {props.questionNumber.toString().padStart(2, "0")}
       </h2>
-      <h2 className={styles.prompt}>{prompt}</h2>
-      <span className={styles.instruction}>
+      <h2 className={styles.Prompt}>{prompt}</h2>
+      <span className={styles.Instruction}>
         {props.type === "single" ? "Select one" : "Select many"}
       </span>
-      <ul className={styles.options} role="list">
+      <ul className={styles.Options} role="list">
         {optionTexts.map((optionText, index) => (
           <li
             className={classNames(
-              styles.option,
+              styles.Option,
               response[index] && styles.selected,
               "image-block-hack"
             )}
             key={index}
             onClick={(error) => optionClicked(index, error)}
           >
-            <div className={styles.optionBorder}></div>
+            <div className={styles.OptionBorder}></div>
             {props.images[index] && (
               <Image
                 priority
@@ -71,7 +75,7 @@ export default function Question(props) {
               />
             )}
             {optionText && (
-              <div className={styles.optionText}>{optionText}</div>
+              <div className={styles.OptionText}>{optionText}</div>
             )}
           </li>
         ))}

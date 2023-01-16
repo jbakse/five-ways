@@ -107,7 +107,7 @@ function QuestionCard({ question }) {
   return (
     <>
       {!summary.error && !summary.loading && (
-        <QuestionBarChart data={summary}></QuestionBarChart>
+        <QuestionBarChart summary={summary}></QuestionBarChart>
       )}
     </>
   );

@@ -1,12 +1,12 @@
 import React from "react";
 import styles from "./Table.module.scss";
 
-export function Table({ columns, data }) {
+export function Table({ columnConfig, data }) {
   return (
-    <table className={styles.table}>
+    <table className={styles.Table}>
       <thead>
         <tr>
-          {columns.map((c) => (
+          {columnConfig.map((c) => (
             <th key={c.key || c.field}>{c.header}</th>
           ))}
         </tr>
@@ -14,7 +14,7 @@ export function Table({ columns, data }) {
       <tbody>
         {data?.map((row) => (
           <tr key={row.id}>
-            {columns.map((c) => (
+            {columnConfig.map((c) => (
               <td
                 key={c.key || c.field}
                 onClick={() => c.onClick?.(row)}

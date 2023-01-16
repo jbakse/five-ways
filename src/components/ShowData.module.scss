@@ -1,4 +1,7 @@
-.title {
+// .ShowData {
+// }
+
+.Title {
   margin-top: 1em;
   padding: 0 0.5em;
   background: #333;
@@ -7,7 +10,7 @@
   top: 0;
 }
 
-.title button {
+.Title button {
   float: right;
   margin-top: 3px;
 
@@ -19,7 +22,7 @@
   cursor: pointer;
 }
 
-.body {
+.Body {
   padding: 0 0.5em;
   background: #eee;
   overflow-x: hidden;

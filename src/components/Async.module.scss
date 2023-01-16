@@ -1,14 +1,12 @@
-
-
-.loading {
-    margin-top: 1em;
-    background: #eee;
-    text-align: center;
-    padding: 0px .5em;
+.LoadingMessage {
+  margin-top: 1em;
+  background: #eee;
+  text-align: center;
+  padding: 0px 0.5em;
 }
 
-.error {
-    margin-top: 1em;
-    background: #fee;
-    padding: 0px .5em;
+.ErrorMessage {
+  margin-top: 1em;
+  background: #fee;
+  padding: 0px 0.5em;
 }

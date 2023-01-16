@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import Link from "next/link";
 import { Async } from "../../components/Async";
-import { ShowJSON } from "../../components/ShowJSON";
+import { ShowData } from "../../components/ShowData";
 import {
   useAsyncQuestion,
   useAsyncResponses,
@@ -41,17 +41,17 @@ export default function QuestionPage(/*props*/) {
         </Async>
 
         <Async data={summary}>
-          <ShowJSON
+          <ShowData
             title={`${question.value?.nickname}_report`}
             data={summary}
-          ></ShowJSON>
+          ></ShowData>
         </Async>
 
         <Async data={question}>
-          <ShowJSON
+          <ShowData
             title={`${question.value?.nickname}_export`}
             data={question.value}
-          ></ShowJSON>
+          ></ShowData>
         </Async>
       </div>
     </>

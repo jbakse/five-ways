@@ -5,7 +5,7 @@ import { useAsync } from "react-use";
 import { formatDateShort, formatShort, buildQuery } from "../../lib/util";
 import { Async } from "../../components/Async";
 import { Table } from "../../components/Table";
-import { ShowJSON } from "../../components/ShowJSON";
+import { ShowData } from "../../components/ShowData";
 import styles from "../../styles/admin.module.scss";
 
 export async function getServerSideProps(context) {
@@ -105,7 +105,7 @@ export default function ResponsesIndex({ query }) {
       .join("");
   }
 
-  const columns = [
+  const columnConfig = [
     { header: "responseId", field: "id" },
     { header: "createdAt", field: "createdAt", formatter: formatDateShort },
     {
@@ -237,8 +237,8 @@ export default function ResponsesIndex({ query }) {
             {responses.value?.length} matching response
             {responses.value?.length === 1 ? "" : "s"}
           </h2>
-          <Table columns={columns} data={responses.value} />
-          <ShowJSON title="responses" data={responses.value}></ShowJSON>
+          <Table columnConfig={columnConfig} data={responses.value} />
+          <ShowData title="responses" data={responses.value}></ShowData>
         </Async>
       </div>
     </>

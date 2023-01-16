@@ -2,29 +2,33 @@ import React from "react";
 import { formatPercent } from "../lib/util";
 import styles from "./QuestionBarChart.module.scss";
 
-export function QuestionBarChart({ data }) {
-  if (!data) return <></>;
+export function QuestionBarChart({ data: summary }) {
+  if (!summary) return <></>;
   return (
-    <>
-      <div className={styles.ResultSlide}>
-        <div className={styles.QuestionWrap}>
-          <h1>{data.prompt}</h1>
-        </div>
-        <div className={styles.OptionWrap}>
-          {data.options.map((option) => (
-            <div key={option.index} className={styles.Option}>
-              <div
-                className={styles.Bar}
-                style={{ width: `${option.percentOfAnswered * 100}%` }}
-              ></div>
-              <div className={styles.Response}>{option.response}</div>
-              <div className={styles.Percent}>
-                {formatPercent(option.percentOfAnswered)}
-              </div>
-            </div>
-          ))}
-        </div>
+    <div className={styles.QuestionBarChart}>
+      <div className={styles.PromptWrap}>
+        <h1>{summary.prompt}</h1>
       </div>
-    </>
+      <div className={styles.OptionsWrap}>
+        {summary.options.map((option) => (
+          <OptionBar key={option.index} option={option}></OptionBar>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function OptionBar({ option }) {
+  return (
+    <div className={styles.OptionBar}>
+      <div
+        className={styles.Filled}
+        style={{ width: `${option.percentOfAnswered * 100}%` }}
+      ></div>
+      <div className={styles.Response}>{option.response}</div>
+      <div className={styles.Percent}>
+        {formatPercent(option.percentOfAnswered)}
+      </div>
+    </div>
   );
 }

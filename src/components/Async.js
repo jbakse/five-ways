@@ -1,18 +1,14 @@
 import React from "react";
 import styles from "./Async.module.scss";
 
-export function Async(props) {
-  if (props.data.loading) {
+export function Async({ data, children }) {
+  if (data.loading) {
+    return <div className={styles.LoadingMessage}>Loading...</div>;
+  }
+  if (data.error) {
     return (
-      <div className={`${props.className} ${styles.loading}`}>Loading...</div>
+      <div className={styles.ErrorMessage}>Error: {data.error.message}</div>
     );
   }
-  if (props.data.error) {
-    return (
-      <div className={`${props.className} ${styles.error}`}>
-        Error: {props.data.error.message}
-      </div>
-    );
-  }
-  return <div className={props.className}>{props.children}</div>;
+  return <>{children}</>;
 }

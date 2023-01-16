@@ -92,6 +92,10 @@ Lobby:
 ✓ languages @done(22-12-09 11:08)
     :english only
 
+□ option bar visual fix
+    css small "filled part/mercuries" in the progress bar look funny because there isn't room for the border radius to be applied normally.
+    maybe the bar could be the width of the container and slid left/right to show the filled part?
+
 
 Admin Tools:
     □ clean up br tags in admin tools by setting margin tops on things
@@ -177,3 +181,5 @@ For Call:
 □ you need an up to date ipad, iPadOS 16.2
 □ you need some kiosk browser software, i'm trying [Kiosker](https://kiosker.io/)
 □ hide back button on survey
+□ Maybe need better CTA on Make Sense... splash
+

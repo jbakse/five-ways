@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import classNames from "classnames";
 import styles from "./SlideShow.module.scss";
 
-export default function SlideShow(props) {
-  const children = props.children.flat();
+export default function SlideShow({ children }) {
+  children = children.flat();
 
   const slideShow = React.createRef();
 
@@ -54,7 +54,7 @@ export default function SlideShow(props) {
     <div ref={slideShow} className={styles.SlideShow}>
       <button
         className={classNames(
-          styles.SlideShow__Previous,
+          styles.Previous,
           currentSlide === 0 && styles.hidden
         )}
         onClick={previous}
@@ -64,7 +64,7 @@ export default function SlideShow(props) {
 
       <button
         className={classNames(
-          styles.SlideShow__Next,
+          styles.Next,
           currentSlide + 1 === children.length && styles.hidden
         )}
         onClick={next}
@@ -74,7 +74,7 @@ export default function SlideShow(props) {
 
       <button
         className={classNames(
-          styles.SlideShow__Finish,
+          styles.Finish,
           currentSlide + 1 !== children.length && styles.hidden
         )}
         onClick={finish}
@@ -83,16 +83,9 @@ export default function SlideShow(props) {
       </button>
 
       <ProgressBar percent={(currentSlide / (children.length - 1)) * 100} />
-      {/* <div className={styles.SlideShow__Info}>
-        {currentSlide + 1} / {children.length}
-      </div> */}
 
       {children.map((child, index) => (
-        <div
-          className={styles.SlideShow__Slide}
-          id={`slide-${index}`}
-          key={child.key}
-        >
+        <div className={styles.Slide} id={`slide-${index}`} key={child.key}>
           {child}
         </div>
       ))}
@@ -100,12 +93,12 @@ export default function SlideShow(props) {
   );
 }
 
-function ProgressBar(props) {
+function ProgressBar({ percent }) {
   return (
-    <div className={styles.Slideshow__ProgressBar}>
+    <div className={styles.ProgressBar}>
       <div
-        style={{ width: `${props.percent}%` }}
-        className={styles.Slideshow__ProgressBarFill}
+        style={{ width: `${percent}%` }}
+        className={styles.ProgressBarFill}
       ></div>
     </div>
   );

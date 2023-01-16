@@ -1,32 +1,32 @@
-.table {
+.Table {
   border-spacing: 0;
   margin-top: 1em;
   width: 100%;
 }
 
-.table thead {
+.Table thead {
   background: #333;
   color: white;
   position: sticky;
   top: 0;
 }
 
-.table thead th {
+.Table thead th {
   font-weight: normal;
   text-align: left;
   padding: 0px 1.5em 0px 0.5em;
 }
 
-.table td {
+.Table td {
   padding: 0.5em 1.5em 0.5em 0.5em;
 }
 
-.table tbody tr {
+.Table tbody tr {
   background: #eee;
   vertical-align: top;
 }
 
-.table tbody tr:nth-child(2n) {
+.Table tbody tr:nth-child(2n) {
   background: #fff;
 }
 

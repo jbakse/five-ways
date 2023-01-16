@@ -1,15 +1,15 @@
 import React from "react";
 import { downloadArrayAsCSV, downloadObjectAsJSON } from "../lib/util";
-import styles from "./ShowJSON.module.scss";
+import styles from "./ShowData.module.scss";
 
-export function ShowJSON({ title, data }) {
+export function ShowData({ title, data }) {
   const isObject = typeof data === "object";
   const isArray = Array.isArray(data);
 
   return (
-    <>
+    <div className={styles.ShowData}>
       {/* header */}
-      <div className={styles.title}>
+      <div className={styles.Title}>
         {title}
         {isObject && (
           <button onClick={() => downloadObjectAsJSON(title, data)}>
@@ -22,7 +22,7 @@ export function ShowJSON({ title, data }) {
       </div>
 
       {/* body */}
-      <pre className={styles.body}>{JSON.stringify(data, undefined, 2)}</pre>
-    </>
+      <pre className={styles.Body}>{JSON.stringify(data, undefined, 2)}</pre>
+    </div>
   );
 }

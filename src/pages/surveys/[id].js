@@ -4,7 +4,7 @@ import { useAsync } from "react-use";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { Async } from "../../components/Async";
-import { ShowJSON } from "../../components/ShowJSON";
+import { ShowData } from "../../components/ShowData";
 
 export default function SurveyPage(/*props*/) {
   const router = useRouter();
@@ -35,10 +35,10 @@ export default function SurveyPage(/*props*/) {
             ))}
           </ol>
 
-          <ShowJSON
+          <ShowData
             title={`${survey.value?.nickname}_export`}
             data={survey.value}
-          ></ShowJSON>
+          ></ShowData>
         </Async>
       </div>
     </>

@@ -1,16 +1,16 @@
 $option-border-radius: 26px;
 
-.question {
+.Question {
   //   border: 10px solid red;
   margin-left: 2em;
   margin-right: 2em;
   max-width: 960px;
-  + .question {
+  + .Question {
     margin-top: 1em;
   }
 }
 
-.number {
+.Number {
   margin-top: 1em;
 
   font-family: "Maxeville-Construct";
@@ -19,7 +19,7 @@ $option-border-radius: 26px;
   line-height: 84px;
 }
 
-.prompt {
+.Prompt {
   margin-top: 1em;
 
   font-family: "Maxeville-Regular";
@@ -28,7 +28,7 @@ $option-border-radius: 26px;
   line-height: 36px;
 }
 
-.instruction {
+.Instruction {
   display: inline-block;
   margin-top: 1em;
 
@@ -43,11 +43,11 @@ $option-border-radius: 26px;
   line-height: 17px;
 }
 
-.options {
+.Options {
   padding-left: 0;
 }
 
-.option {
+.Option {
   margin-top: 0.75em;
   position: relative;
   // padding: 1em;
@@ -73,7 +73,7 @@ $option-border-radius: 26px;
 
   transition: all 0.15s ease-in-out;
 
-  + .option {
+  + .Option {
     margin-top: 0.5em;
   }
 
@@ -90,18 +90,18 @@ $option-border-radius: 26px;
   }
 }
 
-.optionText {
+.OptionText {
   // border: 10px solid red;
   padding: 0.75em 0.75em;
 }
 
 // span is the wrapper created by Next.js Image
-span + .optionText {
+span + .OptionText {
   padding-top: 0.5em;
   padding-bottom: 0.75em;
 }
 
-.optionBorder {
+.OptionBorder {
   position: absolute;
   inset: 0;
   z-index: 1;
@@ -113,26 +113,10 @@ span + .optionText {
 
   opacity: 0;
   transition: opacity 0.15s ease-in-out;
+
   .selected & {
     opacity: 1;
   }
 
   display: none;
-}
-
-.checkbox {
-  display: none;
-
-  //   height: 16px;
-  //   width: 16px;
-  //   border: 1px solid black;
-  //   border-radius: 3px;
-  //   display: inline-block;
-  //   margin-right: 10px;
-  //   position: relative;
-  //   // top: 2px;
-
-  //   .selected & {
-  //     background: black;
-  //   }
 }

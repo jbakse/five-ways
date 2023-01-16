@@ -20,3 +20,7 @@ https://chartjs-plugin-datalabels.netlify.app/guide/options.html#scriptable-opti
 ## React SCSS Nested Classes in Modules
 
 https://github.com/vercel/next.js/discussions/19417#discussioncomment-381306
+
+## options for fetching data
+
+https://wallis.dev/blog/nextjs-serverside-data-fetching
