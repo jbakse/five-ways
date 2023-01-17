@@ -67,9 +67,14 @@ export default function SlideShow({ children }) {
           styles.Next,
           currentSlide + 1 === children.length && styles.hidden
         )}
+        style={
+          currentSlide === 0
+            ? { paddingLeft: "30px", paddingRight: "30px" }
+            : {}
+        }
         onClick={next}
       >
-        →
+        {currentSlide === 0 ? "Give Feedback" : ""} →
       </button>
 
       <button

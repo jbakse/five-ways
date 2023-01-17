@@ -141,19 +141,18 @@ API:
 
 
 Review + Refactor:
-□ looking at templates and css
-    ✓ pages @done(23-01-13 15:41)
-    □ components
-□ consider "plumbing"
-    the code between the templates and the dbs
-    the api, airtable, prisma, serverside props, useAsync, etc
-
-
-
-
 ✓ should `/results/id` be `/questions/id` (the id is a question id after all) @done(22-12-16 14:28)
+✓ looking at templates and css @done(23-01-16 15:50)
+    ✓ pages @done(23-01-13 15:41)
+    ✓ components @done(23-01-16 15:50)
 
-□ where are the responses tabulated currently? client side? should this be moved to an api route sever function? serversideprops?
+□ serverside or frontend data gathering
+    takeSurvey and lobby use server side props
+    admin pages use front end api calls to fetch data
+    □ the admin pages that don't have ui *could* be server side props
+    responses/ has ui and should keep using front end api calls
+        
+    
 
 □ rethink Async component
     it was a quick solution for showing loading screen, but prob too quick
@@ -161,25 +160,32 @@ Review + Refactor:
     □ somewhere i'm wrapping stuff up to look like the result of a useAsync, and thats weird, look into it
     ✓ Async probably shouldn't be imposing .content-block @done(22-11-18 14:57)
 
-□ clean up all the CSS
-    □ change module system?
-    □ no more BEM?
-    □ improve class names
-    □ :global?
-    □ css comb?
-    □ css lint?
 
-
-
+□ turn accent color into shared css variable (do they match?)
+    $primary-accent-color: #8591a3;
 
 For Call:
-□ selected option contrast too low
-□ barchart bar contrast too low
-□ final copy for thank you?
+□ stacked images are pretty big on desktop (move to 2 up)
+
+□ final copy for thank you? (translations?)
 □ final copy for lang select?
-□ stacked images are pretty big on desktop
 □ you need an up to date ipad, iPadOS 16.2
 □ you need some kiosk browser software, i'm trying [Kiosker](https://kiosker.io/)
-□ hide back button on survey
-□ Maybe need better CTA on Make Sense... splash
 
+Meeting Notes:
+□ Make Sense of ([])
+□ remove logging of unaswered questions
+□ new fonts (inc copy text style) coming
+
+✓ fix lobby view! @done(23-01-17 12:52)
+✓ adjust bar chart bar color. @done(23-01-17 12:51)
+black on #8391a5 is contrast  6.56:1
+this passes WCAG AA, and AAA for large text
+✓ adjust barchart percent color @done(23-01-17 12:51)
+now 50% black. good contrast on white
+contrast over bar might be too low (but the bar reenforces)
+✓ hide back button on survey @done(23-01-17 12:51)
+✓ reduce line height on Make Sense of This @done(23-01-17 12:52)
+✓ create demo survey with real questions @done(23-01-17 12:52)
+✓ add CTA on Make Sense splash page @done(23-01-17 13:02)
+✓ selected option contrast too low @done(23-01-17 12:56)

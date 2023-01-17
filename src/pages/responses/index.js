@@ -8,11 +8,10 @@ import { Table } from "../../components/Table";
 import { ShowData } from "../../components/ShowData";
 import styles from "../../styles/admin.module.scss";
 
-export async function getServerSideProps(context) {
-  return { props: { query: context.query } };
-}
+export default function ResponsesIndex() {
+  const router = useRouter();
+  const query = router.query;
 
-export default function ResponsesIndex({ query }) {
   const today = new Date().toLocaleDateString("en-CA");
 
   const [startDate, setStartDate] = useState(query.startDate || today);
@@ -24,7 +23,7 @@ export default function ResponsesIndex({ query }) {
   const [onlyAnswered, setOnlyAnswered] = useState(query.onlyAnswered || true);
 
   // update url when params change
-  const router = useRouter();
+
   useEffect(
     () => {
       const url = new URL(window.location);

@@ -1,5 +1,5 @@
 $option-border-radius: 26px;
-
+$primary-accent-color: #8591a3;
 .Question {
   //   border: 10px solid red;
   margin-left: 2em;
@@ -66,8 +66,8 @@ $option-border-radius: 26px;
   overflow: hidden;
 
   &.selected {
-    background: #e9f3fb;
-    color: black;
+    background: $primary-accent-color;
+    color: white;
     // border-color: black;
   }
 

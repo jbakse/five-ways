@@ -2,7 +2,7 @@ import React from "react";
 import { formatPercent } from "../lib/util";
 import styles from "./QuestionBarChart.module.scss";
 
-export function QuestionBarChart({ data: summary }) {
+export function QuestionBarChart({ summary }) {
   if (!summary) return <></>;
   return (
     <div className={styles.QuestionBarChart}>
