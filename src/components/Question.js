@@ -10,6 +10,16 @@ import styles from "./Question.module.scss";
 // generally i'm destructuring props in the function signature
 // there are many props here so i'll come back to this later if needed
 
+// postData only if response is not false
+async function postResponse(endPoint, data) {
+  if (data.response === false) {
+    // not posting
+  } else {
+    // posting
+    return await postData(endPoint, data);
+  }
+}
+
 export default function Question(props) {
   const prompt = props[`promptText${props.language}`];
   const optionTexts = props[`optionTexts${props.language}`];
@@ -28,7 +38,7 @@ export default function Question(props) {
   );
 
   // post data to backend when data changes (use deep compare)
-  useAsyncDeep(postData, [
+  useAsyncDeep(postResponse, [
     "/api/responses",
     {
       responderId: props.responderId,

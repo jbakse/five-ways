@@ -17,6 +17,13 @@ export default async function handler(request, response) {
 
 async function upsertResponse(request, response) {
   try {
+    // console.log(
+    //   "upsert",
+    //   request.body.response,
+    //   typeof request.body.response,
+    //   request.body.response === false
+    // );
+
     const prismaResponse = await prisma.response.upsert({
       where: {
         responseId: pick(request.body, [
@@ -37,12 +44,7 @@ async function upsertResponse(request, response) {
         "language",
       ]),
     });
-    console.log(
-      "upsert",
-      request.body.response,
-      typeof request.body.response,
-      request.body.response === false
-    );
+
     return response
       .status(200)
       .json({ success: true, response: prismaResponse });
