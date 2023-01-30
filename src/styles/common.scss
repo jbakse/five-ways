@@ -23,6 +23,29 @@ $z-ui: 100;
   font-display: block;
 }
 
+@font-face {
+  font-family: "Maxeville-Tekst";
+  src: //
+    url("/fonts/Maxeville-Tekst/Maxeville-Tekst.woff") format("woff"),
+    url("/fonts/Maxeville-Tekst/Maxeville-Tekst.woff2") format("woff2"),
+    url("/fonts/Maxeville-Tekst/Maxeville-Tekst.eot") format("eot");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+.font-construct {
+  font-family: "Maxeville-Construct", sans-serif;
+}
+
+.font-regular {
+  font-family: "Maxeville-Regular", sans-serif;
+}
+
+.font-tekst {
+  font-family: "Maxeville-Tekst", sans-serif;
+}
+
 @mixin content-block {
   display: block;
   // max-width: 800px;

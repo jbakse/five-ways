@@ -89,10 +89,15 @@ function Welcome() {
   return (
     <div className={styles.message}>
       <h1>
-        Make
-        <br /> Sense
-        <br /> of
-        <br /> (This)
+        <span className="font-regular">Make</span>
+        <br />
+        <span className="font-construct">Sense</span>
+        <br />
+        <span className="font-regular">of</span>
+        <br />
+        <span className="font-construct">
+          (Th<span className="font-tekst">i</span>s)
+        </span>
       </h1>
     </div>
   );

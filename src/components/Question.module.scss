@@ -1,5 +1,5 @@
 $option-border-radius: 26px;
-$primary-accent-color: #8591a3;
+$primary-accent-color: #b2bbc7;
 .Question {
   //   border: 10px solid red;
   margin-left: 2em;
@@ -22,7 +22,7 @@ $primary-accent-color: #8591a3;
 .Prompt {
   margin-top: 1em;
 
-  font-family: "Maxeville-Regular";
+  font-family: "Maxeville-Tekst";
   font-size: 30px;
   font-weight: 400;
   line-height: 36px;
@@ -37,7 +37,7 @@ $primary-accent-color: #8591a3;
   padding: 4px 8px;
   background-color: #c6c7c8;
 
-  font-family: "Maxeville-Regular";
+  font-family: "Maxeville-Tekst";
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
@@ -54,7 +54,7 @@ $primary-accent-color: #8591a3;
 
   border-radius: $option-border-radius;
 
-  font-family: "Maxeville-Regular";
+  font-family: "Maxeville-Tekst";
   font-size: 20px;
   font-weight: 400;
   line-height: 24px;
@@ -67,7 +67,7 @@ $primary-accent-color: #8591a3;
 
   &.selected {
     background: $primary-accent-color;
-    color: white;
+    color: black;
     // border-color: black;
   }
 
