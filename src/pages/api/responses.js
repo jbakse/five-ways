@@ -37,7 +37,12 @@ async function upsertResponse(request, response) {
         "language",
       ]),
     });
-
+    console.log(
+      "upsert",
+      request.body.response,
+      typeof request.body.response,
+      request.body.response === false
+    );
     return response
       .status(200)
       .json({ success: true, response: prismaResponse });

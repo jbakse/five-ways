@@ -18,7 +18,11 @@ Take Survey:
 □ question types
     ✓ single answer @done(22-11-28 12:24)
     ✓ multiple answer @done(22-11-28 12:24)
-    □ open answer
+□ open answer @high
+    ✓ display prompt/form @done(23-01-30 13:48)
+    ✓ record response (debounce) @done(23-01-30 14:24)
+    □ create moderation "release" allowing lobby to show response
+    □ show response in lobby
 
 □ image options
     ✓ image only @done(22-11-28 13:19)
@@ -54,7 +58,7 @@ Take Survey:
 
 Config:
 
-□ configs
+✓ configs @done(23-01-30 12:34)
     ✓ gallerySurvey @done(22-12-29 14:36)
         what is on the ipad
     ✓ homeSurvey @done(22-12-29 14:36)
@@ -141,28 +145,32 @@ API:
 
 
 Review + Refactor:
+@low
+    
+    □ serverside or frontend data gathering
+    takeSurvey and lobby use server side props
+    admin pages use front end api calls to fetch data
+    □ the admin pages that don't have ui *could* be server side props
+    responses/ has ui and should keep using front end api calls
+    
+    
+    
+    □ rethink Async component
+    it was a quick solution for showing loading screen, but prob too quick
+    the async/error/loading/value thing is inconsistent
+    □ somewhere i'm wrapping stuff up to look like the result of a useAsync, and thats weird, look into it
+    ✓ Async probably shouldn't be imposing .content-block @done(22-11-18 14:57)
+    
+    
+    □ turn accent color into shared css variable (do they match?)
+    $primary-accent-color: #8591a3;
+    
+
 ✓ should `/results/id` be `/questions/id` (the id is a question id after all) @done(22-12-16 14:28)
 ✓ looking at templates and css @done(23-01-16 15:50)
     ✓ pages @done(23-01-13 15:41)
     ✓ components @done(23-01-16 15:50)
 
-□ serverside or frontend data gathering
-    takeSurvey and lobby use server side props
-    admin pages use front end api calls to fetch data
-    □ the admin pages that don't have ui *could* be server side props
-    responses/ has ui and should keep using front end api calls
-        
-    
-
-□ rethink Async component
-    it was a quick solution for showing loading screen, but prob too quick
-    the async/error/loading/value thing is inconsistent
-    □ somewhere i'm wrapping stuff up to look like the result of a useAsync, and thats weird, look into it
-    ✓ Async probably shouldn't be imposing .content-block @done(22-11-18 14:57)
-
-
-□ turn accent color into shared css variable (do they match?)
-    $primary-accent-color: #8591a3;
 
 For Call:
 
@@ -173,10 +181,17 @@ For Call:
 
 
 □ remove logging of unaswered questions
-□ add "open" questions
+    I could do this with a check in api/responses `if response === false -> early return`
+    This would save a lot of data storage and transfer.
+    It would mean that you wouldn't have data on how many people loaded the survey but didn't answer a question.
+
+□ add "open" questions @high
 □ Allow dynamic images in Make Sense of ([])
 □ try "2 up" for image options
-□ new fonts (inc copy text style) coming
+✓ new fonts (inc copy text style) coming @done(23-01-30 12:36)
+
+□  from jake: There is a chance they will want to have different background colors for the choices on question #2.  They are planning on having those labels be different colors in the gallery, so they were hoping that question could reflect those colors.
+
 
 ✓ fix lobby view! @done(23-01-17 12:52)
 ✓ adjust bar chart bar color. @done(23-01-17 12:51)
@@ -206,9 +221,8 @@ contrast over bar might be too low (but the bar reenforces)
 ✓ add CTA on Make Sense splash page 
 ✓ selected option contrast too low 
 
-□  There is a chance they will want to have different background colors for the choices on question #2.  They are planning on having those labels be different colors in the gallery, so they were hoping that question could reflect those colors.
 
 
-□ use Maxeville Tekst for all question and answer text
+✓ use Maxeville Tekst for all question and answer text @done(23-01-30 12:33)
     ✓ survey @done(23-01-30 12:30)
-    □ lobby
+    ✓ lobby @done(23-01-30 12:33)

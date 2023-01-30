@@ -22,9 +22,9 @@ export async function getServerSideProps({ res, query }) {
 
   if (survey) {
     // keep questions only if type is "single" or "multiple"
-    // "open" and "slide" questions are not supported, other names unknown
+    // "slide" questions are not supported, other names unknown
     survey.questions = survey.questions.filter(
-      (q) => q.type === "single" || q.type === "multiple"
+      (q) => q.type === "single" || q.type === "multiple" || q.type === "open"
     );
   }
 
