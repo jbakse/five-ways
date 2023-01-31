@@ -20,9 +20,11 @@ model Response {
   questionId  String
 
   // prisma studio is showing Json `false` as `null` in the UI
-  // but the value does appear to be retreived as `false`
+  // but the value does appear to be retrieved as `false`
   response Json
   language String @default("English")
+
+  published Boolean @default(false)
 
   @@unique(fields: [responderId, surveyId, questionId], name: "responseId")
 }

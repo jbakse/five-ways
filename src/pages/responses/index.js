@@ -7,6 +7,7 @@ import { Async } from "../../components/Async";
 import { Table } from "../../components/Table";
 import { ShowData } from "../../components/ShowData";
 import styles from "../../styles/admin.module.scss";
+import { postData } from "../../lib/network";
 
 export default function ResponsesIndex() {
   const router = useRouter();
@@ -54,6 +55,8 @@ export default function ResponsesIndex() {
     ]
   );
 
+  // this is a hack to force a re-render, called when a published checkbox is checked
+  const [, updateState] = React.useState();
   // fetch the matching responses
   const responses = useAsync(async () => {
     const response = await fetch(
@@ -72,7 +75,6 @@ export default function ResponsesIndex() {
       throw new Error(response.statusText);
     }
     const result = await response.json();
-
     return result.responses;
   }, [
     startDate,
@@ -102,6 +104,10 @@ export default function ResponsesIndex() {
       })
       .filter(Boolean)
       .join("");
+  }
+
+  function formatCheckbox(value) {
+    return value ? "✅" : "❌";
   }
 
   const columnConfig = [
@@ -138,7 +144,27 @@ export default function ResponsesIndex() {
         setLanguage(row.language);
       },
     },
-    { header: "response", field: "response", formatter: formatResponse }, //JSON.stringify
+    { header: "response", field: "response", formatter: formatResponse }, //JSON.stringify'
+    {
+      header: "published",
+      field: "published",
+      formatter: formatCheckbox,
+      onClick: (row) => {
+        if (!responses.value) return;
+        const response = responses.value.find((r) => r.id === row.id);
+        if (!response) return;
+        response.published = !response.published;
+        postData(`/api/responses`, {
+          responderId: row.responderId,
+          surveyId: row.surveyId,
+          questionId: row.questionId,
+          response: row.response,
+          language: row.language,
+          published: response.published,
+        });
+        updateState({});
+      },
+    },
   ];
 
   // render the page

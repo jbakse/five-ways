@@ -21,7 +21,7 @@ Take Survey:
 □ open answer @high
     ✓ display prompt/form @done(23-01-30 13:48)
     ✓ record response (debounce) @done(23-01-30 14:24)
-    □ create moderation "release" allowing lobby to show response
+    ✓ create moderation "publish" allowing lobby to show response @done(23-01-30 21:27)
     □ show response in lobby
 
 □ image options
