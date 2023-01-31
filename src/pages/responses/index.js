@@ -90,7 +90,7 @@ export default function ResponsesIndex() {
 
   function formatResponse(response) {
     if (response === false) return "";
-    if (typeof response === "string") return response;
+    if (typeof response === "string") return `"${response}"`;
 
     // loop over array getting key and value
     // return JSON.stringify(boolArray);
@@ -106,8 +106,9 @@ export default function ResponsesIndex() {
       .join("");
   }
 
-  function formatCheckbox(value) {
-    return value ? "✅" : "❌";
+  function formatCheckbox(value, row) {
+    if (typeof row.response !== "string") return;
+    return <input type="checkbox" checked={value} readOnly={true}></input>;
   }
 
   const columnConfig = [
@@ -150,6 +151,7 @@ export default function ResponsesIndex() {
       field: "published",
       formatter: formatCheckbox,
       onClick: (row) => {
+        if (typeof row.response !== "string") return;
         if (!responses.value) return;
         const response = responses.value.find((r) => r.id === row.id);
         if (!response) return;

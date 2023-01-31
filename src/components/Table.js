@@ -20,7 +20,7 @@ export function Table({ columnConfig, data }) {
                 onClick={() => c.onClick?.(row)}
                 className={c.onClick && styles.clickable}
               >
-                {c.formatter ? c.formatter(row[c.field]) : row[c.field]}
+                {c.formatter ? c.formatter(row[c.field], row) : row[c.field]}
               </td>
             ))}
           </tr>
