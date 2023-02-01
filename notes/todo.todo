@@ -22,7 +22,7 @@ Take Survey:
     ✓ display prompt/form @done(23-01-30 13:48)
     ✓ record response (debounce) @done(23-01-30 14:24)
     ✓ create moderation "publish" allowing lobby to show response @done(23-01-30 21:27)
-    □ show response in lobby
+    ✓ show response in lobby @done(23-02-01 10:05)
 
 □ image options
     ✓ image only @done(22-11-28 13:19)
@@ -84,10 +84,10 @@ Lobby:
     
 ✓ improve timer factoring @done(23-01-12 10:16)
 
-□ question types
+✓ question types @done(23-02-01 10:12)
     ✓ single answer @done(23-01-10 15:12)
     ✓ multiple answer @done(23-01-10 15:12)
-    □ open answer
+    ✓ open answer @done(23-02-01 10:12)
 
 □ support showing image options on lobby slides? 
     meaning questions that have imaage answers
@@ -96,7 +96,7 @@ Lobby:
 ✓ languages @done(22-12-09 11:08)
     :english only
 
-□ option bar visual fix
+✓ option bar visual fix @done(23-02-01 10:18)
     css small "filled part/mercuries" in the progress bar look funny because there isn't room for the border radius to be applied normally.
     maybe the bar could be the width of the container and slid left/right to show the filled part?
 

@@ -23,7 +23,12 @@ function OptionBar({ option }) {
     <div className={styles.OptionBar}>
       <div
         className={styles.Filled}
-        style={{ width: `${option.percentOfAnswered * 100}%` }}
+        // style={{ width: `${option.percentOfAnswered * 100}%` }}
+        style={{
+          width: "100%",
+          position: "absolute",
+          left: `-${(1 - option.percentOfAnswered) * 100}%`,
+        }}
       ></div>
       <div className={styles.Response}>{option.response}</div>
       <div className={styles.Percent}>
