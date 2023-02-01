@@ -4,6 +4,7 @@ import Head from "next/head";
 import { getSurveyDeep, getConfiguration } from "../lib/airtable";
 import { useAsyncResponses, useResultSummary } from "../lib/hooks";
 import { QuestionBarChart } from "../components/QuestionBarChart";
+import { QuestionOpen } from "../components/QuestionOpen";
 import { useBodyClass } from "../lib/hooks";
 import { Blocker } from "../components/Blocker";
 
@@ -19,10 +20,13 @@ export async function getServerSideProps({ res }) {
     : null;
 
   if (survey) {
-    // keep questions only if type is "single" or "multiple" or "slide"
-    // "open" questions are not supported, other names unknown
+    // remove slides with unknown type
     survey.questions = survey.questions.filter(
-      (q) => q.type === "single" || q.type === "multiple" || q.type === "slide"
+      (q) =>
+        q.type === "single" ||
+        q.type === "multiple" ||
+        q.type === "slide" ||
+        q.type === "open"
     );
   }
 
@@ -94,23 +98,40 @@ export default function LobbyPage({ config, survey }) {
       {question.type === "single" && <QuestionCard question={question} />}
 
       {question.type === "multiple" && <QuestionCard question={question} />}
+      {question.type === "open" && (
+        <QuestionCard
+          question={question}
+          animationTime={config.lobbySlideTime * 1000 - 1000}
+        />
+      )}
 
       <Blocker hidden={!showBlocker}></Blocker>
     </>
   );
 }
 
-function QuestionCard({ question }) {
+function QuestionCard({ question, animationTime = 5000 }) {
   const responses = useAsyncResponses(question.id);
   const summary = useResultSummary({ value: question }, responses);
 
-  return (
-    <>
-      {!summary.error && !summary.loading && (
-        <QuestionBarChart summary={summary}></QuestionBarChart>
-      )}
-    </>
-  );
+  if (summary.error) return;
+  if (summary.loading) return;
+
+  if (question.type === "open") {
+    const responseTexts = responses.value
+      .filter((r) => r.published)
+      .map((r) => r.response);
+    const prompt = summary.prompt;
+    return (
+      <QuestionOpen
+        prompt={prompt}
+        responseTexts={responseTexts}
+        animationTime={animationTime}
+      />
+    );
+  }
+  if (question.type === "single" || question.type === "multiple")
+    return <QuestionBarChart summary={summary}></QuestionBarChart>;
 
   // review: useAsync result object format
   // wrapping question in object as o.value is needed because

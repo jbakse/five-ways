@@ -75,3 +75,11 @@ export function downloadArrayAsCSV(title, data) {
   a.href = url;
   a.click();
 }
+
+export function clamp(value, min, max) {
+  return Math.min(Math.max(value, min), max);
+}
+
+export function smoothstep(x) {
+  return x * x * (3 - 2 * x);
+}
