@@ -15,13 +15,15 @@ Take Survey:
     ✓ stub make sense of () @started(22-11-18 11:54) @done(22-11-18 12:03) @lasted(9m13s)
     □ make dynamic w/ images
 
-□ question types
+✓ question types @done(23-02-06 10:59)
     ✓ single answer @done(22-11-28 12:24)
     ✓ multiple answer @done(22-11-28 12:24)
-□ open answer @high
+    ✓ open answer @done(23-02-06 10:58)
+
+✓ open answer @done(23-02-06 10:59)
     ✓ display prompt/form @done(23-01-30 13:48)
-    ✓ record response (debounce) @done(23-01-30 14:24)
-    ✓ create moderation "publish" allowing lobby to show response @done(23-01-30 21:27)
+    ✓ record response (debounce) @done(23-01-30 14:24) 
+    ✓ create moderation "publish" allowing lobby to show response @done(23-01-30 21:27) 
     ✓ show response in lobby @done(23-02-01 10:05)
 
 □ image options
@@ -102,7 +104,7 @@ Lobby:
 
 
 Admin Tools:
-    □ clean up br tags in admin tools by setting margin tops on things
+□ clean up br tags in admin tools by setting margin tops on things
 ✓ `viewedCount` and `answeredCount` wrong (=0) in report @done(23-01-12 12:55)
 ✓ surveys should list short name instead of prompt @done(23-01-12 13:00)
 
@@ -180,12 +182,12 @@ For Call:
 □ you need some kiosk browser software, i'm trying [Kiosker](https://kiosker.io/)
 
 
-□ remove logging of unaswered questions
+✓ remove logging of unaswered questions @done(23-02-01 10:19)
     I could do this with a check in api/responses `if response === false -> early return`
     This would save a lot of data storage and transfer.
     It would mean that you wouldn't have data on how many people loaded the survey but didn't answer a question.
 
-□ add "open" questions @high
+✓ add "open" questions @high @done(23-02-01 10:19)
 □ Allow dynamic images in Make Sense of ([])
 □ try "2 up" for image options
 ✓ new fonts (inc copy text style) coming @done(23-01-30 12:36)
