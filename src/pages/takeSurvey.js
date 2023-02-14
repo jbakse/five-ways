@@ -87,7 +87,7 @@ export default function TakeSurveyPage(props) {
 
 function Welcome() {
   return (
-    <div className={styles.message}>
+    <div className={`${styles.message} ${styles.welcome}`}>
       <h1>
         <span className="font-regular">Make</span>
         <br />
@@ -105,7 +105,7 @@ function Welcome() {
 
 function ThankYou() {
   return (
-    <div className={styles.message}>
+    <div className={`${styles.message} ${styles.thankyou}`}>
       <p>Thank you!</p>
       <p>
         Your responses will help shape future exhibitions at the Walker. Take a

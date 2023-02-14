@@ -77,6 +77,9 @@ Design:
 ✓ 1 new fonts @done(23-01-11 10:00)
 
 Lobby:
+
+□ Check to see if lobby display updates when the survey is updated automatically or if it should reload periodically
+
 ✓ replace piechart with new bars @done(23-01-10 11:29)
 
 ✓ image slides/splash @done(23-01-12 12:11)
@@ -236,3 +239,20 @@ Document:
 Does the produciton and dev app (on vercel) both talk to the same database on pscale?
 Can the production app talk to the produciton db, and the dev app talk to the dev db?
 
+
+
+
+[x] fix fonts
+
+Survey
+[already matches figma?] Title — reduce letter-spacing to be closer to Figma title spacing [if possible]
+[x] Title — reduce line-height to be closer to Figma title leading[if possible]
+[x] Title — size seems too large?
+[x] Thank you! — change font to Maxeville Tekst
+[x] Give Feedback button/s — change font to Maxeville Tekst
+[x] Give Feedback button/s — remove pastel green on-click 
+[x] Typed response — remove thin black border [if possible]
+
+Results Screen
+[x] All percentages [ex: 50%] — rgb(0, 0, 0)
+[maybe? but bezels?] Margins — too narrow?
