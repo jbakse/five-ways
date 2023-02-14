@@ -31,6 +31,17 @@ export default function SlideShow({ children }) {
         block: "start",
         inline: "start",
       });
+      // older browsers might support scrollIntoView
+      // but not the smooth behavior, causing no scroll at all
+      // detect this and scroll immediately
+      const scrollBefore = slide.parentElement.scrollLeft;
+      setTimeout(() => {
+        const scrollAfter = slide.parentElement.scrollLeft;
+        console.log(scrollBefore, scrollAfter);
+        if (scrollBefore === scrollAfter) {
+          slide.scrollIntoView();
+        }
+      }, 50);
     }
   }, [currentSlide]);
 

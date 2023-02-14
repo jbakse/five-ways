@@ -94,6 +94,7 @@ Lobby:
 □ support showing image options on lobby slides? 
     meaning questions that have imaage answers
 
+□ make slides scale to cover?
 
 ✓ languages @done(22-12-09 11:08)
     :english only
@@ -228,3 +229,10 @@ contrast over bar might be too low (but the bar reenforces)
 ✓ use Maxeville Tekst for all question and answer text @done(23-01-30 12:33)
     ✓ survey @done(23-01-30 12:30)
     ✓ lobby @done(23-01-30 12:33)
+
+
+Document:
+
+Does the produciton and dev app (on vercel) both talk to the same database on pscale?
+Can the production app talk to the produciton db, and the dev app talk to the dev db?
+

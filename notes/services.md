@@ -11,6 +11,12 @@ Account: jbakse
 Project Name: five-ways
 https://vercel.com/jbakse/five-ways
 
+Production:
+https://five-ways-jbakse.vercel.app/
+
+Development:
+https://five-ways-git-dev-jbakse.vercel.app/
+
 "hobby" tier. free
 "pro" tier. $20/month
 
