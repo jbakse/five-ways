@@ -12,8 +12,10 @@ export function QuestionOpen({ prompt, responseTexts, animationTime = 5000 }) {
       const elapsedTime = currentTime - startTime;
       const n = smoothstep(clamp(elapsedTime / animationTime, 0, 1));
 
-      scroller.current.scrollTop =
-        (scroller.current.scrollHeight - scroller.current.clientHeight) * n;
+      if (scroller.current) {
+        scroller.current.scrollTop =
+          (scroller.current.scrollHeight - scroller.current.clientHeight) * n;
+      }
     };
 
     const interval = setInterval(scroll, 1000 / 60);

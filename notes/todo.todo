@@ -6,6 +6,9 @@
 
 @low @high @today
 
+
+□ SECURITY! @high
+
 Bugs:
 ✓ FOUT on splash screen @done(22-12-14 10:45)
 ✓ resizing window can cause scroll to be between slide @done(22-12-13 14:37)
@@ -94,8 +97,8 @@ Lobby:
     ✓ multiple answer @done(23-01-10 15:12)
     ✓ open answer @done(23-02-01 10:12)
 
-□ support showing image options on lobby slides? 
-    meaning questions that have imaage answers
+? support showing image options for image questions on lobby slides?
+    
 
 □ make slides scale to cover?
 
@@ -108,7 +111,7 @@ Lobby:
 
 
 Admin Tools:
-□ clean up br tags in admin tools by setting margin tops on things
+? clean up br tags in admin tools by setting margin tops on things
 ✓ `viewedCount` and `answeredCount` wrong (=0) in report @done(23-01-12 12:55)
 ✓ surveys should list short name instead of prompt @done(23-01-12 13:00)
 
@@ -180,10 +183,10 @@ Review + Refactor:
 
 For Call:
 
-□ final copy for thank you? (translations?)
-□ final copy for lang select?
-□ you need an up to date ipad, iPadOS 16.2
-□ you need some kiosk browser software, i'm trying [Kiosker](https://kiosker.io/)
+✓ final copy for thank you? (translations?) @done(23-03-01 14:43)
+✓ final copy for lang select? @done(23-03-01 14:43)
+✓ you need an up to date ipad, iPadOS 16.2 @done(23-03-01 14:43)
+✓ you need some kiosk browser software, i'm trying [Kiosker](https://kiosker.io/) @done(23-03-01 14:43)
 
 
 ✓ remove logging of unaswered questions @done(23-02-01 10:19)
@@ -198,7 +201,7 @@ For Call:
 
 □  from jake: There is a chance they will want to have different background colors for the choices on question #2.  They are planning on having those labels be different colors in the gallery, so they were hoping that question could reflect those colors.
 
-
+□ SECURITY! @high
 ✓ fix lobby view! @done(23-01-17 12:52)
 ✓ adjust bar chart bar color. @done(23-01-17 12:51)
 black on #8391a5 is contrast  6.56:1
@@ -256,3 +259,4 @@ Survey
 Results Screen
 [x] All percentages [ex: 50%] — rgb(0, 0, 0)
 [maybe? but bezels?] Margins — too narrow?
+Archive:
