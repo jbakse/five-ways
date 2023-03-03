@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 export const config = {
   matcher: ["/", "/questions/:path*", "/surveys/:path*", "/responses/:path*"],
