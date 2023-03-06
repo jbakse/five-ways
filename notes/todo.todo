@@ -7,7 +7,7 @@
 @low @high @today
 
 
-□ SECURITY! @high
+✓ SECURITY! @high @done(23-03-06 10:22)
 
 Bugs:
 ✓ FOUT on splash screen @done(22-12-14 10:45)
@@ -201,7 +201,7 @@ For Call:
 
 □  from jake: There is a chance they will want to have different background colors for the choices on question #2.  They are planning on having those labels be different colors in the gallery, so they were hoping that question could reflect those colors.
 
-□ SECURITY! @high
+✓ SECURITY! @high @done(23-03-06 10:22)
 ✓ fix lobby view! @done(23-01-17 12:52)
 ✓ adjust bar chart bar color. @done(23-01-17 12:51)
 black on #8391a5 is contrast  6.56:1
