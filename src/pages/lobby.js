@@ -48,11 +48,17 @@ export default function LobbyPage({ config, survey }) {
   useEffect(() => {
     if (!survey) return;
 
+    let t;
+    let qIndex = 0;
+
     function transition() {
       setShowBlocker(true);
 
       setTimeout(() => {
-        setQuestionIndex((index) => (index + 1) % survey.questions.length);
+        setQuestionIndex(() => {
+          qIndex = (qIndex + 1) % survey.questions.length;
+          return qIndex;
+        });
       }, 1000);
 
       setTimeout(() => {
@@ -60,11 +66,29 @@ export default function LobbyPage({ config, survey }) {
       }, 2000);
     }
 
-    const interval = setInterval(() => {
-      transition();
-    }, config.lobbySlideTime * 1000);
+    function repeatTransition() {
+      // this used to be a clean setInteval
+      // this is now a kinda messy setTimeout to allow for
+      // "open" slides taking longer
 
-    return () => clearInterval(interval);
+      transition();
+
+      let time = config.lobbySlideTime * 1000;
+      const nextIndex = (qIndex + 1) % survey.questions.length;
+      if (survey.questions[nextIndex].type === "open") time *= 2;
+
+      t = setTimeout(repeatTransition, time);
+    }
+
+    repeatTransition();
+
+    // const interval = setInterval(() => {
+    //   transition();
+    // }, config.lobbySlideTime * 1000);
+
+    // return () => clearInterval(interval);
+
+    return () => clearTimeout(t);
   }, [survey, survey?.questions.length, config.lobbySlideTime]);
 
   // if there is no survey, show a blank page
@@ -101,7 +125,7 @@ export default function LobbyPage({ config, survey }) {
       {question.type === "open" && (
         <QuestionCard
           question={question}
-          animationTime={config.lobbySlideTime * 1000 - 1000}
+          animationTime={config.lobbySlideTime * 1000 * 2 - 1000}
         />
       )}
 
